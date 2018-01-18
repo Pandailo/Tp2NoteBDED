@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<jonas-ejb-jar xmlns="http://www.objectweb.org/jonas/ns"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.objectweb.org/jonas/ns
+      http://www.objectweb.org/jonas/ns/jonas-ejb-jar_5_1.xsd">
+
+    <jonas-entity>
+        <ejb-name>HaTransactionSLR</ejb-name>
+        <jndi-name>HaTransactionHome</jndi-name>
+        <cluster-replicated>false</cluster-replicated>
+        <shared>true</shared>
+        <cluster-config>
+            <name>cluster-j2ee14</name>
+            <policy>org.ow2.cmi.lb.policy.RoundRobin</policy>
+            <strategy>org.ow2.cmi.lb.strategy.LocalPreference</strategy>
+            <pool>
+                <max-size>10</max-size>
+                <max-waiters>15</max-waiters>
+                <timeout>2000</timeout>
+            </pool>
+        </cluster-config>
+        <jdbc-mapping>
+            <jndi-name>jdbc_1</jndi-name>
+            <jdbc-table-name>ha_transactions</jdbc-table-name>
+            <cmp-field-jdbc-mapping>
+                <field-name>txid</field-name>
+                <jdbc-field-name>txid</jdbc-field-name>
+                <sql-type>varchar(60)</sql-type>
+            </cmp-field-jdbc-mapping>
+        </jdbc-mapping>
+        <lock-policy>database</lock-policy>
+    </jonas-entity>
+
+
+</jonas-ejb-jar>

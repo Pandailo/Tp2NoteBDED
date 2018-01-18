@@ -1,0 +1,117 @@
+#! /bin/sh
+# ---------------------------------------------------------------------------
+# JOnAS: Java(TM) Open Application Server
+# Copyright (C) 1999-2011 Bull S.A.S.
+# Contact: jonas-team@ow2.org
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+# USA
+#
+# Initial developer(s): Philippe Durieux
+# Contributor(s): ______________________________________.
+#
+# ---------------------------------------------------------------------------
+# $Id: joram_raconfig 22668 2012-12-07 14:21:38Z albertil $
+# ---------------------------------------------------------------------------
+
+# Check JONAS_ROOT is set.
+if [ ! -d $JONAS_ROOT/deploy ]
+then
+    echo "JONAS_ROOT must be set"
+    exit 1
+fi
+
+# Set CLASSPATH and JONAS_BASE
+. $JONAS_ROOT/bin/setenv
+
+# Locate the JORAM ResourceAdapter to configure
+RA_LOCATION=repositories/maven2-internal/org/ow2/joram/joram-jca-jonas/5.8.0/joram-jca-jonas-5.8.0.rar
+if [ -f $JONAS_BASE/$RA_LOCATION ]; then
+    RARJORAM=$JONAS_BASE/$RA_LOCATION;
+else
+    if [ -f $JONAS_BASE/joram_ra_for_jonas.rar ]; then
+        RARJORAM=$JONAS_BASE/joram_ra_for_jonas.rar;
+    fi
+fi
+
+if ([ "$RARJORAM" = "" ] || [ ! -f $RARJORAM ]); then
+	echo "[ERROR] Cannot find a JORAM Resource Adapter file to process.";
+    echo "Expected locations:";
+    echo "  * $JONAS_BASE/$RA_LOCATION (newjb generated base)";
+    echo "  * $JONAS_BASE/joram_ra_for_jonas.rar";
+    echo "Notice that the JORAM RA is automatically placed at the right location by 'newjb' when generating a new JONAS_BASE";
+	exit 1 ;
+fi
+
+PRM="false";
+PORT=16010;
+HOST=localhost;
+SERVER=0;
+export PRM PORT HOST SERVER
+
+while [ "$#" -gt 0 ]
+do
+  case "$1" in
+  -p)
+    shift
+    PORT=$1;
+    PRM="true";
+    ;;
+  -h)
+    shift
+    HOST=$1;
+    PRM="true";
+    ;;
+  -s)
+    shift
+    SERVER=$1;
+    PRM="true";
+    ;;
+  -v)
+    shift
+    export VERBOSE=$1;
+    ;;
+  *)
+   shift
+   ;;
+  esac
+done
+
+if [ "$PRM" = "false" ]
+then
+	echo "Usage : $0 -p <port> -h <host> -s <serverid>";
+	exit 1;
+fi
+
+echo "Target JORAM Resource Adapter: $RARJORAM"
+
+JAVA_OPTS="$JAVA_OPTS \
+    -Djonas.root=$JONAS_ROOT \
+    -Djonas.base=$JONAS_BASE \
+    -Djava.security.manager \
+    -Djava.security.policy=$JONAS_BASE/conf/java.policy \
+    -Djava.endorsed.dirs=$JONAS_ROOT/lib/endorsed \
+"
+# add /client-bootstrap.jar to the classpath for the bootstrap class
+JONAS_CLASSPATH=$JONAS_CLASSPATH$SPS$JONAS_ROOT/lib/bootstrap/client-bootstrap.jar$SPS$JONAS_ROOT/lib/jonas-generators-raconfig.jar$SPS$JONAS_ROOT/lib/client.jar
+
+$JAVA -cp $JONAS_CLASSPATH \
+      $JAVA_OPTS \
+      org.ow2.jonas.client.boot.Bootstrap org.objectweb.joram.client.connector.utils.RAConfig \
+      -rar $RARJORAM \
+      -uhp $HOST $PORT $SERVER \
+      -conf $JONAS_BASE/conf \
+      $VERBOSE
+

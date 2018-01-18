@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 2005 Bull S.A.
+ - Contact: jonas-team@objectweb.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id:build.xml 14651 2008-07-28 11:50:13Z eyindanga $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+
+<project name="J2EE Application for JOnAS Cluster"
+     default="install"
+     basedir=".">
+
+  <!-- build.properties hold the properties that can be customized -->
+  <property file="./build.properties" />
+  <property file="../build.properties" />
+
+  <!-- some properties are build from environment variables -->
+  <property environment="myenv"/>
+  <property name="jonas.root" value="${myenv.JONAS_ROOT}" />
+
+  <property name="src.dir" value="./src" />
+  <property name="src.java.dir" value="${src.dir}/java/org/ow2/jonas/examples/cluster/j2ee14" />
+  <property name="xml.dir" value="../cluster-j2ee14/etc/xml" />
+  <property name="resources.dir" value="../cluster-j2ee14/etc/resources" />
+  <property name="classes.dir" value="classes" />
+  <property name="dist.dir" value="output" />
+  <property name="dist.ejbjars.dir" value="${dist.dir}/ejbjars" />
+  <property name="dist.webapps.dir" value="${dist.dir}/webapps" />
+  <property name="dist.apps.dir" value="${dist.dir}/apps" />
+  <property name="lib.dir" value="${jonas.root}/lib" />
+
+  <!-- ejbjar task  -->
+  <taskdef name="ejbjar"
+           classname="org.ow2.jonas.antmodular.ejb2.EjbJar"
+           classpath="${jonas.root}/lib/common/ow_jonas_ant.jar" />
+
+  <!-- The classpath to be used to compile examples -->
+  <path id="base.classpath">
+    <pathelement location="${classes.dir}" />
+      <fileset dir="${lib.dir}">
+          <include name="client.jar" />
+      </fileset>
+    <fileset dir="${lib.dir}/common">
+          <include name="log/*.jar" />
+        <include name="ow_jonas_bootstrap.jar" />
+        <include name="ow_jonas.jar" />
+      </fileset>
+  </path>
+
+
+  <target name="mydtd"
+      description="rebuild ./build.dtd for DOCTYPE">
+    <antstructure output="build.dtd"/>
+  </target>
+
+  <target name="init">
+    <!-- directories building -->
+    <mkdir dir="${classes.dir}" />
+    <mkdir dir="${dist.dir}" />
+    <mkdir dir="${dist.apps.dir}" />
+    <mkdir dir="${dist.ejbjars.dir}" />
+    <mkdir dir="${dist.webapps.dir}" />
+    <mkdir dir="${dist.webapps.dir}/sample-cluster2/WEB-INF/classes" />
+    <mkdir dir="${dist.webapps.dir}/sample-cluster2/WEB-INF/lib" />
+    <condition property="jonas.base" value="${myenv.JONAS_BASE}">
+        <available file="${myenv.JONAS_BASE}"/>
+    </condition>
+    <condition property="jonas.base" value="${jonas.root}">
+        <available file="${jonas.root}"/>
+    </condition>
+  </target>
+
+  <target name="clean"
+      description="Removes all the generated files or directories">
+    <delete dir="${classes.dir}" />
+    <delete dir="${dist.dir}" />
+  </target>
+  <!-- Compile classes -->
+  <target name="compile"
+      description="Compiles J2EE Application for JOnAS cluster"
+      depends="init" >
+    <javac srcdir="${src.java.dir}/beans"
+       destdir="${classes.dir}"
+       debug="${opt.javac.debug}"
+       optimize="${opt.javac.optimize}">
+      <classpath refid="base.classpath" />
+    </javac>
+    <javac srcdir="${src.java.dir}/servlets"
+       destdir="${dist.webapps.dir}/sample-cluster2/WEB-INF/classes"
+       debug="${opt.javac.debug}"
+       optimize="${opt.javac.optimize}">
+      <classpath refid="base.classpath" />
+    </javac>
+    <javac srcdir="${src.java.dir}/client"
+       destdir="${classes.dir}"
+       debug="${opt.javac.debug}"
+       optimize="${opt.javac.optimize}">
+      <classpath refid="base.classpath" />
+    </javac>
+
+  </target>
+  <!-- Enable load balancing mode in the deployment descriptor -->
+  <target name="enableLbMode" unless="jonasDDExist"
+      description="Enable the load-balancing mode (default mode)">
+      <copy tofile="${xml.dir}/jonas-ejb-jar.xml" overwrite="true">
+              <fileset dir="${xml.dir}" includes="jonas-ejb-jar.lb.xml"/>
+      </copy>
+  </target>
+   <!-- Enable high availability mode in the deployment descriptor -->
+  <target name="enableHaMode"
+      description="Enable the high availability mode">
+      <copy tofile="${xml.dir}/jonas-ejb-jar.xml" overwrite="true">
+              <fileset dir="${xml.dir}" includes="jonas-ejb-jar.ha.xml"/>
+      </copy>
+  </target>
+
+  <!-- Deploying ejbjars via ejbjar task  -->
+ <target name="jonasejbjar"
+         description="Build and deploy the ejb-jars"
+         depends="compile" >
+
+     <available file="${xml.dir}/jonas-ejb-jar.xml" type="file"
+                property="jonasDDExist"/>
+
+    <ejbjar basejarname="ejbs"
+            srcdir="${classes.dir}"
+            descriptordir="${xml.dir}"
+            dependency="full">
+      <jonas destdir="${dist.ejbjars.dir}"
+             jonasroot="${jonas.root}"
+             protocols="${protocols.names}"
+             keepgenerated="true"
+             verbose="${verbose}"
+             additionalargs="${genicargs}">
+             <classpath refid="base.classpath" />
+      </jonas>
+      <include name="**/*.xml"/>
+      <exclude name="**/jonas-*.xml"/>
+      <exclude name="**/build.xml" />
+    </ejbjar>
+    <jar destfile="${dist.ejbjars.dir}/ejbs.jar" update="true" duplicate="preserve">
+      <fileset dir="${classes.dir}" >
+        <include name="**/*.class"/>
+        <exclude name="**/*.xml"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <target name="jonasejbjarHA"
+      description="Build and deploy the ejb-jars"
+      depends="compile" >
+    <!-- building ejbsHA  -->
+    <ejbjar basejarname="ejbsHA"
+        srcdir="${classes.dir}"
+        descriptordir="${xml.dir}/transaction"
+        dependency="full">
+      <jonas destdir="${dist.ejbjars.dir}"
+         jonasroot="${jonas.root}"
+         protocols="${protocols.names}"
+         keepgenerated="true"
+         verbose="${verbose}"
+         additionalargs="${genicargs}">
+      </jonas>
+      <include name="**/*.xml"/>
+      <exclude name="**/jonas-*.xml"/>
+      <exclude name="**/build.xml" />
+    </ejbjar>
+  </target>
+  <!-- building sampleCluster2.war   -->
+    <target name="war"
+      description="Build the war file"
+      depends="jonasejbjar" >
+    <copy todir="${dist.webapps.dir}/sample-cluster2/WEB-INF/lib">
+        <fileset dir="${dist.ejbjars.dir}" includes="ejbs.jar"/>
+        </copy>
+    <war warfile="${dist.webapps.dir}/sampleCluster2.war" webxml="${resources.dir}/WEB-INF/web.xml">
+        <webinf dir="${resources.dir}/WEB-INF" includes="jonas-web.xml" />
+        <zipfileset dir="${resources.dir}/web" prefix="" />
+        <classes dir="${dist.webapps.dir}/sample-cluster2/WEB-INF/classes" />
+        <lib dir="${dist.webapps.dir}/sample-cluster2/WEB-INF/lib" />
+    </war>
+  </target>
+  <!-- building sampleCluster2.ear   -->
+  <target name="ear"
+      description="Build the ear file"
+      depends="war" >
+    <ear earfile="${dist.apps.dir}/sampleCluster2.ear"
+     appxml="${src.dir}/application.xml">
+      <manifest>
+            <attribute name="Require-JOnAS-Services" value="${required.services}"/>
+      </manifest>
+      <fileset dir="${dist.ejbjars.dir}" includes="ejbs.jar"/>
+      <fileset dir="${dist.webapps.dir}" includes="sampleCluster2.war"/>
+    </ear>
+  </target>
+  <!-- building haTransactions.ear   -->
+  <target name="earHA"
+      description="Build the HA ear file"
+      depends="jonasejbjarHA" >
+    <ear earfile="${dist.apps.dir}/haTransactions.ear"
+     appxml="${src.dir}/applicationHA.xml">
+      <fileset dir="${dist.ejbjars.dir}" includes="ejbsHA.jar"/>
+    </ear>
+  </target>
+
+  <target name="jar"
+        description="Build the jar file"
+        depends="compile">
+      <jar destfile="${dist.dir}/sampleCluster2.jar" basedir="${classes.dir}"></jar>
+  </target>
+
+  <target name="install"
+      description="Build and install the example in ${jonas.base}/deploy"
+      depends="ear,earHA" >
+    <!-- Copy ear-jar files in JONAS_BASE/deploy -->
+    <copy todir="${jonas.base}/deploy">
+      <fileset dir="${dist.apps.dir}"
+           includes="sampleCluster2.ear"/>
+      <fileset dir="${dist.apps.dir}"
+             includes="haTransactions.ear"/>
+    </copy>
+  </target>
+
+</project>
+
+

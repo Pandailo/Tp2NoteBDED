@@ -1,0 +1,8 @@
+If the output in trace.properties is set to automatic,
+JOnAS will put in this directory the JOnAS logs.
+
+The name of the log file is :
+<jonas_name_server>-<timestamp>.log
+ie : jonas-2003-04-01.log
+
+If CATALINA_BASE = JONAS_BASE, catalina will put the logs file in this directory.

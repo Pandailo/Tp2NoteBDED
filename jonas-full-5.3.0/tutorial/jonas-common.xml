@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 2007-2011 Bull S.A.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: jonas-common.xml 22816 2013-03-13 10:20:25Z albertil $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<project xmlns:jonas="http://jonas.ow2.org"
+         xmlns:cxf="antlib:org.apache.cxf.ant.extensions"
+         name="Common rules for packaging Java EE modules"
+         basedir=".">
+
+    <!-- build.properties hold the properties that can be customized -->
+    <property file="build.properties"/>
+
+    <!-- some properties are build from environment variables -->
+    <property environment="myenv"/>
+    <property name="jonas.root" value="${myenv.JONAS_ROOT}"/>
+
+    <property name="javac.debug" value="on"/>
+    <property name="javac.optimize" value="off"/>
+    <property name="javac.deprecation" value="off"/>
+    <property name="javac.verbose" value="off"/>
+    <property name="javac.compiler" value="modern"/>
+    <property name="javac.nowarn" value="off"/>
+
+    <!-- Set the uncustomizable properties -->
+    <property name="src.dir" value="src/java"/>
+    <property name="resources.dir" value="etc"/>
+    <property name="build.dir" location="${basedir}/build"/>
+    <property name="build.classes.dir" location="${build.dir}/classes"/>
+    <property name="build.generated.dir" location="${build.dir}/generated"/>
+    <property name="lib.dir" location="${basedir}/lib"/>
+
+    <condition property="jonas.base" value="${myenv.JONAS_BASE}">
+        <available file="${myenv.JONAS_BASE}"/>
+    </condition>
+    <condition property="jonas.base" value="${jonas.root}">
+        <available file="${jonas.root}"/>
+    </condition>
+
+
+    <!-- The classpath to be used to compile examples -->
+    <path id="base.classpath">
+        <pathelement location="${jonas.base}/conf"/>
+        <fileset dir="${jonas.root}">
+            <!-- In that bundle we have the @OSGiResource -->
+            <include name="repositories/maven2-internal/**/easybeans-*.jar"/>
+            <include name="repositories/maven2-internal/**/ow2-*-spec-*.jar"/>
+            <include name="lib/common/ant-tasks.jar"/>
+            <include name="lib/bootstrap/jonas-launcher.jar"/>
+            <include name="repositories/maven2-internal/**/ow2-bundles-externals-cxf*.jar"/>
+            <include name="repositories/maven2-internal/**/jaxb2-ri-*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- The classpath to be used to run examples -->
+    <path id="client.classpath">
+        <pathelement location="${jonas.base}/conf"/>
+        <fileset dir="${jonas.root}">
+            <include name="lib/client.jar"/>
+        </fileset>
+    </path>
+
+    <path id="cxf.anttasks.classpath">
+      <fileset dir="${lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+        <fileset dir="${jonas.root}">
+            <include name="repositories/maven2-internal/**/ow2-*-spec-*.jar"/>
+            <include name="repositories/maven2-internal/org/codehaus/woodstox/**/*.jar"/>
+            <include name="repositories/maven2-internal/**/*wsdl4j*.jar"/>
+            <include name="repositories/maven2-internal/**/xmlschema-core-*.jar"/>
+            <include name="repositories/maven2-internal/org/apache/httpcomponents/**/*.jar"/>
+            <include name="repositories/maven2-internal/**/cxf-bundle-*.jar"/>
+            <include name="repositories/maven2-internal/**/jaxb2-ri-*.jar"/>
+            <include name="repositories/maven2-internal/**/*resolver-*.jar"/>
+            <include name="repositories/maven2-internal/**/*woodstox-*.jar"/>
+            <include name="repositories/maven2-internal/**/*XmlSchema-*.jar"/>
+            <include name="repositories/maven2-internal/**/springframework-*.jar"/>
+            <include name="repositories/maven2-internal/**/*commons*logging-*.jar"/>
+            <include name="repositories/maven2-internal/**/*commons*collections-*.jar"/>
+            <include name="repositories/maven2-internal/**/neethi-*.jar"/>
+            <include name="lib/jaxb-xjc.jar"/>
+        </fileset>
+    </path>
+
+    <!-- Set the properties -->
+    <property name="dist.clients.dir" value="${jonas.base}/clients"/>
+    <property name="dist.deploy.dir" value="${jonas.base}/deploy"/>
+    <property name="dist.webapps.dir" value="${jonas.base}/deploy"/>
+    <!-- EJB go in deploy directory -->
+    <property name="ejb.dir" value="${dist.deploy.dir}"/>
+    <!-- WAR go in webapps directory in standalone mode-->
+    <property name="war.dir" value="${dist.webapps.dir}"/>
+    <!-- Client go in clients directory in standalone mode-->
+    <property name="client.dir" value="${dist.clients.dir}"/>
+    <!-- EAR go in deploy directory in standalone mode-->
+    <property name="ear.dir" value="${dist.deploy.dir}"/>
+
+
+    <target name="clean">
+        <!-- directories removal -->
+        <delete dir="${build.dir}"/>
+        <delete dir="${rar.classes.dir}"/>
+        <delete dir="${build.classes.dir}"/>
+        <delete dir="${build.generated.dir}"/>
+    </target>
+
+    <!-- Below is the XML shared between EasyBeans standalone/JOnAS/Jetty/Tomcat -->
+
+    <target name="init">
+        <!-- directories building -->
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${dist.clients.dir}"/>
+        <mkdir dir="${dist.deploy.dir}"/>
+        <mkdir dir="${dist.webapps.dir}"/>
+        <mkdir dir="${build.generated.dir}"/>
+
+        <!-- Set the war.dd.file property to 'empty-value' if not set -->
+        <condition property="war.dd.file" value="${war.dd}">
+            <available file="${war.dd}"/>
+        </condition>
+        <condition property="war.dd.file" value="empty-value">
+            <not>
+                <available file="${war.dd}"/>
+            </not>
+        </condition>
+
+        <!-- Set the ejb.persistence.dd.file property to 'empty-value' if not set -->
+        <condition property="ejb.persistence.dd.file" value="${ejb.persistence.dd}">
+            <available file="${ejb.persistence.dd}"/>
+        </condition>
+        <condition property="ejb.persistence.dd.file" value="empty-value">
+            <not>
+                <available file="${ejb.persistence.dd}"/>
+            </not>
+        </condition>
+
+        <!-- Ant tasks provided by OW2 Util -->
+        <typedef resource="org/ow2/util/ant/antlib.xml"
+                 uri="http://jonas.ow2.org">
+            <classpath refid="base.classpath"/>
+        </typedef>
+
+        <!-- test if the ~/proxy.properties exist -->
+        <condition property="proxy.properties.present">
+            <available file="${user.home}/proxy.properties" type="file"/>
+        </condition>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - -
+target: proxy:http
+- - - - - - - - - - - - - - - - - -->
+    <target name="proxy:http"
+            depends="proxy:http:none, proxy:http:with"
+            description="Set the HTTP proxy properties if needed"/>
+
+    <!-- if the proxy.properties doesn't exist, unset the proxyset   -->
+    <target name="proxy:http:none"
+            unless="proxy.properties.present"
+            depends="init">
+        <property name="http.proxySet" value="false"/>
+        <property name="proxy.properties.set"
+                  value="-Dhttp.proxySet=${http.proxySet}"/>
+    </target>
+
+    <!-- if the proxy.properties exists,set the proxyset   -->
+    <target name="proxy:http:with" if="proxy.properties.present" depends="init">
+        <!-- Can load properties from the file -->
+        <property file="${user.home}/proxy.properties" prefix="my"/>
+        <property name="proxy.properties.set"
+                  value="-Dhttp.proxyHost=${my.proxyHost} -Dhttp.proxyPort=${my.proxyPort} -Dhttp.nonProxyHosts=${my.nonProxyHosts} -Dhttp.proxySet=${my.proxySet}"/>
+    </target>
+
+
+    <target name="compile" description="Compile classes" depends="init">
+        <echo message="src.dir=${src.dir}"/>
+        <javac srcdir="${src.dir}"
+               destdir="${build.classes.dir}"
+               debug="${javac.debug}"
+               deprecation="${javac.deprecation}"
+               optimize="${javac.optimize}"
+               verbose="${javac.verbose}"
+               compiler="${javac.compiler}"
+               nowarn="${javac.nowarn}">
+            <classpath refid="base.classpath"/>
+        </javac>
+    </target>
+
+    <!-- Generate an EJB jar file if it is not included in an EAR -->
+    <target name="ejb-standalone" unless="ear.name">
+        <jonas:ejb exploded="${archives.exploded}"
+                   dest="${ejb.dir}/${ejb.name}.jar"
+                   persistencedd="${ejb.persistence.dd.file}">
+            <fileset dir="${build.classes.dir}">
+                <patternset refid="ejb.patternset"/>
+            </fileset>
+        </jonas:ejb>
+    </target>
+
+    <target name="ejb" if="ejb.name">
+        <antcall target="ejb-standalone"/>
+    </target>
+
+    <!-- Generate a war file if it is not included in an EAR -->
+    <target name="war-standalone" unless="ear.name">
+        <jonas:war exploded="${archives.exploded}"
+                   dest="${war.dir}/${war.name}.war"
+                   dd="${war.dd.file}">
+            <classes dir="${build.classes.dir}">
+                <patternset refid="war.patternset"/>
+            </classes>
+        </jonas:war>
+    </target>
+
+    <target name="war" if="war.name">
+        <antcall target="war-standalone"/>
+    </target>
+
+    <!-- Generate an application client jar file -->
+    <target name="client-standalone">
+        <jonas:client dest="${client.dir}/${client.name}.jar"
+                      mainclass="${client.main.class}"
+                      dd="${client.dd}"
+                      specificdd="${client.specificdd}">
+            <fileset dir="${build.classes.dir}">
+                <patternset refid="client.patternset"/>
+            </fileset>
+            <fileset dir="${client.resources.dir}">
+                <patternset refid="client.resources.patternset"/>
+            </fileset>
+        </jonas:client>
+    </target>
+
+    <target name="client" if="client.name">
+        <antcall target="client-standalone"/>
+    </target>
+
+    <!-- Generate an EAR if it is selected -->
+    <target name="ear" if="ear.name">
+        <jonas:ear exploded="${archives.exploded}"
+                   dest="${ear.dir}/${ear.name}.ear"
+                   dd="${ear.dd}">
+            <ejb dest="${ejb.name}.jar" persistencedd="${ejb.persistence.dd.file}">
+                <fileset dir="${build.classes.dir}">
+                    <patternset refid="ejb.patternset"/>
+                </fileset>
+            </ejb>
+            <war dest="${war.name}.war" dd="${war.dd.file}">
+                <classes dir="${build.classes.dir}">
+                    <patternset refid="war.patternset"/>
+                </classes>
+            </war>
+            <client dest="${client.dir}/${client.name}.jar"
+                    mainclass="${client.main.class}"
+                    dd="${client.dd}"
+                    specificdd="${client.specificdd}">
+                <fileset dir="${build.classes.dir}">
+                    <patternset refid="client.patternset"/>
+                </fileset>
+                <fileset dir="${client.resources.dir}">
+                    <patternset refid="client.resources.patternset"/>
+                </fileset>
+            </client>
+        </jonas:ear>
+    </target>
+
+    <target name="java2wsdl" depends="proxy:http, compile" description="Generate WSDL">
+        <echo level="info"
+              message="Generating WSDL from Service Endpoint Interface (${sei.classname}) ..."/>
+        <echo level="info"
+              message="Proxy properties : ${proxy.properties.set}"/>
+        <java classname="org.apache.cxf.tools.java2wsdl.JavaToWSDL" fork="true">
+            <jvmarg line="${proxy.properties.set}"/>
+            <arg value="-verbose"/>
+            <arg value="-cp"/>
+            <arg value="${build.classes.dir}"/>
+            <arg value="-o"/>
+            <arg value="${build.generated.dir}/${webServicename}.wsdl"/>
+            <arg value="${sei.classname}"/>
+            <classpath>
+                <pathelement location="${build.classes.dir}"/>
+                <path refid="cxf.anttasks.classpath"/>
+            </classpath>
+
+        </java>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - -
+      target: wsdl2java  via java
+    - - - - - - - - - - - - - - - - - -->
+    <target name="wsdl2java">
+        <echo level="info"
+              message="Generating JAX-WS artifacts  from WSDL located at  ${wsdlURL}..."/>
+        <echo level="info"
+              message="-classdir=${build.classes.dir} "/>
+        <java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+
+            <arg value="-d"/>
+            <arg value="${build.generated.dir}"/>
+            <arg value="-verbose"/>
+            <arg value="-compile"/>
+            <arg value="-classdir"/>
+            <arg value="${build.classes.dir}"/>
+            <arg value="${wsdlURL}"/>
+            <classpath>
+                <path refid="cxf.anttasks.classpath"/>
+            </classpath>
+            <jvmarg line="-Djavax.xml.stream.XMLInputFactory=com.ctc.wstx.stax.WstxInputFactory "/>
+
+        </java>
+    </target>
+
+
+    <!-- Install example -->
+    <target name="install"
+            depends="init, compile, ejb, war, client, ear"
+            description="Install this example in a deployable directory">
+    </target>
+
+</project>

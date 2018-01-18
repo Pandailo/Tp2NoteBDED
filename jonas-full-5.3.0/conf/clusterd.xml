@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<cluster-daemon xmlns="http://www.objectweb.org/jonas/ns"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.objectweb.org/jonas/ns
+                                   http://jonas.ow2.org/ns/jonas-clusterd_5_3.xsd">
+
+  <name>cd</name>
+  <domain-name>domainSample</domain-name>
+  <jonas-interaction-mode>loosely-coupled</jonas-interaction-mode>
+
+  <discovery>
+    <group-name>JGroupsDiscovery</group-name>
+    <stack-file>jgroups-discovery.xml</stack-file>
+    <start-up>true</start-up>
+  </discovery>
+
+  <!-- JMX security, as explained in jonas.properties
+  <jmx.secured>true</jmx.secured>
+  <jmx.authentication.method>jmx.remote.x.password.file</jmx.authentication.method>
+  <jmx.authentication.parameter>conf/jmx.passwords</jmx.authentication.parameter>
+  <jmx.authorization.method>jmx.remote.x.access.file</jmx.authorization.method>
+  <jmx.authorization.parameter>conf/jmx.access</jmx.authorization.parameter>
+  -->
+
+  <!-- Example of a configuration with four nodes
+  <server>
+    <name>node1</name>
+    <domain>domain1</domain>
+    <description>Web instance</description>
+    <java-home>/usr/java/jdk-ia32/sun/j2sdk1.4.2_10</java-home>
+    <jonas-root>/home/pelletib/pkg/jonas_root_sb48</jonas-root>
+    <jonas-base>/home/pelletib/tmp/newjc48/jb1</jonas-base>
+    <xprm></xprm>
+    <auto-boot>false</auto-boot>
+    <jonas-cmd></jonas-cmd>
+  </server>
+  <server>
+    <name>node2</name>
+    <domain>domain2</domain>
+    <description>Web instance</description>
+    <java-home>/usr/java/jdk-ia32/sun/j2sdk1.4.2_10</java-home>
+    <jonas-root>/home/pelletib/pkg/jonas_root_sb48</jonas-root>
+    <jonas-base>/home/pelletib/tmp/newjc48/jb2</jonas-base>
+    <xprm></xprm>
+    <auto-boot>false</auto-boot>
+    <jonas-cmd></jonas-cmd>
+  </server>
+  <server>
+    <name>node3</name>
+    <domain>domain1</domain>
+    <description>Ejb instance</description>
+    <java-home>/usr/java/jdk-ia32/sun/j2sdk1.4.2_10</java-home>
+    <jonas-root>/home/pelletib/pkg/jonas_root_sb48</jonas-root>
+    <jonas-base>/home/pelletib/tmp/newjc48/jb3</jonas-base>
+    <xprm></xprm>
+    <auto-boot>false</auto-boot>
+    <jonas-cmd></jonas-cmd>
+  </server>
+  <server>
+    <name>node4</name>
+    <domain>domain2</domain>
+    <description>Ejb instance</description>
+    <java-home>/usr/java/jdk-ia32/sun/j2sdk1.4.2_10</java-home>
+    <jonas-root>/home/pelletib/pkg/jonas_root_sb48</jonas-root>
+    <jonas-base>/home/pelletib/tmp/newjc48/jb4</jonas-base>
+    <xprm></xprm>
+    <auto-boot>false</auto-boot>
+    <jonas-cmd></jonas-cmd>
+  </server>
+  -->
+
+</cluster-daemon>

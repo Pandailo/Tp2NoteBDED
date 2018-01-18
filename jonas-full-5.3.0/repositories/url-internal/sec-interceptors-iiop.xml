@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated Tue Oct 01 13:22:00 CEST 2013 by JOnAS. -->
+<deployment-plan xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
+  xmlns:url="http://jonas.ow2.org/ns/deployment-plan/url/1.0"
+  xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0 http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.xsd
+                      http://jonas.ow2.org/ns/deployment-plan/maven2/1.0 http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
+  atomic="false" id="sec-interceptors-iiop">
+  <deployment id="ejb21-container" xsi:type="url:url-deploymentType">
+    <url:resource>ejb21-container.xml</url:resource>
+  </deployment>
+  <deployment id="org.ow2.jonas:jonas-sec-interceptors-iiop:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.jonas</m2:groupId>
+    <m2:artifactId>jonas-sec-interceptors-iiop</m2:artifactId>
+    <m2:version>5.3.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+</deployment-plan>

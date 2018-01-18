@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+     http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
+    version="2.1">
+
+    <description>Describe here the content of this file</description>
+    <display-name>MyEjb1</display-name>
+
+    <enterprise-beans>
+        <session>
+            <description>
+                Describe here the session bean MyEjb1
+            </description>
+            <display-name>MyEjb1/MyEjb1SLR</display-name>
+            <ejb-name>MyEjb1SLR</ejb-name>
+            <home>org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEjb1Home</home>
+            <remote>org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEjb1</remote>
+            <ejb-class>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEjb1SLR
+            </ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+
+        <session>
+            <description>
+                Describe here the session bean MyStateful
+            </description>
+            <display-name>ejbs/MyStatefulSFR</display-name>
+            <ejb-name>MyStatefulSFR</ejb-name>
+            <home>org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyStatefulHome</home>
+            <remote>org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyStateful</remote>
+            <ejb-class>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyStatefulSFR
+            </ejb-class>
+            <session-type>Stateful</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+
+        <session>
+            <description>
+                Describe here the session bean MyStateful
+            </description>
+            <display-name>ejbs/MyStatefulInner</display-name>
+            <ejb-name>MyStatefulInner</ejb-name>
+            <local-home>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyStatefulInnerLocalHome
+            </local-home>
+            <local>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyStatefulInnerLocal
+            </local>
+            <ejb-class>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyStatefulInner
+            </ejb-class>
+            <session-type>Stateful</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+
+        <entity>
+            <description>Describe here the entity bean</description>
+            <!--   <display-name>ejbs/MyEntitySLR</display-name> -->
+            <ejb-name>MyEntitySLR</ejb-name>
+            <home>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEntityHome
+            </home>
+            <remote>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEntityRemote
+            </remote>
+            <local-home>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEntityLocalHome
+            </local-home>
+            <local>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEntityLocal
+            </local>
+            <ejb-class>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.samplecluster2.MyEntitySLR
+            </ejb-class>
+            <persistence-type>Container</persistence-type>
+            <prim-key-class>java.lang.Object</prim-key-class>
+            <reentrant>false</reentrant>
+            <cmp-version>2.x</cmp-version>
+            <abstract-schema-name>ClusterSchema</abstract-schema-name>
+            <cmp-field>
+                <field-name>number</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>jOnASName</field-name>
+            </cmp-field>
+            <security-identity>
+                <use-caller-identity />
+            </security-identity>
+        </entity>
+
+
+    </enterprise-beans>
+
+    <assembly-descriptor>
+
+        <container-transaction>
+            <method>
+                <ejb-name>MyEjb1SLR</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+
+        <container-transaction>
+            <method>
+                <ejb-name>MyStatefulSFR</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+
+        <container-transaction>
+            <method>
+                <ejb-name>MyStatefulInner</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+
+        <container-transaction>
+            <method>
+                <ejb-name>MyEntitySLR</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+
+    </assembly-descriptor>
+
+</ejb-jar>

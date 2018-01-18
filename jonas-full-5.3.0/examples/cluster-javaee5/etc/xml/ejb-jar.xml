@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - EasyBeans
+  - Copyright (C) 2008 Bull S.A.S.
+  - Contact: easybeans@ow2.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or (at your option) any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: ejb-jar.xml 17350 2009-05-13 14:15:43Z fornacif $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd"
+  version="3.0">
+
+  <enterprise-beans>
+
+        <session>
+            <description>Describe here the session bean MyStatelessHome</description>
+            <display-name>MyStatelessHome</display-name>
+            <ejb-name>MyStatelessBean</ejb-name>
+            <remote>org.ow2.jonas.examples.cluster.javaee5.beans.samplecluster3.MyStateless</remote>
+            <ejb-class>org.ow2.jonas.examples.cluster.javaee5.beans.samplecluster3.MyStatelessBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+         </session>
+
+         <session>
+            <description>Describe here the session bean MyStatefulHome</description>
+            <display-name>MyStatefulHome</display-name>
+            <ejb-name>MyStatefulBean</ejb-name>
+            <remote>org.ow2.jonas.examples.cluster.javaee5.beans.samplecluster3.MyStateful</remote>
+            <ejb-class>org.ow2.jonas.examples.cluster.javaee5.beans.samplecluster3.MyStatefulBean</ejb-class>
+            <session-type>Stateful</session-type>
+            <transaction-type>Container</transaction-type>
+         </session>
+
+         <session>
+            <description>Describe here the session bean MyStatefulInnerHome</description>
+            <display-name>MyStatefulInnerHome</display-name>
+            <ejb-name>MyStatefulInnerBean</ejb-name>
+            <remote>org.ow2.jonas.examples.cluster.javaee5.beans.samplecluster3.MyStatefulInner</remote>
+            <ejb-class>org.ow2.jonas.examples.cluster.javaee5.beans.samplecluster3.MyStatefulInnerBean</ejb-class>
+            <session-type>Stateful</session-type>
+            <transaction-type>Container</transaction-type>
+         </session>
+  </enterprise-beans>
+</ejb-jar>

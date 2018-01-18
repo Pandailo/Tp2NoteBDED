@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated Tue Oct 01 13:22:00 CEST 2013 by JOnAS. -->
+<deployment-plan xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
+  xmlns:url="http://jonas.ow2.org/ns/deployment-plan/url/1.0"
+  xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0 http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.xsd
+                      http://jonas.ow2.org/ns/deployment-plan/maven2/1.0 http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
+  atomic="false" id="easybeans-core">
+  <deployment id="ow2-util-common-impl" xsi:type="url:url-deploymentType">
+    <url:resource>ow2-util-common-impl.xml</url:resource>
+  </deployment>
+  <deployment id="ow2-util-event-common-ejb" xsi:type="url:url-deploymentType">
+    <url:resource>ow2-util-event-common-ejb.xml</url:resource>
+  </deployment>
+  <deployment id="spec-ee-javamail" xsi:type="url:url-deploymentType">
+    <url:resource>spec-ee-javamail.xml</url:resource>
+  </deployment>
+  <deployment id="org.ow2.easybeans.osgi:easybeans-component-quartz:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.easybeans.osgi</m2:groupId>
+    <m2:artifactId>easybeans-component-quartz</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.apache.felix:org.apache.felix.dependencymanager:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.apache.felix</m2:groupId>
+    <m2:artifactId>org.apache.felix.dependencymanager</m2:artifactId>
+    <m2:version>2.0.1</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.util.marshalling:marshalling:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.util.marshalling</m2:groupId>
+    <m2:artifactId>marshalling</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.util.metadata:metadata-ejbjar-impl:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.util.metadata</m2:groupId>
+    <m2:artifactId>metadata-ejbjar-impl</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.easybeans.osgi:easybeans-modules-core:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.easybeans.osgi</m2:groupId>
+    <m2:artifactId>easybeans-modules-core</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+</deployment-plan>

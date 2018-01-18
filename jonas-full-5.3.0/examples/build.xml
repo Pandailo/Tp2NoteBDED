@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 1999-2009 Bull S.A.S.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: build.xml 18511 2009-09-04 09:35:18Z loris $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<!--
+ - JOnAS examples building directives for Ant
+ -->
+
+<project name="JOnAS Examples" default="install" basedir=".">
+
+  <property file="build.properties" />
+
+  <target name="clean" description="Remove all the generated files or directories">
+    <ant dir="j2ee1.4" target="clean" />
+    <ant dir="javaee5-earsample" target="clean" />
+    <ant dir="MyEarSample" target="clean" />
+    <ant dir="cluster-j2ee14" target="clean" />
+    <ant dir="cluster-javaee5" target="clean" />
+  </target>
+
+  <target name="install" description="Build and Install all the JOnAS examples">
+    <ant dir="j2ee1.4" target="install" />
+    <ant dir="javaee5-earsample" target="install" />
+	<ant dir="MyEarSample" target="install" />
+    <ant dir="cluster-j2ee14" target="install" />
+    <ant dir="cluster-javaee5" target="install" />
+  </target>
+
+</project>

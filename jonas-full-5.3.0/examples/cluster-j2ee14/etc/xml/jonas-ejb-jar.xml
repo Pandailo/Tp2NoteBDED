@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<jonas-ejb-jar xmlns="http://www.objectweb.org/jonas/ns"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.objectweb.org/jonas/ns
+      http://www.objectweb.org/jonas/ns/jonas-ejb-jar_5_1.xsd">
+
+    <jonas-session>
+        <ejb-name>MyEjb1SLR</ejb-name>
+        <jndi-name>MyEjb1Home</jndi-name>
+        <min-pool-size>3</min-pool-size>
+        <cluster-config>
+            <name>cluster-j2ee14</name>
+            <policy>org.ow2.cmi.lb.policy.RoundRobin</policy>
+            <strategy>org.ow2.cmi.lb.strategy.LocalPreference</strategy>
+            <properties>
+                <simple-property name="prop1" value="val1" />
+                <simple-property name="prop2" value="38" />
+                <array-property name="prop3">
+                    <value>true</value>
+                </array-property>
+                <array-property name="prop4">
+                    <value>java.util.LinkedList</value>
+                    <value>java.util.ArrayList</value>
+                </array-property>
+                <array-property name="prop5">
+                    <value>http://carol.ow2.org</value>
+                </array-property>
+            </properties>
+            <pool>
+                <max-size>10</max-size>
+                <max-waiters>15</max-waiters>
+                <timeout>2000</timeout>
+            </pool>
+        </cluster-config>
+    </jonas-session>
+
+    <jonas-session>
+        <ejb-name>MyStatefulSFR</ejb-name>
+        <jndi-name>MyStatefulHome</jndi-name>
+        <cluster-config>
+            <name>cluster-j2ee14</name>
+            <policy>org.ow2.cmi.lb.policy.RoundRobin</policy>
+            <strategy>org.ow2.cmi.lb.strategy.LocalPreference</strategy>
+            <properties>
+                <simple-property name="prop1" value="val1" />
+                <simple-property name="prop2" value="38" />
+                <array-property name="prop3">
+                    <value>true</value>
+                </array-property>
+                <array-property name="prop4">
+                    <value>java.util.LinkedList</value>
+                    <value>java.util.ArrayList</value>
+                </array-property>
+                <array-property name="prop5">
+                    <value>http://carol.ow2.org</value>
+                </array-property>
+            </properties>
+            <pool>
+                <max-size>10</max-size>
+                <max-waiters>15</max-waiters>
+                <timeout>2000</timeout>
+            </pool>
+        </cluster-config>
+        <is-modified-method-name>isModified</is-modified-method-name>
+    </jonas-session>
+
+    <jonas-session>
+        <ejb-name>MyStatefulInner</ejb-name>
+        <jndi-name>MyStatefulInnerHome</jndi-name>
+        <is-modified-method-name>isModified</is-modified-method-name>
+    </jonas-session>
+
+    <jonas-entity>
+        <ejb-name>MyEntitySLR</ejb-name>
+        <jndi-name>MyEntityHome</jndi-name>
+        <cluster-config>
+            <name>cluster-j2ee14</name>
+            <policy>org.ow2.cmi.lb.policy.RoundRobin</policy>
+            <strategy>org.ow2.cmi.lb.strategy.LocalPreference</strategy>
+            <pool>
+                <max-size>10</max-size>
+                <max-waiters>15</max-waiters>
+                <timeout>2000</timeout>
+            </pool>
+        </cluster-config>
+        <shared>true</shared>
+        <jdbc-mapping>
+            <jndi-name>jdbc_1</jndi-name>
+        </jdbc-mapping>
+        <lock-policy>database</lock-policy>
+    </jonas-entity>
+
+
+</jonas-ejb-jar>

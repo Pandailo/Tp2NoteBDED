@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - JOnAS: Java(TM) Open Application Server
+  - Copyright (C) 2009-2010 Bull S.A.S.
+  - Contact: jonas-team@ow2.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  - USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: pom.xml 22610 2012-10-23 14:24:17Z albertil $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.ow2.jonas.admin</groupId>
+    <artifactId>jonasadmin-kerneos-assemblies</artifactId>
+    <version>1.0.9</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.ow2.jonas.admin</groupId>
+  <artifactId>jonasadmin-kerneos-assemblies-war</artifactId>
+  <packaging>war</packaging>
+  <name>JOnAS Admin Kerneos :: Assemblies :: WAR</name>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.ow2.jasmine.kerneos</groupId>
+      <artifactId>kerneos-core-server</artifactId>
+      <version>${kerneos.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.sun.xml.bind</groupId>
+          <artifactId>jaxb-impl</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.bundles</groupId>
+          <artifactId>ow2-bundles-externals-jaxb2</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.compendium</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.util</groupId>
+          <artifactId>util-log</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>apache-log4j-extras</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.easybeans.osgi</groupId>
+          <artifactId>easybeans-osgi-annotations</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.jasmine.kerneos</groupId>
+      <artifactId>kerneos-login-server</artifactId>
+      <version>${kerneos.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.ow2.jonas</groupId>
+          <artifactId>jonas-security</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jonasadmin-kerneos-modules-jdbcconnections-server</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.ow2.jonas</groupId>
+          <artifactId>jonas-management-extensions</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jonasadmin-kerneos-modules-audit-server</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>servlet-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.jonas</groupId>
+          <artifactId>jonas-management-extensions</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.easybeans.console</groupId>
+      <artifactId>easybeans-console-modules-jmxbrowser-server</artifactId>
+      <version>${easybeans-console.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.easybeans.console</groupId>
+      <artifactId>easybeans-console-modules-registry-server</artifactId>
+      <version>${easybeans-console.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jonasadmin-kerneos-modules-osgiconsole-server</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>servlet-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.jonas</groupId>
+          <artifactId>jonas-management-extensions</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jonasadmin-kerneos-modules-builder-server</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>servlet-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.jonas</groupId>
+          <artifactId>jonas-management-extensions</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jonasadmin-kerneos-modules-classloader-server</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>servlet-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.jonas</groupId>
+          <artifactId>jonas-management-extensions</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- Web Services console server part                                                    -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jonasadmin-kerneos-modules-webservices-server</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+
+                <!-- Core -->
+                <artifactItem>
+                  <groupId>org.ow2.jasmine.kerneos</groupId>
+                  <artifactId>kerneos-core-client</artifactId>
+                  <version>${kerneos.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>Kerneos.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.jonas.admin</groupId>
+                  <artifactId>jonasadmin-kerneos-modules-jdbcconnections-client</artifactId>
+                  <version>${project.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>jdbcconnections.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.easybeans.console</groupId>
+                  <artifactId>easybeans-console-modules-jmxbrowser-client</artifactId>
+                  <version>${easybeans-console.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>jmxbrowser.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.easybeans.console</groupId>
+                  <artifactId>easybeans-console-modules-registry-client</artifactId>
+                  <version>${easybeans-console.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>registry.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.jonas.admin</groupId>
+                  <artifactId>jonasadmin-kerneos-modules-audit-client</artifactId>
+                  <version>${project.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>audit.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.jonas.admin</groupId>
+                  <artifactId>jonasadmin-kerneos-modules-classloader-client</artifactId>
+                  <version>${project.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>classloader.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.jonas.admin</groupId>
+                  <artifactId>jonasadmin-kerneos-modules-osgiconsole-client</artifactId>
+                  <version>${project.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>osgiconsole.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.jonas.admin</groupId>
+                  <artifactId>jonasadmin-kerneos-modules-builder-client</artifactId>
+                  <version>${project.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>builder.swf</destFileName>
+                </artifactItem>
+
+                <artifactItem>
+                  <groupId>org.ow2.jonas.admin</groupId>
+                  <artifactId>jonasadmin-kerneos-modules-webservices-client</artifactId>
+                  <version>${project.version}</version>
+                  <type>swf</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jonasAdmin-kerneos/</outputDirectory>
+                  <destFileName>webservices-console.swf</destFileName>
+                </artifactItem>
+
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <finalName>jonasAdmin-kerneos</finalName>
+  </build>
+</project>

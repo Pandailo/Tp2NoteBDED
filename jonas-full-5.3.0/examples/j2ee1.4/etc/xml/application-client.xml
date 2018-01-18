@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - JOnAS: Java(TM) Open Application Server
+  - Copyright (C) 2007 Bull S.A.S.
+  - Contact: jonas-team@ow2.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  - USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: application-client.xml 17350 2009-05-13 14:15:43Z fornacif $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+
+<application-client xmlns="http://java.sun.com/xml/ns/j2ee"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+                                        http://java.sun.com/xml/ns/j2ee/application-client_1_4.xsd"
+                   version="1.4">
+
+  <display-name>Client of the earsample</display-name>
+
+  <env-entry>
+    <env-entry-name>envEntryString</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>
+      Test of envEntry of application-client.xml file
+    </env-entry-value>
+  </env-entry>
+
+
+  <ejb-ref>
+    <ejb-ref-name>ejb/Op</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>org.ow2.jonas.earsample.beans.secusb.OpHome</home>
+    <remote>org.ow2.jonas.earsample.beans.secusb.Op</remote>
+    <ejb-link>secusb.jar#EarOp</ejb-link>
+  </ejb-ref>
+
+  <ejb-ref>
+    <!-- Only to test ejb-link without .jar prefix -->
+    <ejb-ref-name>ejb/OpLink</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>org.ow2.jonas.earsample.beans.secusb.OpHome</home>
+    <remote>org.ow2.jonas.earsample.beans.secusb.Op</remote>
+    <ejb-link>EarOp</ejb-link>
+  </ejb-ref>
+
+  <resource-ref>
+    <res-ref-name>url/jonas</res-ref-name>
+    <res-type>java.net.URL</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+
+  <callback-handler>
+    org.ow2.jonas.security.auth.callback.LoginCallbackHandler
+  </callback-handler>
+
+</application-client>

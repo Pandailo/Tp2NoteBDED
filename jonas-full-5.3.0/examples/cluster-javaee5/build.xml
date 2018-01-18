@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 2008 Bull S.A.S
+ - Contact: jonas-team@objectweb.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: build.xml 22804 2013-02-26 13:23:34Z albertil $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+
+<project xmlns:jonas="http://jonas.ow2.org"
+         name="Java EE Application for JOnAS Cluster"
+         default="install"
+         basedir=".">
+
+    <!-- Import common rules -->
+    <import file="../jonas-common.xml" />
+
+    <!-- Build exploded archives or not ? -->
+    <property name="archives.exploded" value="false" />
+
+    <property name="ejb.dd" value="etc/xml/ejb-jar.xml" />
+    <property name="ejb.specific.dd" value="etc/xml/easybeans.xml" />
+    <property name="ear.output.dir" value="output/apps" />
+
+    <path id="base.classpath">
+      <pathelement location="${jonas.base}/conf" />
+      <fileset dir="${jonas.root}">
+      <!-- In that bundle we have the @OSGiResource -->
+      <include name="repositories/maven2-internal/**/easybeans-*.jar" />
+      <include name="repositories/maven2-internal/**/ow2-*-spec-*.jar" />
+      <include name="repositories/maven2-internal/**/log-bridge-jul-*.jar" />
+      <include name="repositories/maven2-internal/**/jonas-commons-*.jar" />
+      <include name="repositories/maven2-internal/**/cmi-all-*.jar" />
+      <include name="lib/common/ant-tasks.jar"/>
+      <include name="lib/bootstrap/jonas-launcher.jar"/>
+
+      </fileset>
+    </path>
+
+
+  <!-- Enable load balancing mode in the deployment descriptor -->
+
+<!--
+  <target name="enableLbMode" unless="jonasDDExist"
+      description="Enable the load-balancing mode (default mode)">
+      <copy tofile="${xml.dir}/jonas-ejb-jar.xml" overwrite="true">
+              <fileset dir="${xml.dir}" includes="jonas-ejb-jar.lb.xml"/>
+      </copy>
+  </target>
+-->
+   <!-- Enable high availability mode in the deployment descriptor -->
+<!--
+  <target name="enableHaMode"
+      description="Enable the high availability mode">
+      <copy tofile="${xml.dir}/jonas-ejb-jar.xml" overwrite="true">
+              <fileset dir="${xml.dir}" includes="jonas-ejb-jar.ha.xml"/>
+      </copy>
+  </target>
+-->
+  <target name="ear" depends="compile">
+
+<!--
+       <available file="${xml.dir}/jonas-ejb-jar.xml" type="file"
+                  property="jonasDDExist"/>
+
+       <antcall target="enableLbMode"/>
+-->
+       <!-- APIs -->
+       <jar destfile="${examples.apis.dir}/ejbapis.jar" update="true" duplicate="preserve">
+            <fileset dir="${examples.classes.dir}" >
+               <include name="org/ow2/jonas/examples/cluster/javaee5/beans/samplecluster3/MyStateless.class"/>
+               <include name="org/ow2/jonas/examples/cluster/javaee5/beans/samplecluster3/MyStateful.class"/>
+               <include name="org/ow2/jonas/examples/cluster/javaee5/beans/samplecluster3/MyException.class"/>
+            </fileset>
+       </jar>
+
+        <!-- Package the EAR -->
+        <jonas:ear dest="${ear.dir}/sampleCluster3.ear"
+                   dd="etc/resources/application.xml">
+
+            <lib dir="${examples.apis.dir}">
+              <patternset >
+                 <include  name="ejbapis.jar"/>
+              </patternset>
+            </lib>
+            <ejb dest="ejb3.jar" persistencedd="etc/resources/persistence.xml" dd="${ejb.dd}"
+                specificdd="${ejb.specific.dd}">
+                <fileset dir="${examples.classes.dir}">
+                    <patternset>
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/beans/samplecluster3/*.class" />
+                        <exclude name="org/ow2/jonas/examples/cluster/javaee5/beans/samplecluster3/MyStateless.class" />
+                        <exclude name="org/ow2/jonas/examples/cluster/javaee5/beans/samplecluster3/MyStateful.class"/>
+                        <exclude name="org/ow2/jonas/examples/cluster/javaee5/beans/samplecluster3/MyException.class"/>
+                    </patternset>
+                </fileset>
+            </ejb>
+
+            <war dest="sampleCluster3.war" dd="etc/resources/WEB-INF/web.xml">
+                <classes dir="${examples.classes.dir}">
+                    <patternset>
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/servlets/*.class" />
+                    </patternset>
+                </classes>
+                <fileset dir="etc/resources/web" />
+            </war>
+
+          <client dest="clientlbremote.jar"
+                    mainclass="org.ow2.jonas.examples.cluster.javaee5.client.ClientLBRemote"
+                  dd="etc/resources/client.xml"
+                    specificdd="etc/resources/jonas-client.xml">
+
+                  <fileset dir="${examples.classes.dir}">
+                     <patternset>
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/client/ClientBase.class" />
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/client/ClientLBRemote.class" />
+                     </patternset>
+                  </fileset>
+           </client>
+
+          <client dest="clientfosfsb.jar"
+                    mainclass="org.ow2.jonas.examples.cluster.javaee5.client.ClientFOSFSB"
+                  dd="etc/resources/client.xml"
+                    specificdd="etc/resources/jonas-client.xml">
+
+                  <fileset dir="${examples.classes.dir}">
+                     <patternset>
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/client/ClientBase.class" />
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/client/ClientFOSFSB.class" />
+                     </patternset>
+                  </fileset>
+           </client>
+
+          <client dest="clientexception.jar"
+                    mainclass="org.ow2.jonas.examples.cluster.javaee5.client.ClientException"
+                  dd="etc/resources/client.xml"
+                    specificdd="etc/resources/jonas-client.xml">
+
+                  <fileset dir="${examples.classes.dir}">
+                     <patternset>
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/client/ClientBase.class" />
+                        <include name="org/ow2/jonas/examples/cluster/javaee5/client/ClientException.class" />
+                     </patternset>
+                  </fileset>
+           </client>
+
+        </jonas:ear>
+        <ear destfile="${ear.dir}/sampleCluster3.ear" update="true" duplicate="preserve">
+           <manifest>
+                <attribute name="Require-JOnAS-Services" value="${required.services}"/>
+           </manifest>
+        </ear>
+
+        <!-- Copy ear-jar files in ${ear.output.dir} (used by the jcl cmd) -->
+        <mkdir dir="${ear.output.dir}"/>
+        <copy todir="${ear.output.dir}" overwrite="true">
+            <fileset dir="${ear.dir}"
+                     includes="sampleCluster3.ear"/>
+        </copy>
+    </target>
+
+    <!-- Install example -->
+    <target name="install"
+            depends="init, compile, ear"
+            description="Install this example in a deployable directory">
+    </target>
+
+</project>
+

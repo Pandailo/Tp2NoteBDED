@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 2005-2011 Bull S.A.S.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - Initial developer(s): Florent BENOIT
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: build-master.xml 22804 2013-02-26 13:23:34Z albertil $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+<!--
+ -  build.xml file for creating a new JOnAS_BASE
+ -->
+<project basedir="" default="create_jonas_base"
+  name="JOnAS_BASE tools" xmlns:jant="http://jonas.objectweb.org/ant">
+  <!-- Define some properties -->
+  <target name="init">
+    <!-- properties -->
+    <property environment="myenv"/>
+    <property name="jonas.root" value="${myenv.JONAS_ROOT}"/>
+    <property name="jonas.base" value="${myenv.JONAS_BASE}"/>
+    <!-- tasks classpath="${jonas.root}/lib/common/ow_jonas_ant.jar" -->
+    <!-- tasks -->
+    <typedef resource="org/ow2/jonas/antmodular/antlib.xml" uri="http://jonas.objectweb.org/ant">
+      <!--
+        The Java EE API and JAXB2 JARs need to be included since the JDBC XML
+        tasks require JAXB2, not included in the Java 5 runtime. These can be
+        removed when running on Java 6.
+        -->
+      <classpath>
+        <fileset dir="${jonas.root}/repositories/maven2-internal/org/ow2/spec/ee">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${jonas.root}/repositories/maven2-internal/org/ow2/util/bundles">
+          <include name="**/jaxb2-ri-*/**/*.jar"/>
+        </fileset>
+        <pathelement location="${jonas.root}/lib/common/ow_jonas_ant.jar"/>
+      </classpath>
+    </typedef>
+    <!-- Define directories -->
+    <property name="conf.dir" value="${user.home}/jb.config/conf"/>
+    <!-- Load user properties -->
+    <property file="${conf.dir}/jonas-newjb.properties"/>
+    <property file="./build-jb.properties"/>
+  </target>
+  <!-- jonas_base control -->
+  <target name="init_jonasbase">
+    <input addproperty="jonas.base"
+      defaultvalue="${myenv.JONAS_BASE}" message="Choose your jonas_base : [default : ${myenv.JONAS_BASE}] :"/>
+    <input addproperty="carol.protocol"
+      defaultvalue="${carol.defaultprotocol}"
+      message="Choose your protocol : [default : ${carol.defaultprotocol}] :" validargs="jrmp,iiop,irmi"/>
+    <input addproperty="db.name" defaultvalue="${db.defaultname}"
+      message="Choose your database : [default : ${db.defaultname}] :" validargs="h2,hsql"/>
+    <input addproperty="dbm.datasource"
+      defaultvalue="${dbm.datasource.default}"
+      message="Choose your datasource: [default : ${dbm.datasource.default}] :" validargs="H2,HSQL1,InstantDB1,McKoi1,MySQL,Oracle1,PostgreSQL1,Sybase1,none"/>
+    <input addproperty="discovery.implementation"
+      defaultvalue="${discovery.implementation.default}"
+      message="Choose your discovery protocol : [default : ${discovery.implementation.default}] :" validargs="jgroups,multicast"/>
+    <input addproperty="ejb3.implementation"
+      defaultvalue="${ejb3.implementation.default}"
+      message="Chosse your EJB3 implementation : [default : ${ejb3.implementation.default}] :" validargs="${ejb3.implementation.default}"/>
+    <input addproperty="ejb3.jpa.provider.implementation"
+      defaultvalue="${ejb3.jpa.provider.default}"
+      message="Chosse your EJB3 provider : [default : ${ejb3.jpa.provider.default}] :" validargs="eclipselink1.1,eclipselink2.2,eclipselink2.3,eclipselink2.4,hibernate3.6,hibernate4.1,openjpa,openjpa2"/>
+    <input addproperty="jsf.implementation"
+      defaultvalue="${jsf.implementation.default}"
+      message="Choose your JSF implementatation : [default : ${jsf.implementation.default}] :" validargs="mojarra20,myFaces20"/>
+    <input addproperty="webcontainer.service.name"
+      defaultvalue="${webcontainer.service.defaultname}"
+      message="Choose your WebContainer : [default : ${webcontainer.service.defaultname}] :" validargs="jetty8,tomcat7"/>
+    <antcall target="init_jonas_services"/>
+  </target>
+  <!-- init jonas services -->
+  <target name="init_jonas_services">
+    <condition property="h2_selected">
+      <equals arg1="${db.name}" arg2="h2"/>
+    </condition>
+    <condition property="hsql_selected">
+      <equals arg1="${db.name}" arg2="hsql"/>
+    </condition>
+    <condition property="jgroups_selected">
+      <equals arg1="${discovery.implementation}" arg2="jgroups"/>
+    </condition>
+    <condition property="multicast_selected">
+      <equals arg1="${discovery.implementation}" arg2="multicast"/>
+    </condition>
+    <condition property="jsf_mojarra20_selected">
+      <equals arg1="${jsf.implementation}" arg2="mojarra20"/>
+    </condition>
+    <condition property="jsf_myFaces20_selected">
+      <equals arg1="${jsf.implementation}" arg2="myFaces20"/>
+    </condition>
+    <condition property="jetty8_selected">
+      <equals arg1="${webcontainer.service.name}" arg2="jetty8"/>
+    </condition>
+    <condition property="tomcat7_selected">
+      <equals arg1="${webcontainer.service.name}" arg2="tomcat7"/>
+    </condition>
+  </target>
+  <!-- New JOnAS Base-->
+  <target depends="init, init_jonasbase"
+    description="Create a new JOnAS Base" name="create_jonas_base">
+    <antcall target="internal_create_jonas_base"/>
+    <antcall target="after_create_jonas_base"/>
+  </target>
+  <!-- Internal creation of new JOnAS Base-->
+  <target depends="init" name="internal_create_jonas_base">
+    <jant:newjonasbase skipOptionalDeployablesCopy="false" update="off"/>
+  </target>
+  <target depends="init_jonas_services" name="after_create_jonas_base">
+    <antcall target="set_jonas_properties"/>
+    <antcall target="set_carol"/>
+    <antcall target="set_db"/>
+    <antcall target="set_dbm"/>
+    <antcall target="set_discovery"/>
+    <antcall target="set_ejb"/>
+    <antcall target="set_jdbcRa"/>
+    <antcall target="set_jdbcXml"/>
+    <antcall target="set_jms"/>
+    <antcall target="set_jsf"/>
+    <antcall target="set_mail"/>
+    <antcall target="set_security"/>
+    <antcall target="set_smartclient"/>
+    <antcall target="set_web_container"/>
+    <antcall target="set_wsdl"/>
+  </target>
+  <target depends="init" name="set_jonas_properties">
+    <jant:jonasProperties configfile="${jonas.log.configfile}"
+      csiv2Propagation="${jonas.csiv2.propagation}"
+      development="${jonas.development}" master="${jonas.master}"
+      securityManager="${jonas.security.manager}"
+      securityPropagation="${jonas.security.propagation}"
+      services="${jonas.services}" transactionPropagation="${jonas.transaction.propagation}"/>
+  </target>
+  <target depends="init" name="set_lib">
+    <jant:lib destDir="${jonas.base}" jonasRoot="${jonas.root}">
+      <fileset dir="${user.home}/${drivers.dir}">
+        <include name="${rajdbc.jdbcdriverjarfile}"/>
+      </fileset>
+    </jant:lib>
+  </target>
+  <target depends="init" name="set_ejb">
+    <jant:ejb3 ejb3JpaProvider="${ejb3.jpa.provider.implementation}"/>
+  </target>
+  <target depends="init" name="set_jms">
+    <jant:jms initialQueues="${jms.queues}"
+      initialTopics="${jms.topics}" port="${jms.port}"/>
+  </target>
+  <target depends="init" name="set_db">
+    <antcall target="set_db_h2"/>
+    <antcall target="set_db_hsql"/>
+  </target>
+  <target depends="init" if="h2_selected" name="set_db_h2">
+    <jant:db-h2 dbName="${db.dbName}" port="${db.port}" users="${db.users}"/>
+  </target>
+  <target depends="init" if="hsql_selected" name="set_db_hsql">
+    <jant:db-hsql dbName="${db.dbName}" port="${db.port}" users="${db.users}"/>
+  </target>
+  <target depends="init" name="set_dbm">
+    <jant:dbm dataSources="${dbm.datasource}"/>
+  </target>
+  <target depends="init" name="set_discovery">
+    <antcall target="set_discovery_jgroups"/>
+    <antcall target="set_discovery_multicast"/>
+  </target>
+  <target if="jgroups_selected" name="set_discovery_jgroups">
+    <jant:discovery-jgroups/>
+  </target>
+  <target if="multicast_selected" name="set_discovery_multicast">
+    <jant:discovery-multicast
+      greetingPort="${discovery.greetingport}"
+      mcastAddr="${discovery.mcastaddr}"
+      mcastPort="${discovery.mcastport}"
+      sourcePort="${discovery.sourceport}" ttl="${discovery.ttl}"/>
+  </target>
+  <target depends="init" name="set_mail">
+    <jant:mail name="${mail.session.name}" type="Session"/>
+    <jant:mail host="${mail.host}" mailTo="${mail.to}"
+      name="${mail.mimepartds.name}" subject="${mail.subject}" type="MimePartDataSource"/>
+  </target>
+  <target name="define_jdbcra_values">
+    <!-- init values for default jdbcRa -->
+    <jant:property name="rajdbc.user" value="rajdbc.${db.name}.user"/>
+    <jant:property name="rajdbc.password" value="rajdbc.${db.name}.password"/>
+    <jant:property name="rajdbc.url" value="rajdbc.${db.name}.url"/>
+    <jant:property name="rajdbc.drivername" value="rajdbc.${db.name}.drivername"/>
+    <jant:property name="rajdbc.jndiname" value="rajdbc.${db.name}.jndiname"/>
+    <jant:property defaultValue="100" name="rajdbc.maxpoolsize" value="rajdbc.${db.name}.maxpoolsize"/>
+    <jant:property name="rajdbc.jdbcdriverjarfile" value="rajdbc.${db.name}.jdbcdriverjarfile"/>
+    <jant:property name="rajdbc.mappername" value="rajdbc.${db.name}.mappername"/>
+    <!-- init the rajdbc.p6spy if it's not already done -->
+    <property name="rajdbc.p6spy" value="off"/>
+  </target>
+  <target depends="init,define_jdbcra_values" name="set_jdbcRa">
+    <!-- jdbcRa -->
+    <!--
+    <jant:jdbcRa name="db_access_jdbc1"
+                 mapperName="${rajdbc.mappername}"
+                 user="${rajdbc.user}"
+                 password="${rajdbc.password}"
+                 url="${rajdbc.url}"
+                 driverName="${rajdbc.drivername}"
+                 maxPoolSize="${rajdbc.maxpoolsize}"
+                 jndiName="${rajdbc.jndiname}"
+                 autoload="on"
+                 p6spy="${rajdbc.p6spy}" />
+    <jant:jdbcRa name="db_access_jdbc_xa1"
+                 mapperName="${rajdbc.mappername}"
+                 user="${rajdbc.user}"
+                 password="${rajdbc.password}"
+                 url="${rajdbc.url}"
+                 driverName="${rajdbc.drivername}"
+                 maxPoolSize="${rajdbc.maxpoolsize}"
+                 jndiName="jdbc_xa1"
+                 autoload="on"
+                 p6spy="${rajdbc.p6spy}" />
+    <jant:jdbcRa name="db_access_jdbc_xa2"
+                 mapperName="${rajdbc.mappername}"
+                 user="${rajdbc.user}"
+                 password="${rajdbc.password}"
+                 url="${rajdbc.url}"
+                 driverName="${rajdbc.drivername}"
+                 maxPoolSize="${rajdbc.maxpoolsize}"
+                 jndiName="jdbc_xa2"
+                 autoload="on"
+                 p6spy="${rajdbc.p6spy}" />
+    -->
+  </target>
+  <target name="define_jdbcxml_values">
+    <!-- init values for default jdbcXml -->
+    <jant:property name="xmljdbc.name" value="xmljdbc.${db.name}.name"/>
+    <jant:property name="xmljdbc.username" value="xmljdbc.${db.name}.username"/>
+    <jant:property name="xmljdbc.password" value="xmljdbc.${db.name}.password"/>
+    <jant:property name="xmljdbc.url" value="xmljdbc.${db.name}.url"/>
+    <jant:property name="xmljdbc.mapper" value="xmljdbc.${db.name}.mapper"/>
+    <jant:property name="xmljdbc.classname" value="xmljdbc.${db.name}.classname"/>
+    <jant:property defaultValue="10" name="xmljdbc.initconpool" value="xmljdbc.${db.name}.initconpool"/>
+    <jant:property defaultValue="10" name="xmljdbc.minconpool" value="xmljdbc.${db.name}.minconpool"/>
+    <jant:property defaultValue="100" name="xmljdbc.maxconpool" value="xmljdbc.${db.name}.maxconpool"/>
+    <jant:property defaultValue="60" name="xmljdbc.maxopentime" value="xmljdbc.${db.name}.maxopentime"/>
+    <jant:property defaultValue="100" name="xmljdbc.maxwaiters" value="xmljdbc.${db.name}.maxwaiters"/>
+    <jant:property defaultValue="5" name="xmljdbc.maxwaitingtime" value="xmljdbc.${db.name}.maxwaitingtime"/>
+    <jant:property defaultValue="100" name="xmljdbc.pstmtmax" value="xmljdbc.${db.name}.pstmtmax"/>
+    <jant:property defaultValue="List"
+      name="xmljdbc.pstmtcachepolicy" value="xmljdbc.${db.name}.pstmtcachepolicy"/>
+    <jant:property defaultValue="30"
+      name="xmljdbc.samplingperiod" value="xmljdbc.${db.name}.samplingperiod"/>
+    <jant:property defaultValue="1440" name="xmljdbc.connmaxage" value="xmljdbc.${db.name}.connmaxage"/>
+    <jant:property defaultValue="0" name="xmljdbc.conchecklevel" value="xmljdbc.${db.name}.conchecklevel"/>
+    <jant:property defaultValue="" name="xmljdbc.conteststmt" value="xmljdbc.${db.name}.conteststmt"/>
+  </target>
+  <target
+    depends="init,define_jdbcra_values,define_jdbcxml_values" name="set_jdbcXml">
+    <jant:jdbcXml className="${xmljdbc.classname}"
+      conCheckLevel="${xmljdbc.conchecklevel}"
+      conTestStmt="${xmljdbc.conteststmt}"
+      connMaxAge="${xmljdbc.connmaxage}"
+      initConPool="${xmljdbc.initconpool}"
+      mapper="${xmljdbc.mapper}"
+      maxConPool="${xmljdbc.maxconpool}"
+      maxOpenTime="${xmljdbc.maxopentime}"
+      maxWaitTime="${xmljdbc.maxwaitingtime}"
+      maxWaiters="${xmljdbc.maxwaiters}"
+      minConPool="${xmljdbc.minconpool}" name="${xmljdbc.name}"
+      newFile="true" password="${xmljdbc.password}"
+      pstmtCachePolicy="${xmljdbc.pstmtcachepolicy}"
+      pstmtMax="${xmljdbc.pstmtmax}"
+      samplingPeriod="${xmljdbc.samplingperiod}"
+      url="${xmljdbc.url}" username="${xmljdbc.username}"/>
+    <jant:jdbcXml className="${xmljdbc.classname}"
+      conCheckLevel="${xmljdbc.conchecklevel}"
+      conTestStmt="${xmljdbc.conteststmt}"
+      connMaxAge="${xmljdbc.connmaxage}"
+      initConPool="${xmljdbc.initconpool}"
+      mapper="${xmljdbc.mapper}"
+      maxConPool="${xmljdbc.maxconpool}"
+      maxOpenTime="${xmljdbc.maxopentime}"
+      maxWaitTime="${xmljdbc.maxwaitingtime}"
+      maxWaiters="${xmljdbc.maxwaiters}"
+      minConPool="${xmljdbc.minconpool}" name="jdbc_xa1"
+      newFile="false" password="${xmljdbc.password}"
+      pstmtCachePolicy="${xmljdbc.pstmtcachepolicy}"
+      pstmtMax="${xmljdbc.pstmtmax}"
+      samplingPeriod="${xmljdbc.samplingperiod}"
+      url="${xmljdbc.url}" username="${xmljdbc.username}"/>
+    <jant:jdbcXml className="${xmljdbc.classname}"
+      conCheckLevel="${xmljdbc.conchecklevel}"
+      conTestStmt="${xmljdbc.conteststmt}"
+      connMaxAge="${xmljdbc.connmaxage}"
+      initConPool="${xmljdbc.initconpool}"
+      mapper="${xmljdbc.mapper}"
+      maxConPool="${xmljdbc.maxconpool}"
+      maxOpenTime="${xmljdbc.maxopentime}"
+      maxWaitTime="${xmljdbc.maxwaitingtime}"
+      maxWaiters="${xmljdbc.maxwaiters}"
+      minConPool="${xmljdbc.minconpool}" name="jdbc_xa2"
+      newFile="false" password="${xmljdbc.password}"
+      pstmtCachePolicy="${xmljdbc.pstmtcachepolicy}"
+      pstmtMax="${xmljdbc.pstmtmax}"
+      samplingPeriod="${xmljdbc.samplingperiod}"
+      url="${xmljdbc.url}" username="${xmljdbc.username}"/>
+  </target>
+  <target depends="init" name="set_jsf">
+    <antcall target="set_jsf_mojarra20"/>
+    <antcall target="set_jsf_myFaces20"/>
+  </target>
+  <target depends="init" if="jsf_mojarra20_selected" name="set_jsf_mojarra20">
+    <jant:jsf-mojarra20/>
+  </target>
+  <target depends="init" if="jsf_myFaces20_selected" name="set_jsf_myFaces20">
+    <jant:jsf-myfaces20/>
+  </target>
+  <target depends="init" name="set_web_container">
+    <antcall target="set_web_container_jetty8"/>
+    <antcall target="set_web_container_tomcat7"/>
+  </target>
+  <target depends="init" if="jetty8_selected" name="set_web_container_jetty8">
+    <jant:jetty8
+      ondemandenabled="${webcontainer.ondemandenabled}" ondemandredirectPort="${webcontainer.ondemanderedirectport}">
+      <connectors>
+        <!-- Jetty doesn't support director and cluster sub tasks -->
+        <http port="${http.port}"/>
+        <!--<ajp port="${ajp.port}" />-->
+        <!--<https for Jetty supports 2 more attributes @vm=(ibm|sun) and @keyPassword-->
+        <!--<https port="${https.port}" keystoreFile="/path/to/your/keystore"
+               keystorePass="changeit" vm="sun" keyPassword="my.key.password"/>-->
+      </connectors>
+    </jant:jetty8>
+  </target>
+  <target depends="init" if="tomcat7_selected" name="set_web_container_tomcat7">
+    <jant:tomcat7
+      ondemandenabled="${webcontainer.ondemandenabled}" ondemandredirectPort="${webcontainer.ondemanderedirectport}">
+      <!-- @name is optionnal, if there is only a <tomcat> inner element, tomcat service will be choosed -->
+      <!-- @port is optionnal, if set it will affect both jetty6.xml and tomcat6-server.xml.
+           If not set, the (tomcat|jetty)/http[@port] value is used -->
+      <connectors skipOptionalDeployablesCopy="false">
+        <!-- Simply configure a HTTP/1.1 Connector : just set the port to use -->
+        <http port="${http.port}"/>
+        <!--
+        <http port="${http.port}"
+              redirectPort="9043"
+              enableLookups="false"
+              minSpareThreads="10"
+              maxThreads="200"
+              connectionTimeout="60000"
+              acceptCount="256"
+              maxKeepAliveRequest="100"
+              compression="off"/>
+        -->
+        <!-- Simply configure a Director Connector : just set the port to use
+        <director port="1234" />
+        -->
+        <!-- Simply configure a AJP/1.3 Connector : just set the port to use
+        <ajp port="${ajp.port}"
+             redirectPort="9043"
+             enableLookups="false"
+             minSpareThreads="10"
+             maxThreads="200"
+             connectionTimeout="60000"
+             acceptCount="256"/>
+        -->
+        <!-- Simply configure a HTTPS Connector : just set the port to use, the keystore and its password
+        <https port="${https.port}"
+               redirectPort="9043"
+               keystoreFile="/path/to/your/keystore"
+               keystorePass="changeit"
+               enableLookups="false"
+               minSpareThreads="10"
+               maxThreads="200"
+               connectionTimeout="60000"
+               acceptCount="256"
+               maxKeepAliveRequest="100"
+               compression="off"/>
+        -->
+      </connectors>
+      <!-- Simply add a <Cluster> node into the <Host>. There are two algorithms for session replication: delta and
+      backup (see the documentation http://tomcat.apache.org/tomcat-7.0-doc/cluster-howto.html for more informations).
+      <sessionReplication listenPort="7777"
+                           mcastAddr="222.222.222.222"
+                           mcastPort="11111"
+                           algorithm="delta"/>
+      -->
+      <!-- Simply configure the session manager in the tomcat7-context file
+      <sessionManager maxActiveSessions="2500"/>
+      -->
+    </jant:tomcat7>
+  </target>
+  <target depends="init" name="set_wsdl">
+    <jant:wsdlPublish>
+      <!--
+         <uddi name="juddi" username="jonas" password="jonas"
+      orgName="ObjectWeb" orgPersonName="JOnAS"
+      orgDesc="ObjectWeb Consortium (http://www.objectweb.org)"
+      lifecyclemanagerURL="http://localhost:${webcontainer.port}/juddi/publish" queryManagerURL="http://localhost:${webcontainer.port}/juddi/inquiry" />-->
+      <!-- encoding default = UTF-8 -->
+      <file dir="${wsdl.file.dir}" encoding="ISO-8859-1" name="${wsdl.file.name}"/>
+    </jant:wsdlPublish>
+  </target>
+  <target depends="init" name="set_smartclient">
+    <jant:smartclient port="${smartclient.port}"/>
+  </target>
+  <target depends="init" name="set_carol">
+    <jant:carol defaultPort="${carol.allport}"
+      jrmpOptimization="${carol.jrmpopt}"
+      localRegistry="${carol.localregistry}" protocols="${carol.protocol}"/>
+  </target>
+  <target depends="init" name="set_security">
+    <jant:security>
+      <admin name="jonas" password="SHA:NaLG+uYfgHeqth+qQBlyKr8FCTw="/>
+      <user name="user1" password="notencoded" roles="role1"/>
+      <!--<user name="user2" roles="role2" password="myPassword"/>-->
+      <!--
+      <jaasEntry name="">
+        <jResourceLoginModule resourceName=""
+                              serverName=""
+                              certCallback=""
+                              useUpperCaseUsername=""/>
+      </jaasEntry>   -->
+    </jant:security>
+  </target>
+</project>

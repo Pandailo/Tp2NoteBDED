@@ -1,0 +1,27 @@
+<easybeans xmlns="http://org.ow2.easybeans.deployment.ejb"
+  xmlns:cluster="http://org.ow2.cmi.info.mapping">
+  <ejb>
+    <!-- Configure pool of a session bean -->
+    <session>
+      <!-- EJB-Name (default is unqualified name of the class) -->
+      <ejb-name>MyStatelessBean</ejb-name>
+    <cluster:cluster name="cluster-javaee5">
+        <cluster:policy>org.ow2.cmi.lb.policy.RoundRobin</cluster:policy>
+        <cluster:strategy>org.ow2.cmi.lb.strategy.LocalPreference</cluster:strategy>
+      </cluster:cluster>
+    </session>
+
+    <session>
+      <ejb-name>MyStatefulBean</ejb-name>
+      <cluster:cluster name="cluster-javaee5">
+        <cluster:policy>org.ow2.cmi.lb.policy.RoundRobin</cluster:policy>
+        <cluster:strategy>org.ow2.cmi.lb.strategy.LocalPreference</cluster:strategy>
+      </cluster:cluster>
+    </session>
+
+    <session>
+        <ejb-name>MyStatefulInnerBean</ejb-name>
+    </session>
+  </ejb>
+
+</easybeans>

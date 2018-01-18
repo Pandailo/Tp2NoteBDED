@@ -1,0 +1,2134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+       "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<!--
+  * JOnAS: Java(TM) Open Application Server
+  * Copyright (C) 2008-2009 Bull S.A.S
+  * Contact: jonas-team@ow2.org
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Lesser General Public
+  * License as published by the Free Software Foundation; either
+  * version 2.1 of the License, or any later version.
+  *
+  * This library is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  * Lesser General Public License for more details.
+  *
+  * You should have received a copy of the GNU Lesser General Public
+  * License along with this library; if not, write to the Free Software
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  * USA
+  *
+  * **************************************************************************
+  * $Id: struts-config.xml 22425 2012-05-04 16:45:46Z cazauxj $
+  * **************************************************************************
+-->
+
+<struts-config>
+  <form-beans type="org.apache.struts.action.ActionFormBean">
+    <form-bean name="topForm"
+      type="org.ow2.jonas.webapp.jonasadmin.TopForm" />
+    <form-bean name="jmxServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.JmxServerForm" />
+    <form-bean name="jvmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.JvmForm" />
+    <form-bean name="loggingJonasForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.LoggingJonasForm" />
+    <form-bean name="viewJonasLoggingForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.ViewLoggingJonasForm" />
+    <form-bean name="monitoringForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.MonitoringForm" />
+    <form-bean name="memoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.MemoryForm" />
+    <form-bean name="stackDumpForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.StackDumpForm" />
+    <form-bean name="jonasServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.JonasServerForm" />
+    <form-bean name="containerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ContainerForm" />
+    <form-bean name="ejbContainersStatisticForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EjbContainersStatisticForm" />
+    <form-bean name="deployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.DeployForm" />
+    <form-bean name="removeForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.RemoveForm" />
+    <form-bean name="uploadForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.UploadForm" />
+    <form-bean name="datasourcePropertiesForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.DatasourcePropertiesForm" />
+    <form-bean name="createResourceAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resourceadapter.CreateResourceAdapterForm" />
+    <form-bean name="datasourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.db.DatasourceForm" />
+    <form-bean name="resourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.ResourceAdapterForm" />
+    <form-bean name="memoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.MemoryRealmForm" />
+    <form-bean name="userMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.UserMemoryRealmForm" />
+    <form-bean name="roleMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.RoleMemoryRealmForm" />
+    <form-bean name="groupMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.GroupMemoryRealmForm" />
+    <form-bean name="itemsMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ItemsMemoryRealmForm" />
+    <form-bean name="datasourceRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.DatasourceRealmForm" />
+    <form-bean name="itemsRealmsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ItemsRealmsForm" />
+    <form-bean name="ldapRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.LdapRealmForm" />
+    <form-bean name="jmsServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.JmsServiceForm" />
+    <form-bean name="joramPlatformForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramPlatformForm" />
+    <form-bean name="joramAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramAdapterForm" />
+    <form-bean name="joramLocalServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramLocalServerForm" />
+    <form-bean name="joramRemoteServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramRemoteServerForm" />
+    <form-bean name="joramQueueForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramQueueForm" />
+    <form-bean name="joramTopicForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramTopicForm" />
+    <form-bean name="joramDestinationForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramDestinationForm" />
+    <form-bean name="joramUserForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramUserForm" />
+    <form-bean name="joramReaderWriterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.JoramReaderWriterForm" />
+    <form-bean name="removeDestinationsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.RemoveDestinationsForm" />
+    <form-bean name="removeUsersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.RemoveUsersForm" />
+    <form-bean name="jtmServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.JtmServiceForm" />
+    <form-bean name="jtmStatisticForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.JtmServiceStatisticForm" />
+    <form-bean name="jtmMonitorForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.JtmServiceMonitorForm" />
+    <form-bean name="jtmRecoveryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.JtmServiceRecoveryForm" />
+    <form-bean name="jtmXAResourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.JtmServiceXAResourceForm" />
+    <form-bean name="itemsXaResourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ItemsXaResourceForm" />
+    <form-bean name="catalinaConnectorForm"
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ConnectorForm" />
+    <form-bean name="itemsConnectorsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ItemsConnectorsForm" />
+    <form-bean name="mbeanFilteringForm"
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.MbeanFilteringForm" />
+    <form-bean name="destinationForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.DestinationForm" />
+    <form-bean name="itemsDestinationsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ItemsDestinationsForm" />
+    <form-bean name="mailServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.MailServiceForm" />
+    <form-bean name="mailFactoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.MailFactoryForm" />
+    <form-bean name="mailFactoryPropertiesForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.MailFactoryPropertiesForm" />
+    <form-bean name="webAppCatalinaForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.WebAppCatalinaForm" />
+    <form-bean name="webAppVirtualCatalinaForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.WebAppVirtualCatalinaForm" />
+    <form-bean name="itemsWebContainersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.SelectedItemsForm" />
+    <form-bean name="catalinaAccessLoggerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.CatalinaAccessLogValveForm" />
+    <form-bean name="itemsLoggersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.common.ItemsForm" />
+    <form-bean name="webAppJettyForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.WebAppJettyForm" />
+    <form-bean name="ejbForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.EjbForm" />
+    <form-bean name="discoveryServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.discovery.DiscoveryServiceForm" />
+    <form-bean name="depmonitorServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.depmonitor.DepMonitorServiceForm" />
+    <form-bean name="workmanagerServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.workmanager.WorkmanagerServiceForm" />
+    <form-bean name="workcleanerServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.workcleaner.WorkcleanerServiceForm" />
+    <form-bean name="versioningServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.versioning.VersioningServiceForm" />
+    <form-bean name="smartclientServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.smartclient.SmartclientServiceForm" />
+    <form-bean name="resourceAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.ResourceAdapterForm" />
+    <form-bean name="resourceAdapterCFForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.ResourceAdapterCFForm" />
+    <form-bean name="domainDeployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.DomainDeployForm" />
+    <form-bean name="archiveConfigForm"
+      type="org.ow2.jonas.webapp.jonasadmin.xml.ArchiveConfigForm" />
+    <form-bean name="domainForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.DomainForm" />
+    <form-bean name="newServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.NewServerForm" />
+    <form-bean name="newClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.NewClusterForm" />
+    <form-bean name="itemsServersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.ItemsServersForm" />
+    <form-bean name="serverGraphForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.graph.ServerGraphForm" />
+
+    <form-bean name="clusterdServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.ClusterdServerForm" />
+
+    <!-- CMI BEGIN -->
+    <!-- CMI FOMRS -->
+    <form-bean name="cmiForm"
+      type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiForm" />
+
+    <form-bean name="cmiServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiServerForm" />
+
+    <form-bean name="cmiObjectForm"
+      type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiObjectForm" />
+
+      <form-bean name="cmiProtocolForm"
+      type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiProtocolForm" />
+
+     <!-- CMI END -->
+
+
+
+    <form-bean name="nodeInfoForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.NodeInfoForm" />
+    <form-bean name="daemonProxyClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.DaemonProxyClusterForm" />
+    <form-bean name="tomcatClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.TomcatClusterForm" />
+    <form-bean name="tomcatMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.TomcatMemberForm" />
+    <form-bean name="jkClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JkClusterForm" />
+    <form-bean name="jkMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JkMemberForm" />
+    <form-bean name="cmiClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiClusterForm" />
+    <form-bean name="cmiMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.CmiMemberForm" />
+    <form-bean name="ejbHaClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.EjbHaClusterForm" />
+    <form-bean name="ejbHaMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.EjbHaMemberForm" />
+    <form-bean name="joramClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JoramClusterForm" />
+    <form-bean name="joramMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JoramMemberForm" />
+    <form-bean name="logicalClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.LogicalClusterForm" />
+    <form-bean name="logicalMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.LogicalMemberForm" />
+
+    <!-- JONAS_MQ_MARK BEGIN -->
+    <!-- begin of form-bean for jonasAdmin MQ extension -->
+    <form-bean name="JonasMqConnectPlatformForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.JonasMqConnectPlatformForm" />
+    <form-bean name="JonasMqConnectForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.JonasMqConnectForm" />
+    <form-bean name="JonasMqConnectDestinationsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationsForm" />
+    <form-bean name="JonasMqConnectMdbsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.MdbsForm" />
+    <form-bean name="JonasMqConnectMdbEditForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.MdbEditForm" />
+    <form-bean name="JonasMqConnectDestinationAddForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationAddForm" />
+    <form-bean name="JonasMqConnectDestinationAddConfirmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationAddConfirmForm" />
+    <form-bean name="JonasMqConnectDestinationEditForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationEditForm" />
+    <form-bean name="JonasMqConnectDestinationDeleteForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationDeleteForm" />
+    <form-bean name="JonasMqConnectDestinationDeleteConfirmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationDeleteConfirmForm" />
+    <form-bean name="JonasMqConnectConnectionFactoryEditForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.ConnectionFactoryEditForm" />
+    <!-- end of form-bean for jonasAdmin MQ extension -->
+    <!-- JONAS_MQ_MARK END -->
+
+    <form-bean name="ServerGraphForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.graph.ServerGraphForm" />
+
+  </form-beans>
+  <global-forwards type="org.apache.struts.action.ActionForward">
+    <forward name="Main Index" path="/index.jsp" />
+    <forward name="Frame Main" path="/framemain.jsp" />
+    <forward name="Top" path="/top.jsp" />
+    <forward name="ActionEditTop" path="/EditTop.do" />
+    <forward name="Log Out" path="/logOut.do" />
+    <forward name="Tree" path="/tree.jsp" />
+    <forward name="Blank" path="/blank.jsp" />
+    <forward name="WelcomeContent" path="/welcomeContent.jsp" />
+    <forward name="Global Error" path="/globalerror.jsp" />
+    <forward name="List MBeans" path="/mbean/listMBeans.jsp" />
+    <forward name="ActionListMBeans" path="/ListMBeans.do" />
+    <forward name="List J2eeMBeans"
+      path="/mbean/listJ2eeMBeans.jsp" />
+    <forward name="ActionListJ2eeMBeans" path="/ListJ2eeMBeans.do" />
+    <forward name="List OwnerMBeans"
+      path="/mbean/listOwnerMBeans.jsp" />
+    <forward name="ActionListOwnerMBeans"
+      path="/ListOwnerMBeans.do" />
+    <forward name="List UnknownMBeans"
+      path="/mbean/listUnknownMBeans.jsp" />
+    <forward name="ActionListUnknownMBeans"
+      path="/ListUnknownMBeans.do" />
+    <forward name="ActionListMBeanDetails"
+      path="/ListMBeanDetails.do" />
+    <forward name="List MBean Properties"
+      path="/mbean/listMBeanProperties.jsp" />
+    <forward name="ActionListMBeanProperties"
+      path="/ListMBeanProperties.do" />
+    <forward name="List MBean Attributes"
+      path="/mbean/listMBeanAttributes.jsp" />
+    <forward name="ActionListMBeanAttributes"
+      path="/ListMBeanAttributes.do" />
+    <forward name="List MBean Operations"
+      path="/mbean/listMBeanOperations.jsp" />
+    <forward name="ActionListMBeanOperations"
+      path="/ListMBeanOperations.do" />
+    <forward name="Domain" path="/domain/domain.jsp" />
+    <forward name="Cluster" path="/domain/cluster.jsp" />
+    <forward name="ClusterCMI" path="/domain/clustercmi.jsp" />
+    <forward name="ActionEditDomain" path="/EditDomain.do"
+      redirect="true" />
+    <forward name="ActionCreateJonasServer"
+      path="/CreateJonasServer.do" />
+    <forward name="ActionPingAllJonasServers"
+      path="/PingAllJonasServers.do" />
+    <!-- Start jonas server -->
+    <forward name="ActionStartJonasServer"
+      path="/StartJonasServer.do" />
+      <!-- Start jonas server in standby mode-->
+      <forward name="ActionStartStandbyJonasServer"
+      path="/StartStandbyJonasServer.do" />
+
+    <forward name="ActionStartJonasServerCd"
+      path="/StartJonasServerCd.do" />
+       <!-- Start jonas server in standby mode.-->
+      <forward name="ActionStartStandbyJonasServerCd"
+      path="/StartStandbyJonasServerCd.do" />
+     <!-- Stop jonas server -->
+     <forward name="ActionStopJonasServer"
+      path="/StopJonasServer.do" />
+      <!-- Stop jonas server in standby mode-->
+      <forward name="ActionStopStandbyJonasServer"
+      path="/StopStandbyJonasServer.do" />
+
+    <forward name="ActionStopJonasServerCd"
+      path="/StopJonasServerCd.do" />
+
+      <forward name="ActionHaltJonasServerCd"
+      path="/HaltJonasServerCd.do" />
+
+    <forward name="ActionHaltJonasServer"
+      path="/HaltJonasServer.do" />
+
+    <forward name="ActionStopJonasService"
+      path="/StopJonasService.do" />
+    <forward name="ActionStartJonasService"
+      path="/StartJonasService.do" />
+
+    <forward name="ActionStartCluster" path="/StartCluster.do" />
+
+    <forward name="ActionStopCluster" path="/StopCluster.do" />
+    <forward name="ActionStartClusterDaemon"
+      path="/StartClusterDaemon.do" />
+    <forward name="ActionStopClusterDaemon"
+      path="/StopClusterDaemon.do" />
+    <forward name="ActionCreateCluster" path="/CreateCluster.do" />
+    <forward name="AddServerToDomain" path="/domain/addServer.jsp" />
+    <forward name="AddServerToClusterDaemon"
+      path="/clusterd/addServerCd.jsp" />
+    <forward name="AddServerToCluster"
+      path="/domain/addServerCluster.jsp" />
+    <forward name="AddCluster" path="/domain/addCluster.jsp" />
+    <forward name="JonasServersConfirm"
+      path="/domain/serversConfirm.jsp" />
+    <!--forward form to confirm a server action done by a cluster daemon-->
+    <forward name="JonasServersConfirmClusterDaemon"
+      path="/clusterd/serversConfirm.jsp" />
+
+    <forward name="JonasServersConfirmMove"
+      path="/domain/serversConfirmMove.jsp" />
+    <forward name="ActionJonasServersMove"
+      path="/JonasServersMove.do" />
+    <forward name="ActionApplyJonasServersConfirm"
+      path="/ApplyJonasServersConfirm.do" />
+    <forward name="ActionUndeployModule" path="/UndeployModule.do" />
+    <forward name="JonasServer" path="/jonasserver/jonasserver.jsp" />
+    <forward name="Registry" path="/jonasserver/registry.jsp" />
+    <forward name="List Registry"
+      path="/jonasserver/listRegistry.jsp" />
+    <forward name="ActionEditJonasServer"
+      path="/EditJonasServer.do" />
+    <forward name="ActionEditClusterDaemon"
+      path="/EditClusterDaemon.do" />
+    <forward name="ActionListRegistry" path="/ListRegistry.do" />
+    <forward name="ActionEditRegistry" path="/EditRegistry.do" />
+    <forward name="ActionJonasServerStop"
+      path="/JonasServerStop.do" />
+    <forward name="ActionJonasServerRunGC"
+      path="/JonasServerRunGC.do" />
+    <forward name="JmxServer" path="/jonasserver/jmxserver.jsp" />
+    <forward name="Jvm" path="/jonasserver/jvm.jsp" />
+    <forward name="Versions" path="/jonasserver/jonasversions.jsp" />
+    <forward name="ActionEditJmxServer" path="/EditJmxServer.do" />
+    <forward name="ActionEditJvm" path="/EditJvm.do" />
+    <forward name="ActionEditServletServer"
+      path="/EditServletServer.do" />
+    <forward name="Servlet Server"
+      path="/jonasserver/servletServer.jsp" />
+    <forward name="Logging Jonas" path="/logging/loggingJonas.jsp" />
+    <forward name="LoggingView" path="/logging/loggingView.jsp" />
+    <forward name="ActionEditLoggingJonas"
+      path="/EditLoggingJonas.do" />
+    <forward name="ActionViewLoggingJonas"
+      path="/ViewLoggingJonas.do" />
+    <forward name="ActionEditMonitoring" path="/EditMonitoring.do" />
+    <forward name="Monitoring" path="/monitoring/monitoring.jsp" />
+
+    <forward name="ActionEditMemory" path="/EditMemory.do" />
+    <forward name="ActionEditClusterdVmMemory"
+      path="/EditClusterdVmMemory.do" />
+
+    <forward name="Memory" path="/monitoring/memory.jsp" />
+    <forward name="ClusterdVmMemory"
+      path="/clusterd/graph/vmMemory.jsp" />
+
+    <forward name="ActionEditStackDump" path="/EditStackDump.do" />
+    <forward name="StackDump" path="/monitoring/stackDump.jsp" />
+
+
+    <forward name="ActionListAppContainers" path="/ListAppContainers.do" />
+    <forward name="ActionListAppContainersRefresh" path="/ListAppContainers.do?refresh=true" />
+    <forward name="App Containers" path="/service/appContainers.jsp" />
+    <forward name="ActionListContainers" path="/ListContainers.do" />
+    <forward name="ActionListContainersRefresh" path="/ListContainers.do?refresh=true" />
+    <forward name="Containers" path="/service/containers.jsp" />
+    <forward name="ActionEditEjbContainersStatistic"
+      path="/EditEjbContainersStatistic.do" />
+    <forward name="Ejb Containers Statistic"
+      path="/service/ejbContainersStatistic.jsp" />
+    <forward name="ActionEditContainer" path="/EditContainer.do" />
+    <forward name="ActionViewContainer" path="/ViewContainer.do" />
+    <forward name="ActionViewContainerEjbs"
+      path="/ViewContainerEjbs.do" />
+    <forward name="Container" path="/service/container.jsp" />
+    <forward name="ActionEditContainerStatistic"
+      path="/EditContainerStatistic.do" />
+    <forward name="Container Statistic"
+      path="/service/containerStatistic.jsp" />
+    <forward name="Container Ejbs"
+      path="/service/containerEjbs.jsp" />
+    <forward name="Ejb" path="/service/ejb.jsp" />
+    <forward name="Ejb Entity" path="/service/ejbEntity.jsp" />
+    <forward name="Ejb Session" path="/service/ejbSession.jsp" />
+    <forward name="Ejb Session Sbl"
+      path="/service/ejbSessionSbl.jsp" />
+    <forward name="Ejb Message" path="/service/ejbMessage.jsp" />
+    <forward name="Ejb Dependency"
+      path="/service/ejbDependency.jsp" />
+    <forward name="Ejb Virtual" path="/service/ejbVirtual.jsp" />
+    <forward name="ActionListWebContainers" path="/ListWebContainers.do" />
+    <forward name="ActionListWebContainersRefresh" path="/ListWebContainers.do?refresh=true" />
+    <forward name="Web Containers"
+      path="/service/webContainers.jsp" />
+    <forward name="ActionListDatabases" path="/ListDatabases.do" />
+    <forward name="Databases" path="/service/databases.jsp" />
+    <forward name="ActionEditDatasource" path="/EditDatasource.do" />
+    <forward name="ActionEditDatasourceStat"
+      path="/EditDatasourceStat.do" />
+    <forward name="Datasource" path="/service/datasource.jsp" />
+    <forward name="DatasourceStat"
+      path="/service/datasourceStatistics.jsp" />
+    <forward name="Datasource Used By"
+      path="/service/datasourceUsedBy.jsp" />
+    <forward name="ActionEditDeploy" path="/EditDeploy.do" />
+    <forward name="ActionEditUpload" path="/EditUpload.do" />
+    <forward name="ActionEditRemove" path="/EditRemove.do" />
+
+    <forward name="Domain Deploy" path="/deploy/domainDeploy.jsp" />
+    <forward name="Domain Deploy Confirm"
+      path="/deploy/domainDeployConfirm.jsp" />
+    <forward name="Domain Undeploy Confirm"
+      path="/deploy/domainUndeployConfirm.jsp" />
+    <forward name="Domain Deploy Progress"
+      path="/deploy/domainDeployProgress.jsp" />
+    <forward name="ActionEditDomainDeploy"
+      path="/EditDomainDeploy.do" />
+
+    <forward name="Archive Config" path="/xml/archiveConfig.jsp" />
+    <forward name="Archive Config Advanced"
+      path="/xml/archiveConfigAdvanced.jsp" />
+    <forward name="Archive Config Confirm"
+      path="/xml/archiveConfigConfirm.jsp" />
+    <forward name="Archive Config Select"
+      path="/xml/archiveConfigSelect.jsp" />
+    <forward name="Archive Config AJAX"
+      path="/xml/archiveConfigAjax.jsp" />
+    <forward name="ActionArchiveConfig" path="/ArchiveConfig.do" />
+    <forward name="ActionArchiveConfigSelect"
+      path="/ArchiveConfigSelect.do" />
+    <forward name="ActionArchiveConfigAdvanced"
+      path="/ArchiveConfigAdvanced.do" />
+
+    <forward name="Upload" path="/deploy/upload.jsp" />
+    <forward name="Upload Result" path="/deploy/uploadResult.jsp" />
+    <forward name="Upload Confirm" path="/deploy/uploadConfirm.jsp" />
+    <forward name="Deploy" path="/deploy/deploy.jsp" />
+    <forward name="Deploy Confirm" path="/deploy/deployConfirm.jsp" />
+    <forward name="Remove" path="/deploy/remove.jsp" />
+    <forward name="Remove Confirm" path="/deploy/removeConfirm.jsp" />
+    <forward name="Deploy Datasource"
+      path="/resource/deployDatasource.jsp" />
+    <forward name="Deploy Mail Factory"
+      path="/resource/deployMailFactory.jsp" />
+    <forward name="ActionListDatasources"
+      path="/ListDatasources.do" />
+    <forward name="ActionListMailFactories"
+      path="/ListMailFactories.do" />
+    <forward name="Datasources" path="/resource/datasources.jsp" />
+    <forward name="MailFactory Properties"
+      path="/resource/mailFactoryProperties.jsp" />
+    <forward name="Session Properties"
+      path="/resource/sessionFactoryProperties.jsp" />
+    <forward name="MimePart Properties"
+      path="/resource/mimePartFactoryProperties.jsp" />
+    <forward name="ActionEditDatasourceProperties"
+      path="/EditDatasourceProperties.do" />
+    <forward name="ActionCreateResourceAdapter"
+      path="/CreateResourceAdapter.do" />
+    <forward name="ActionCreateOtherResourceAdapter"
+      path="/CreateOtherResourceAdapter.do" />
+    <forward name="Datasource Properties"
+      path="/resource/datasourceProperties.jsp" />
+    <forward name="Create Resource Adapter"
+      path="/resourceadapter/createResourceAdapter.jsp" />
+    <forward name="Create Other Resource Adapter"
+      path="/resourceadapter/createOtherResourceAdapter.jsp" />
+    <forward name="Create JDBC Resource Adapter"
+      path="/resourceadapter/createJDBCResourceAdapter.jsp" />
+    <forward name="ActionListJmsResources"
+      path="/ListJmsResources.do" />
+    <forward name="Jms Resources" path="/resource/jmsResources.jsp" />
+    <forward name="ActionEditDestination"
+      path="/EditDestination.do" />
+    <forward name="ActionSaveDestination"
+      path="/SaveDestination.do" />
+    <forward name="Create Destination"
+      path="/resource/createDestination.jsp" />
+    <forward name="Confirm Destinations"
+      path="/resource/destinationsConfirm.jsp" />
+    <forward name="ActionListRealms" path="/ListRealms.do" />
+    <forward name="Realms" path="/security/realms.jsp" />
+    <forward name="Realms Stopped" path="/security/realmsStopped.jsp" />
+    <forward name="Confirm Realms"
+      path="/security/realmsConfirm.jsp" />
+    <forward name="ActionSaveRealm" path="/SaveRealm.do" />
+    <forward name="ActionClearCache" path="/ClearCache.do" />
+    <forward name="ActionEditMemoryRealm"
+      path="/EditMemoryRealm.do" />
+    <forward name="Memory Realm" path="/security/memoryRealm.jsp" />
+    <forward name="Confirm Action Memory Realm"
+      path="/security/confirmActionMemoryRealm.jsp" />
+    <forward name="ActionApplyConfirmMemoryRealm"
+      path="/ApplyConfirmMemoryRealm.do" />
+    <forward name="ActionEditMemoryRealmUsers"
+      path="/EditMemoryRealmUsers.do" />
+    <forward name="Memory Realm Users"
+      path="/security/memoryRealmUsers.jsp" />
+    <forward name="ActionEditUserMemoryRealm"
+      path="/EditUserMemoryRealm.do" />
+    <forward name="ActionEditNewUserMemoryRealm"
+      path="/EditNewUserMemoryRealm.do" />
+    <forward name="User Memory Realm"
+      path="/security/userMemoryRealm.jsp" />
+    <forward name="ActionEditMemoryRealmRoles"
+      path="/EditMemoryRealmRoles.do" />
+    <forward name="Memory Realm Roles"
+      path="/security/memoryRealmRoles.jsp" />
+    <forward name="ActionEditMemoryRealmGroups"
+      path="/EditMemoryRealmGroups.do" />
+    <forward name="Memory Realm Groups"
+      path="/security/memoryRealmGroups.jsp" />
+    <forward name="ActionEditRoleMemoryRealm"
+      path="/EditRoleMemoryRealm.do" />
+    <forward name="ActionEditNewRoleMemoryRealm"
+      path="/EditNewRoleMemoryRealm.do" />
+    <forward name="Role Memory Realm"
+      path="/security/roleMemoryRealm.jsp" />
+    <forward name="ActionEditGroupMemoryRealm"
+      path="/EditGroupMemoryRealm.do" />
+    <forward name="ActionEditNewGroupMemoryRealm"
+      path="/EditNewGroupMemoryRealm.do" />
+    <forward name="Group Memory Realm"
+      path="/security/groupMemoryRealm.jsp" />
+    <forward name="ActionEditDatasourceRealm"
+      path="/EditDatasourceRealm.do" />
+    <forward name="Datasource Realm"
+      path="/security/datasourceRealm.jsp" />
+    <forward name="ActionEditLdapRealm" path="/EditLdapRealm.do" />
+    <forward name="Ldap Realm" path="/security/ldapRealm.jsp" />
+    <forward name="ActionEditWar" path="/EditWar.do" />
+    <forward name="War" path="/service/war.jsp" />
+    <forward name="War Servlets" path="/service/warServlets.jsp" />
+    <forward name="War Web Xml" path="/service/warWebXml.jsp" />
+    <forward name="War Jonas Xml" path="/service/warJonasXml.jsp" />
+    <forward name="ActionEditEar" path="/EditEar.do" />
+    <forward name="Ear" path="/service/ear.jsp" />
+    <forward name="Ear Wars" path="/service/earWars.jsp" />
+    <forward name="Ear Jars" path="/service/earJars.jsp" />
+    <forward name="Ear Rars" path="/service/earRars.jsp" />
+    <forward name="Ear Xml Deployment Descriptor"
+      path="/service/earXmlDeployment.jsp" />
+    <forward name="ActionEditEjbEntity" path="/EditEjbEnt.do" />
+    <forward name="ActionEditEjbSbl" path="/EditEjbSbl.do" />
+    <forward name="ActionEditEjbSbf" path="/EditEjbSbf.do" />
+    <forward name="ActionEditEjbMdb" path="/EditEjbMdb.do" />
+    <forward name="ActionEditJmsService" path="/EditJmsService.do" />
+    <forward name="Jms Service" path="/service/jmsService.jsp" />
+    <forward name="ActionListQueues" path="/ListQueues.do" />
+    <forward name="ActionListTopics" path="/ListTopics.do" />
+    <forward name="Queues" path="/service/jmsQueues.jsp" />
+    <forward name="Queue" path="/service/jmsQueue.jsp" />
+    <forward name="Topics" path="/service/jmsTopics.jsp" />
+    <forward name="Topic" path="/service/jmsTopic.jsp" />
+    <forward name="ActionListConnectionFactories"
+      path="/ListConnectionFactories.do" />
+    <forward name="Connection Factories"
+      path="/service/jmsConnFactories.jsp" />
+    <forward name="Connection Factory"
+      path="/service/jmsConnFactory.jsp" />
+    <forward name="ActionPresentConnectionFactory"
+      path="/PresentConnectionFactory.do" />
+    <forward name="ActionApplyConfirmDestinations"
+      path="/ApplyConfirmDestinations.do" />
+    <forward name="ActionPresentQueue" path="/PresentQueue.do" />
+    <forward name="ActionPresentTopic" path="/PresentTopic.do" />
+    <forward name="ConnectionFactory Used By"
+      path="/service/cfUsedBy.jsp" />
+    <forward name="Queue Used By" path="/service/queueUsedBy.jsp" />
+    <forward name="Topic Used By" path="/service/topicUsedBy.jsp" />
+    <forward name="ActionEditJtmService" path="/EditJtmService.do" />
+    <forward name="Jtm Service" path="/service/jtmService.jsp" />
+    <forward name="Jtm Service Stopped" path="/service/jtmServiceStopped.jsp" />
+    <forward name="ActionEditDepmonitorService" path="/EditDepmonitorService.do" />
+    <forward name="Depmonitor Service" path="/service/depmonitorService.jsp" />
+    <forward name="ActionEditTransactionMonitor"
+      path="/EditTransactionMonitor.do" />
+    <forward name="Jtm Monitor"
+      path="/service/transactionMonitor.jsp" />
+    <forward name="ActionResetTransactions"
+      path="/ResetTransactions.do" />
+    <forward name="ActionEditTransactionStatistic"
+      path="/EditTransactionStatistic.do" />
+    <forward name="Transaction Statistic"
+      path="/service/transactionStatistic.jsp" />
+    <forward name="Jtm Recovery"
+      path="/service/transactionRecovery.jsp" />
+    <forward name="ActionResetRecovery" path="/ResetRecovery.do" />
+    <forward name="ActionEditTransactionRecovery"
+      path="/EditTransactionRecovery.do" />
+    <forward name="Jtm XAResource"
+      path="/service/xaresourceRecovery.jsp" />
+    <forward name="ActionListXaResource" path="/ListXaResource.do" />
+    <forward name="Confirm Action XaResource"
+      path="/service/confirmActionXaResource.jsp" />
+    <forward name="ActionApplyConfirmXaResource"
+      path="/ApplyConfirmXaResource.do" />
+    <forward name="ActionCommitResource" path="/CommitResource.do" />
+    <forward name="ActionRollbackResource"
+      path="/RollbackResource.do" />
+    <forward name="ActionForgetResource" path="/ForgetResource.do" />
+    <forward name="ActionResetCounters" path="/ResetCounters.do" />
+    <forward name="Mail Service" path="/service/mailService.jsp" />
+    <forward name="Workmanager Service" path="/service/workmanagerService.jsp" />
+    <forward name="Workcleaner Service" path="/service/workcleanerService.jsp" />
+    <forward name="Versioning Service" path="/service/versioningService.jsp" />
+    <forward name="Smartclient Service" path="/service/smartclientService.jsp" />
+    <forward name="Session Factory"
+      path="/service/sessionFactory.jsp" />
+    <forward name="Session Factories"
+      path="/service/sessionFactories.jsp" />
+    <forward name="MimePart Factory"
+      path="/service/mimepartFactory.jsp" />
+    <forward name="MimePart Factories"
+      path="/service/mimepartFactories.jsp" />
+    <forward name="MimePart Mail Factory Used By"
+      path="/service/mimepartMailFactoryUsedBy.jsp" />
+    <forward name="Session Mail Factory Used By"
+      path="/service/sessionMailFactoryUsedBy.jsp" />
+    <forward name="ActionEditMailService"
+      path="/EditMailService.do" />
+    <forward name="ActionListSessionMailFactories"
+      path="/ListSessionMailFactories.do" />
+    <forward name="ActionListMimePartMailFactories"
+      path="/ListMimePartMailFactories.do" />
+    <forward name="ActionEditSessionMailFactory"
+      path="/EditSessionMailFactory.do" />
+    <forward name="ActionEditMimePartMailFactory"
+      path="/EditMimePartMailFactory.do" />
+    <forward name="MailFactories"
+      path="/resource/mailFactories.jsp" />
+    <forward name="ActionEditMailFactoryProperties"
+      path="/EditMailFactoryProperties.do" />
+    <forward name="ActionEditSessionMailFactoryProperties"
+      path="/EditSessionMailFactoryProperties.do" />
+    <forward name="ActionEditMimePartMailFactoryProperties"
+      path="/EditMimePartMailFactoryProperties.do" />
+    <forward name="ActionListCatalinaConnectors"
+      path="/ListCatalinaConnectors.do" />
+    <forward name="Catalina Connectors"
+      path="/catalina/connectors.jsp" />
+    <forward name="ActionEditCatalinaConnector"
+      path="/EditCatalinaConnector.do" />
+    <forward name="Catalina Connector"
+      path="/catalina/connector.jsp" />
+    <forward name="ActionCreateCatalinaConnector"
+      path="/CreateCatalinaConnector.do" />
+    <forward name="Catalina Connectors Confirm"
+      path="/catalina/connectorsConfirm.jsp" />
+    <forward name="ConnectorsRemoveConfirm"
+      path="/ApplyCatalinaConnectorsConfirm.do" />
+    <forward name="ActionListServices" path="/ListServices.do" />
+    <forward name="Services" path="/service/services.jsp" />
+    <forward name="ActionEditServiceDiscovery"
+      path="/EditServiceDiscovery.do" />
+    <forward name="ActionEditServiceDepmonitor"
+      path="/EditServiceDepmonitor.do" />
+    <forward name="ActionEditWorkmanagerService"
+      path="/EditWorkmanagerService.do" />
+    <forward name="ActionEditWorkcleanerService"
+      path="/EditWorkcleanerService.do" />
+    <forward name="ActionEditVersioningService"
+      path="/EditVersioningService.do" />
+    <forward name="ActionEditSmartclientService"
+      path="/EditSmartclientService.do" />
+    <forward name="ActionListWebService" path="/ListWebService.do" />
+    <forward name="ActionWebServiceDetails"
+      path="/WebServiceDetails.do" />
+    <forward name="ActionPortComponentsDetails"
+      path="/PortComponentsDetails.do" />
+    <forward name="ActionHandlersDetails"
+      path="/HandlersDetails.do" />
+    <forward name="ActionViewPortComponents"
+      path="/ViewPortComponents.do" />
+    <forward name="ActionViewHandlers" path="/ViewHandlers.do" />
+    <forward name="Service Discovery" path="/service/discovery.jsp" />
+    <forward name="ActionEditServiceSecurity"
+      path="/EditServiceSecurity.do" />
+    <forward name="ActionDiscoveryServiceStartMaster"
+      path="/DiscoveryServiceStartMaster.do" />
+    <forward name="Service Security" path="/service/security.jsp" />
+    <forward name="Service Security Stopped" path="/service/securityStopped.jsp" />
+    <forward name="ActionEditSecurityCatalinaRealm"
+      path="/EditSecurityCatalinaRealm.do" />
+    <forward name="Security Catalina Realm"
+      path="/security/securityCatalinaRealm.jsp" />
+    <forward name="ActionSaveCatalina" path="/SaveCatalina.do" />
+    <forward name="WebApp Catalina"
+      path="/service/webAppCatalina.jsp" />
+    <forward name="WebApp Virtual Catalina"
+      path="/service/webAppVirtualCatalina.jsp" />
+    <forward name="ActionEditWebApp" path="/EditWebApp.do" />
+    <forward name="ActionEditWebAppCatalina"
+      path="/EditWebAppCatalina.do" />
+    <forward name="ActionApplyWebAppVirtualCatalina"
+      path="/ApplyWebAppVirtualCatalina.do" />
+    <forward name="Loggers" path="/logging/loggers.jsp" />
+    <forward name="ActionEditCatalinaAccessLogger"
+      path="/EditCatalinaAccessLogger.do" />
+    <forward name="Catalina Access Logger"
+      path="/logging/catalinaAccessLogger.jsp" />
+    <forward name="ActionListLoggers" path="/ListLoggers.do" />
+    <forward name="Loggers Confirm"
+      path="/logging/loggersConfirm.jsp" />
+    <forward name="ActionListResourceAdapters" path="/ListResourceAdapters.do" />
+    <forward name="ActionListResourceAdaptersRefresh" path="/ListResourceAdapters.do?refresh=true" />
+    <forward name="Resources Adapters" path="/service/rars.jsp" />
+    <forward name="WebService Descriptions"
+      path="/service/ws/webserviceDescriptions.jsp" />
+    <forward name="WebService Details"
+      path="/service/ws/webserviceDetails.jsp" />
+    <forward name="PortComponents Details"
+      path="/service/ws/portComponentsDetails.jsp" />
+    <forward name="Handlers Details"
+      path="/service/ws/handlersDetails.jsp" />
+    <forward name="PortComponents"
+      path="/service/ws/viewPortComponents.jsp" />
+    <forward name="Handlers" path="/service/ws/viewHandlers.jsp" />
+    <forward name="ActionEditResourceAdapter"
+      path="/EditResourceAdapter.do" />
+    <forward name="ActionEditResourceAdapterAS"
+      path="/EditResourceAdapterAS.do" />
+    <forward name="ActionEditResourceAdapterAO"
+      path="/EditResourceAdapterAO.do" />
+    <forward name="ActionEditResourceAdapterCF"
+      path="/EditResourceAdapterCF.do" />
+    <forward name="ActionEditResourceAdapterCFStat"
+      path="/EditResourceAdapterCFStat.do" />
+    <forward name="ActionEditResourceAdapterStat"
+      path="/EditResourceAdapterStat.do" />
+    <forward name="Resource Adapter1.0" path="/service/rar10.jsp" />
+    <forward name="Resource Adapter1.5" path="/service/rar15.jsp" />
+    <forward name="Resource AdapterAS" path="/service/rar15AS.jsp" />
+    <forward name="Resource AdapterAO" path="/service/rar15AO.jsp" />
+    <forward name="Resource AdapterCF" path="/service/rar15CF.jsp" />
+    <forward name="RAR1.5 CF Stat" path="/service/rar15CFStats.jsp" />
+    <forward name="RAR1.0 Stat" path="/service/rar10Stats.jsp" />
+    <forward name="ActionEditRar" path="/EditRar.do" />
+    <forward name="Rar ConnectionFactories"
+      path="/service/rar15CFs.jsp" />
+    <forward name="Rar ActivationSpecs"
+      path="/service/rar15ASs.jsp" />
+    <forward name="Rar AdminObjects" path="/service/rar15AOs.jsp" />
+    <forward name="ResourceAdapter Used By1.0"
+      path="/service/rarUsedBy10.jsp" />
+    <forward name="ResourceAdapter Used By1.5"
+      path="/service/rarUsedBy15.jsp" />
+    <forward name="ActionExecuteEjb" path="/ExecuteEjb.do" />
+    <forward name="WebApp Jetty" path="/service/webAppJetty.jsp" />
+    <forward name="ActionEditWebAppJetty"
+      path="/EditWebAppJetty.do" />
+
+    <forward name="ActionEditJoramPlatform"
+      path="/EditJoramPlatform.do" />
+    <forward name="ActionExportRepository"
+      path="/ExportRepository.do" />
+    <forward name="ActionReloadJoramAdmin"
+      path="/ReloadJoramAdmin.do" />
+    <forward name="JoramPlatform"
+      path="/joramplatform/joramplatform.jsp" />
+    <forward name="JoramServers"
+      path="/joramplatform/joramservers.jsp" />
+    <forward name="JoramXml" path="/joramplatform/joramxml.jsp" />
+    <forward name="ActionEditJoramServer"
+      path="/EditJoramServerAction.do" />
+    <forward name="JoramLocalDestinations"
+      path="/joramplatform/joramlocaldestinations.jsp" />
+    <forward name="JoramDestinations"
+      path="/joramplatform/joramdestinations.jsp" />
+    <forward name="JoramRemoteDestinations"
+      path="/joramplatform/joramremotedestinations.jsp" />
+    <forward name="ActionCreateJoramLocalDestination"
+      path="/CreateJoramLocalDestination.do" />
+    <forward name="ActionCreateJoramDestination"
+      path="/CreateJoramDestination.do" />
+    <forward name="ActionAddJoramReader" path="/AddJoramReader.do" />
+    <forward name="ActionAddJoramWriter" path="/AddJoramWriter.do" />
+    <forward name="ActionCreateJoramUser"
+      path="/CreateJoramUser.do" />
+    <forward name="Create Joram Destination"
+      path="/joramplatform/createdestination.jsp" />
+    <forward name="Add Joram Reader"
+      path="/joramplatform/addreader.jsp" />
+    <forward name="Add Joram Writer"
+      path="/joramplatform/addwriter.jsp" />
+    <forward name="Create Joram User"
+      path="/joramplatform/createuser.jsp" />
+    <forward name="JoramUsers" path="/joramplatform/joramusers.jsp" />
+    <forward name="JoramUsersAfterCreate"
+      path="/EditJoramServer.do" />
+    <forward name="JoramDestinationsAfterCreate"
+      path="/EditJoramServer.do" />
+    <forward name="ActionEditJoramQueue" path="/EditJoramQueue.do" />
+    <forward name="JoramQueue" path="/joramplatform/joramqueue.jsp" />
+    <forward name="JoramLocalQueue"
+      path="/joramplatform/joramlocalqueue.jsp" />
+    <forward name="ActionEditJoramTopic" path="/EditJoramTopic.do" />
+    <forward name="JoramTopic" path="/joramplatform/joramtopic.jsp" />
+    <forward name="JoramLocalTopic"
+      path="/joramplatform/joramlocaltopic.jsp" />
+    <forward name="JoramDestStatistics"
+      path="/joramplatform/joramdeststatistics.jsp" />
+
+    <forward name="JoramQueueReaders"
+      path="/joramplatform/joramqueuereaders.jsp" />
+    <forward name="JoramQueueWriters"
+      path="/joramplatform/joramqueuewriters.jsp" />
+
+    <forward name="JoramTopicReaders"
+      path="/joramplatform/joramtopicreaders.jsp" />
+    <forward name="JoramTopicWriters"
+      path="/joramplatform/joramtopicwriters.jsp" />
+
+    <forward name="ActionEditJoramServer"
+      path="/EditJoramServer.do" />
+    <forward name="RemoveJoramLocalDestinations" path="/" />
+
+    <forward name="ActionListLocalDestinations"
+      path="/ListLocalDestinations.do" />
+    <forward name="JoramRemoteServer"
+      path="/joramplatform/joramremoteserver.jsp" />
+    <forward name="ActionGetJoramRemoteServerDestinations"
+      path="/GetJoramRemoteServerDestinations.do" />
+    <forward name="ActionEditJoramDestination"
+      path="/EditJoramDestination.do" />
+    <forward name="ActionEditJoramUser" path="/EditJoramUser.do" />
+    <forward name="Joram Queue Used By"
+      path="/joramplatform/queueUsedBy.jsp" />
+    <forward name="Joram Topic Used By"
+      path="/joramplatform/topicUsedBy.jsp" />
+    <forward name="Confirm Remove Destinations"
+      path="/joramplatform/removeDestinationsConfirm.jsp" />
+    <forward name="Confirm Remove Users"
+      path="/joramplatform/removeUsersConfirm.jsp" />
+    <forward name="ActionRemoveConfirmDestinations"
+      path="/RemoveConfirmDestinations.do" />
+
+    <forward name="ActionDisplayNodeInfo"
+      path="/DisplayNodeInfo.do" />
+    <forward name="DisplayNode" path="/monitoring/displaynode.jsp" />
+
+    <forward name="ActionDaemonProxyClusterInfo"
+      path="/DaemonProxyClusterInfo.do" redirect="true" />
+    <!--struts action to configure server -->
+    <forward name="ActionDaemonProxyClusterConfigureServer"
+      path="/DaemonProxyClusterConfigureServer.do" />
+
+    <forward name="ActionDaemonProxyClusterInfoFromDomain"
+      path="/DaemonProxyClusterInfoFromDomain.do" />
+
+
+    <forward name="DaemonProxyCluster"
+      path="/monitoring/daemonProxyCluster.jsp" />
+    <!-- forward for displaying a server configuration when affecting it to a cluster daemon-->
+    <forward name="DaemonProxyClusterDisplayServerConfig"
+      path="/clusterd/DaemonProxyClusterDisplayServerConfig.jsp" />
+
+    <forward name="ActionDaemonProxyClusterModify"
+      path="/DaemonProxyClusterModify.do" />
+    <forward name="DaemonProxyClusterModify"
+      path="/clusterd/daemonProxyClusterModify.jsp" />
+
+    <forward name="ActionDaemonProxyMemberInfo"
+      path="/DaemonProxyMemberInfo.do" />
+    <forward name="DaemonProxyMember"
+      path="/monitoring/daemonProxyMember.jsp" />
+
+
+
+    <forward name="ActionTomcatClusterInfo"
+      path="/TomcatClusterInfo.do" />
+    <forward name="TomcatCluster"
+      path="/monitoring/tomcatCluster.jsp" />
+    <forward name="ActionTomcatMemberInfo"
+      path="/TomcatMemberInfo.do" />
+    <forward name="TomcatMember"
+      path="/monitoring/tomcatMember.jsp" />
+
+    <forward name="ActionJkClusterInfo" path="/JkClusterInfo.do" />
+    <forward name="JkCluster" path="/monitoring/jkCluster.jsp" />
+    <forward name="ActionJkMemberInfo" path="/JkMemberInfo.do" />
+    <forward name="JkMember" path="/monitoring/jkMember.jsp" />
+
+    <forward name="ActionCmiClusterInfo" path="/CmiClusterInfo.do" />
+    <forward name="CmiCluster" path="/monitoring/cmiCluster.jsp" />
+    <forward name="ActionCmiMemberInfo" path="/CmiMemberInfo.do" />
+    <forward name="CmiMember" path="/monitoring/cmiMember.jsp" />
+    <!-- Action for plotting all server's graphs -->
+    <forward name="ActionServerGraph" path="/ServerGraph.do" />
+    <forward name="ServerGraphsDisplay"
+      path="/monitoring/graph/serverGraphs.jsp" />
+    <!-- Action for plotting   server graphs usiung jfreeshart lib-->
+    <forward name="ActionServerThreadCount"
+      path="/ServerThreadCount.do" />
+
+    <forward name="ActionEjbHaClusterInfo"
+      path="/EjbHaClusterInfo.do" />
+    <forward name="EjbHaCluster"
+      path="/monitoring/ejbHaCluster.jsp" />
+    <forward name="ActionEjbHaMemberInfo"
+      path="/EjbHaMemberInfo.do" />
+    <forward name="EjbHaMember" path="/monitoring/ejbHaMember.jsp" />
+
+    <forward name="ActionJoramClusterInfo"
+      path="/JoramClusterInfo.do" />
+    <forward name="JoramCluster"
+      path="/monitoring/joramCluster.jsp" />
+    <forward name="ActionJoramMemberInfo"
+      path="/JoramMemberInfo.do" />
+    <forward name="JoramMember" path="/monitoring/joramMember.jsp" />
+
+    <forward name="ActionLogicalClusterInfo"
+      path="/LogicalClusterInfo.do" />
+    <forward name="LogicalCluster"
+      path="/monitoring/logicalCluster.jsp" />
+    <forward name="ActionLogicalMemberInfo"
+      path="/LogicalMemberInfo.do" />
+    <forward name="LogicalMember"
+      path="/monitoring/logicalMember.jsp" />
+
+    <forward name="ActionStartAllJonasServers"
+      path="/StartAllJonasServers.do" />
+    <forward name="ActionStopAllJonasServers"
+      path="/StopAllJonasServers.do" />
+    <forward name="ActionPingAllJonasServers"
+      path="/PingAllJonasServers.do" />
+    <!-- JONAS_MQ_MARK BEGIN -->
+    <!-- begin of forwards for jonasAdmin MQ Extension -->
+    <forward name="JonasMqConnectPlatform"
+      path="/jonasmqconnect/JonasMqConnectPlatform.jsp" redirect="false" />
+    <forward name="JonasMqConnectPlatformAction"
+      path="/JonasMqConnectPlatform.do" redirect="false" />
+    <forward name="JonasMqConnectStart"
+      path="/jonasmqconnect/JonasMqConnect.jsp" redirect="false" />
+    <forward name="JonasMqConnectStartAction"
+      path="/JonasMqConnect.do" redirect="false" />
+    <forward name="JonasMqConnectDestinations"
+      path="/jonasmqconnect/Destinations.jsp" redirect="false" />
+    <forward name="JonasMqConnectDestinationsAction"
+      path="/JonasMqConnectDestinations.do" redirect="false" />
+    <forward name="JonasMqConnectMdbs"
+      path="/jonasmqconnect/Mdbs.jsp" redirect="false" />
+    <forward name="JonasMqConnectMdbsAction"
+      path="/JonasMqConnectMdbs.do" redirect="false" />
+    <forward name="JonasMqConnectDestinationAddAction"
+      path="/JonasMqConnectDestinationAdd.do" redirect="false" />
+    <forward name="JonasMqConnectDestinationAddConfirmAction"
+      path="/JonasMqConnectDestinationAddConfirm.do" redirect="false" />
+    <forward name="JonasMqConnectDestinationEditAction"
+      path="/JonasMqConnectDestinationEdit.do" redirect="false" />
+    <forward name="JonasMqConnectDestinationDeleteAction"
+      path="/JonasMqConnectDestinationDelete.do" redirect="false" />
+    <forward name="JonasMqConnectDestinationDeleteConfirmAction"
+      path="/JonasMqConnectDestinationDeleteConfirm.do" redirect="false" />
+    <forward name="JonasMqConnectMdbEditAction"
+      path="/JonasMqConnectMdbEdit.do" redirect="false" />
+    <forward name="JonasMqConnectConnectionFactoryEditAction"
+      path="/JonasMqConnectConnectionFactoryEdit.do" redirect="false" />
+    <forward name="JonasMqConnectDestinationAdd"
+      path="/jonasmqconnect/DestinationAdd.jsp" redirect="false" />
+    <forward name="JonasMqConnectDestinationAddConfirm"
+      path="/jonasmqconnect/DestinationAddConfirm.jsp" redirect="false" />
+    <forward name="JonasMqConnectDestinationEdit"
+      path="/jonasmqconnect/DestinationEdit.jsp" redirect="false" />
+    <forward name="JonasMqConnectDestinationDelete"
+      path="/jonasmqconnect/DestinationDelete.jsp" redirect="false" />
+    <forward name="JonasMqConnectDestinationDeleteConfirm"
+      path="/jonasmqconnect/DestinationDeleteConfirm.jsp" redirect="false" />
+    <forward name="JonasMqConnectMdbEdit"
+      path="/jonasmqconnect/MdbEdit.jsp" redirect="false" />
+    <forward name="JonasMqConnectConnectionFactoryEdit"
+      path="/jonasmqconnect/ConnectionFactoryEdit.jsp" redirect="false" />
+    <!-- end of forwards for jonasAdmin MQ Extension -->
+    <!-- JONAS_MQ_MARK END -->
+
+
+    <!-- CMI Forwards -->
+    <forward name="ActionDisplayCmi"
+      path="/DisplayCmi.do" />
+
+      <forward name="ActionDisplayCmiProtocol"
+      path="/DisplayCmiProtocolInfo.do" />
+
+    <forward name="ActionCmiObject"
+      path="/CmiObject.do" />
+
+    <forward name="ActionCmiCluster"
+      path="/CmiCluster.do" />
+
+      <forward name="ActionCmiServer"
+      path="/CmiServer.do" />
+
+      <!-- Forward to JSP -->
+      <forward name="displayCmiInfo"
+      path="/cmi/displayCmiInfo.jsp" />
+
+        <forward name="displayCmiProtocolInfo"
+      path="/cmi/displayCmiProtocolInfo.jsp" />
+
+
+       <forward name="displayCmiServerInfo"
+      path="/cmi/displayCmiServerInfo.jsp" />
+
+       <forward name="displayCmiObjectInfo"
+      path="/cmi/displayCmiObjectInfo.jsp" />
+
+      <forward name="displayCmiClusterInfo"
+      path="/cmi/displayCmiClusterInfo.jsp" />
+
+  </global-forwards>
+  <action-mappings type="org.apache.struts.action.ActionMapping">
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.SetUpTreeAction"
+      path="/setUpTree">
+      <forward name="SetUpTree" path="/tree.jsp" redirect="true" />
+    </action>
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.LogOutAction"
+      path="/logOut">
+      <forward name="Main Index" path="/index.jsp"
+        redirect="true" />
+    </action>
+    <action type="org.ow2.jonas.webapp.jonasadmin.TreeAction"
+      path="/viewTree" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.SetupWhereAreYouAction"
+      path="/Welcome" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.EditTopAction"
+      path="/EditTop" />
+    <action name="topForm"
+      type="org.ow2.jonas.webapp.jonasadmin.ApplyTopAction"
+      scope="request" path="/ApplyTop" />
+    <action name="containerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ContainerForm"
+      scope="session" path="/EditContainer" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListMBeansAction"
+      path="/ListMBeans" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListJ2eeMBeansAction"
+      path="/ListJ2eeMBeans" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListOwnerMBeansAction"
+      path="/ListOwnerMBeans" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListUnknownMBeansAction"
+      path="/ListUnknownMBeans" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListMBeanDetailsAction"
+      path="/ListMBeanDetails" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListMBeanPropertiesAction"
+      path="/ListMBeanProperties" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListMBeanAttributesAction"
+      path="/ListMBeanAttributes" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ListMBeanOperationsAction"
+      path="/ListMBeanOperations" />
+    <action name="mbeanFilteringForm"
+      type="org.ow2.jonas.webapp.jonasadmin.mbean.ApplyMbeanFilteringAction"
+      scope="session" path="/ApplyMbeanFiltering" />
+    <action name="domainForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.EditDomainAction"
+      scope="session" path="/EditDomain" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.CreateJonasServerAction"
+      path="/CreateJonasServer" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.PingAllJonasServersAction"
+      path="/PingAllJonasServers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StartJonasServerAction"
+      path="/StartJonasServer" />
+    <!-- Action that starts a JOnAS server in standby mode. -->
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StartStandbyJonasServerAction"
+      path="/StartStandbyJonasServer" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.StartJonasServerAction"
+      path="/StartJonasServerCd" />
+      <!-- start server in standby mode. -->
+      <action
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.StartStandbyJonasServerAction"
+      path="/StartStandbyJonasServerCd" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.StopJonasServerAction"
+      path="/StopJonasServerCd" />
+     <action
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.StopJonasServerAction"
+      path="/StopJonasServerCd" />
+      <!-- executes jonas halt from a cluster daemon. -->
+      <action
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.HaltJonasServerAction"
+      path="/HaltJonasServerCd" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.StartAllJonasServersAction"
+      path="/StartAllJonasServers" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.StartJonasServiceAction"
+      path="/StartJonasService" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.StopJonasServiceAction"
+      path="/StopJonasService" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.StopAllJonasServersAction"
+      path="/StopAllJonasServers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.PingAllJonasServersAction"
+      path="/PingAllJonasServers" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StopJonasServerAction"
+      path="/StopJonasServer" />
+
+      <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StopStandbyJonasServerAction"
+      path="/StopStandbyJonasServer" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.HaltJonasServerAction"
+      path="/HaltJonasServer" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StartClusterAction"
+      path="/StartCluster" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StopClusterAction"
+      path="/StopCluster" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StartClusterDaemonAction"
+      path="/StartClusterDaemon" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.StopClusterDaemonAction"
+      path="/StopClusterDaemon" />
+    <action name="newServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.ApplyJonasServerAction"
+      input="/domain/addServer.jsp" scope="session"
+      path="/ApplyJonasServer" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.domain.CreateClusterAction"
+      path="/CreateCluster" />
+    <action name="newClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.ApplyClusterAction"
+      input="/domain/addCluster.jsp" scope="session" path="/ApplyCluster" />
+    <action name="itemsServersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.ApplyJonasServersAction"
+      scope="session" path="/ApplyJonasServers" />
+    <!--defining all cluster daemon action -->
+    <action name="itemsServersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.ApplyJonasServersAction"
+      scope="session" path="/ApplyJonasServersClusterDaemon" />
+
+    <action name="clusterdServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.ServerConfigModifiedAction"
+      scope="session" path="/ServerConfigModified" />
+
+    <action name="itemsServersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.JonasServersMoveAction"
+      scope="session" path="/JonasServersMove" />
+    <action name="itemsServersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.ApplyJonasServersConfirmAction"
+      path="/ApplyJonasServersConfirm" />
+    <action name="itemsServersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.domain.ApplyJonasServersConfirmMoveAction"
+      path="/ApplyJonasServersConfirmMove" />
+    <action name="jonasServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.EditJonasServerAction"
+      path="/EditJonasServer" />
+
+    <action name="jonasServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.EditClusterDaemonAction"
+      path="/EditClusterDaemon" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.ListRegistryAction"
+      path="/ListRegistry" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.EditRegistryAction"
+      path="/EditRegistry" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.JonasServerStopAction"
+      path="/JonasServerStop" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.JonasServerRunGCAction"
+      path="/JonasServerRunGC" />
+    <action name="jmxServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.EditJmxServerAction"
+      scope="request" path="/EditJmxServer" />
+    <action name="jvmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.EditJvmAction"
+      scope="request" path="/EditJvm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.jonasserver.EditServletServerAction"
+      path="/EditServletServer" />
+    <action name="loggingJonasForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.EditLoggingJonasAction"
+      scope="request" path="/EditLoggingJonas" />
+    <action name="viewJonasLoggingForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.ViewLoggingJonasAction"
+      scope="request" path="/ViewLoggingJonas" />
+    <action name="loggingJonasForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.ApplyLoggingJonasAction"
+      scope="request" path="/ApplyLoggingJonas" />
+    <action name="monitoringForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.EditMonitoringAction"
+      path="/EditMonitoring" />
+    <action name="monitoringForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.ApplyMonitoringAction"
+      path="/ApplyMonitoring" />
+
+
+    <action name="memoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.EditMemoryAction"
+      path="/EditMemory" />
+    <action name="memoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.EditClusterdVmMemoryAction"
+      path="/EditClusterdVmMemory" />
+
+    <action name="memoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.ApplyMemoryAction"
+      input="/monitoring/memory.jsp" path="/ApplyMemory" />
+
+    <action name="memoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.ClusterdApplyMemoryAction"
+      input="/clusterd/ClusterdVmMemory.jsp" path="/ClusterdApplyMemory" />
+
+  <action name="stackDumpForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.EditStackDumpAction"
+      path="/EditStackDump" />
+    <action name="stackDumpForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.ApplyStackDumpAction"
+      path="/ApplyStackDump" />
+
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ListContainersAction"
+      path="/ListContainers" />
+    <action name="ejbContainersStatisticForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditEjbCsStatisticAction"
+      path="/EditEjbContainersStatistic" scope="session"/>
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditContainerAction"
+      path="/EditContainer" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ViewContainerAction"
+      path="/ViewContainer" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ViewContainerEjbsAction"
+      path="/ViewContainerEjbs" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.EditEjbEntityAction"
+      path="/EditEjbEnt" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.EditEjbSessionAction"
+      path="/EditEjbSbf" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.EditEjbSessionAction"
+      path="/EditEjbSbl" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.EditEjbMessageAction"
+      path="/EditEjbMdb" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ListWebContainersAction"
+      path="/ListWebContainers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.db.ListDatabasesAction"
+      path="/ListDatabases" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.db.EditDatasourceAction"
+      path="/EditDatasource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.db.EditDatasourceStatAction"
+      path="/EditDatasourceStat" />
+    <action name="datasourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.db.ApplyDatasourceAction"
+      input="/service/datasource.jsp" scope="session"
+      path="/ApplyDatasource" />
+    <action name="datasourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.db.ApplyDatasourceStatAction"
+      input="/service/datasourceStatistics.jsp" scope="session"
+      path="/ApplyDatasourceStat" />
+
+    <action name="domainDeployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.EditDomainDeployAction"
+      scope="session" path="/EditDomainDeploy" />
+    <action name="domainDeployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.ApplyDomainDeployAction"
+      scope="session" path="/ApplyDomainDeploy" />
+    <action name="domainDeployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.ApplyDomainDeployConfirmAction"
+      scope="session" path="/ApplyDomainDeployConfirm" />
+
+    <action name="archiveConfigForm"
+      type="org.ow2.jonas.webapp.jonasadmin.xml.ApplyArchiveConfigAction"
+      scope="session" path="/ApplyArchiveConfig" />
+    <action name="archiveConfigForm"
+      type="org.ow2.jonas.webapp.jonasadmin.xml.ArchiveConfigAction"
+      scope="session" path="/ArchiveConfig" />
+    <action name="archiveConfigForm"
+      type="org.ow2.jonas.webapp.jonasadmin.xml.ArchiveConfigAdvancedAction"
+      scope="session" path="/ArchiveConfigAdvanced" />
+    <action name="archiveConfigForm"
+      type="org.ow2.jonas.webapp.jonasadmin.xml.ArchiveConfigSelectAction"
+      scope="session" path="/ArchiveConfigSelect" />
+    <action name="archiveConfigForm"
+      type="org.ow2.jonas.webapp.jonasadmin.xml.ArchiveUtilAction"
+      scope="session" path="/ArchiveUtil" />
+
+    <action name="deployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.EditDeployAction"
+      scope="session" path="/EditDeploy" />
+    <action name="deployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.ApplyDeployAction"
+      scope="session" path="/ApplyDeploy" />
+    <action name="deployForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.ApplyDeployConfirmAction"
+      scope="session" path="/ApplyDeployConfirm" />
+    <action name="uploadForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.EditUploadAction"
+      scope="request" path="/EditUpload" />
+    <action name="uploadForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction"
+      scope="request" path="/ApplyUpload" />
+    <action name="removeForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.EditRemoveAction"
+      scope="session" path="/EditRemove" />
+    <action name="removeForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.ApplyRemoveAction"
+      scope="session" path="/ApplyRemove" />
+    <action name="removeForm"
+      type="org.ow2.jonas.webapp.jonasadmin.deploy.ApplyRemoveConfirmAction"
+      scope="session" path="/ApplyRemoveConfirm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ListAppContainersAction"
+      path="/ListAppContainers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ListMailFactoriesAction"
+      path="/ListMailFactories" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ListDatasourcesAction"
+      path="/ListDatasources" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.EditDatasourcePropertiesAction"
+      path="/EditDatasourceProperties" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resourceadapter.CreateResourceAdapterAction"
+      path="/CreateResourceAdapter" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ListJmsResourcesAction"
+      path="/ListJmsResources" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.EditDestinationAction"
+      path="/EditDestination" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.SaveDestinationAction"
+      path="/SaveDestination" />
+    <action name="destinationForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ApplyDestinationAction"
+      validate="true" input="/resource/createDestination.jsp"
+      path="/ApplyDestination" />
+    <action name="itemsDestinationsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ApplyDestinationsAction"
+      scope="session" path="/ApplyDestinations" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ApplyConfirmDestinationsAction"
+      path="/ApplyConfirmDestinations" />
+    <action name="datasourcePropertiesForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ApplyDatasourcePropertiesAction"
+      validate="true" input="/resource/datasourceProperties.jsp"
+      scope="session" path="/ApplyDatasourceProperties" />
+    <action name="createResourceAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resourceadapter.ApplyCreateResourceAdapterAction"
+      validate="true"
+      input="/resourceadapter/createOtherResourceAdapter.jsp"
+      scope="session" path="/ApplyCreateOtherResourceAdapter" />
+    <action name="createResourceAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resourceadapter.ApplyCreateResourceAdapterAction"
+      validate="true"
+      input="/resourceadapter/createJDBCResourceAdapter.jsp"
+      scope="session" path="/ApplyCreateJDBCResourceAdapter" />
+    <action name="createResourceAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resourceadapter.ApplyTemplateCreateResourceAdapterAction"
+      validate="false" input="/resourceadapter/createResourceAdapter.jsp"
+      scope="session" path="/ApplyTemplateCreateResourceAdapter" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.ListRealmsAction"
+      path="/ListRealms" />
+    <action name="itemsRealmsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyRealmsAction"
+      scope="session" path="/ApplyRealms" />
+    <action name="itemsRealmsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyConfirmRealmsAction"
+      scope="session" path="/ApplyConfirmRealms" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.SaveRealmAction"
+      path="/SaveRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.ClearCacheAction"
+      path="/ClearCache" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditMemoryRealmAction"
+      path="/EditMemoryRealm" />
+    <action name="itemsMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyConfirmMemoryRealmAction"
+      scope="request" path="/ApplyConfirmMemoryRealm" />
+    <action name="itemsMemoryRealmForm"
+      forward="/security/confirmActionMemoryRealm.jsp" scope="session"
+      path="/ConfirmActionMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditMemoryRealmUsersAction"
+      path="/EditMemoryRealmUsers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditUserMemoryRealmAction"
+      path="/EditUserMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditNewUserMemoryRealmAction"
+      path="/EditNewUserMemoryRealm" />
+    <action name="userMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyUserMemoryRealmAction"
+      input="/security/userMemoryRealm.jsp" scope="session"
+      path="/ApplyUserMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditMemoryRealmRolesAction"
+      path="/EditMemoryRealmRoles" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditRoleMemoryRealmAction"
+      path="/EditRoleMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditNewRoleMemoryRealmAction"
+      path="/EditNewRoleMemoryRealm" />
+    <action name="roleMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyRoleMemoryRealmAction"
+      input="/security/roleMemoryRealm.jsp" scope="session"
+      path="/ApplyRoleMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditMemoryRealmGroupsAction"
+      path="/EditMemoryRealmGroups" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditGroupMemoryRealmAction"
+      path="/EditGroupMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditNewGroupMemoryRealmAction"
+      path="/EditNewGroupMemoryRealm" />
+    <action name="groupMemoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyGroupMemoryRealmAction"
+      input="/security/groupMemoryRealm.jsp" scope="session"
+      path="/ApplyGroupMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditDatasourceRealmAction"
+      path="/EditDatasourceRealm" />
+    <action name="datasourceRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyDatasourceRealmAction"
+      input="/security/datasourceRealm.jsp" scope="session"
+      path="/ApplyDatasourceRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditLdapRealmAction"
+      path="/EditLdapRealm" />
+    <action name="ldapRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyLdapRealmAction"
+      input="/security/ldapRealm.jsp" scope="session"
+      path="/ApplyLdapRealm" />
+    <action name="memoryRealmForm"
+      type="org.ow2.jonas.webapp.jonasadmin.security.ApplyMemoryRealmAction"
+      input="/security/memoryRealm.jsp" scope="session"
+      path="/ApplyMemoryRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditWarAction"
+      path="/EditWar" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditEarAction"
+      path="/EditEar" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditContainerStatisticAction"
+      path="/EditContainerStatistic" />
+    <action name="jmsServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.EditJmsServiceAction"
+      path="/EditJmsService" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.ListQueuesAction"
+      path="/ListQueues" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.ListTopicsAction"
+      path="/ListTopics" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.ListConnectionFactoriesAction"
+      path="/ListConnectionFactories" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.PresentConnectionFactoryAction"
+      path="/PresentConnectionFactory" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.PresentQueueAction"
+      path="/PresentQueue" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jms.PresentTopicAction"
+      path="/PresentTopic" />
+    <action name="mailServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.EditMailServiceAction"
+      path="/EditMailService" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.ListSessionMailFactoriesAction"
+      path="/ListSessionMailFactories" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.ListMimePartMailFactoriesAction"
+      path="/ListMimePartMailFactories" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.EditSessionMailFactoryAction"
+      path="/EditSessionMailFactory" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.EditMimePartMailFactoryAction"
+      path="/EditMimePartMailFactory" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.EditMailFactoryPropertiesAction"
+      path="/EditMailFactoryProperties" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.EditSessionMailFactoryPropertiesAction"
+      path="/EditSessionMailFactoryProperties" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.resource.EditMimePartMailFactoryPropertiesAction"
+      path="/EditMimePartMailFactoryProperties" />
+    <action name="mailFactoryPropertiesForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ApplyMimePartMailFactoryPropertiesAction"
+      validate="true" input="/resource/mimePartFactoryProperties.jsp"
+      scope="session" path="/ApplyMimePartMailFactoryProperties" />
+    <action name="mailFactoryPropertiesForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ApplySessionMailFactoryPropertiesAction"
+      validate="true" input="/resource/sessionFactoryProperties.jsp"
+      scope="session" path="/ApplySessionMailFactoryProperties" />
+    <action name="mailFactoryPropertiesForm"
+      type="org.ow2.jonas.webapp.jonasadmin.resource.ApplyMailFactoryPropertiesAction"
+      validate="true" input="/resource/mailFactoryProperties.jsp"
+      scope="session" path="/ApplyMailFactoryProperties" />
+    <action name="mailFactoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.ApplyMimePartMailFactoryAction"
+      input="/service/mimepartFactory.jsp" scope="session"
+      path="/ApplyMimePartMailFactory" />
+    <action name="mailFactoryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.mail.ApplySessionMailFactoryAction"
+      input="/service/sessionFactory.jsp" scope="session"
+      path="/ApplySessionMailFactory" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.EditJtmServiceAction"
+      path="/EditJtmService" />
+    <action name="jtmServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ApplyJtmConfigurationAction"
+      input="/service/jtmService.jsp" scope="session"
+      path="/ApplyJtmConfiguration" />
+
+    <action name="depmonitorServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.depmonitor.EditServiceDepmonitorAction"
+      path="/EditDepmonitorService" />
+    <action name="depmonitorServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.depmonitor.ApplyDepmonitorConfigurationAction"
+      input="/service/depmonitorService.jsp" scope="session"
+      path="/ApplyDepmonitorConfiguration" />
+
+    <action name="workmanagerServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.workmanager.EditWorkmanagerServiceAction"
+      path="/EditWorkmanagerService" />
+    <action name="workmanagerServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.workmanager.ApplyWorkmanagerConfigurationAction"
+      input="/service/workmanagerService.jsp" scope="session"
+      path="/ApplyWorkmanagerConfiguration" />
+
+    <action name="workcleanerServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.workcleaner.EditWorkcleanerServiceAction"
+      path="/EditWorkcleanerService" />
+    <action name="workcleanerServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.workcleaner.ApplyWorkcleanerConfigurationAction"
+      input="/service/workcleanerService.jsp" scope="session"
+      path="/ApplyWorkcleanerConfiguration" />
+
+    <action name="versioningServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.versioning.EditVersioningServiceAction"
+      path="/EditVersioningService" />
+    <action name="versioningServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.versioning.ApplyVersioningConfigurationAction"
+      input="/service/versioningService.jsp" scope="session"
+      path="/ApplyVersioningConfiguration" />
+
+    <action name="smartclientServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.smartclient.EditSmartclientServiceAction"
+      path="/EditSmartclientService" />
+
+    <!--BEGIN: session configuration actions -->
+    <action name="ejbForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.ApplyEjbSessionConfigurationAction"
+      input="/EditEjbSbf.do" validate="true"
+      path="/ApplyEjbSessionConfiguration" />
+
+
+    <action name="ejbForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.ApplyEjbSessionConfigurationAction"
+      input="/EditEjbSbl.do" validate="true"
+      path="/ApplyEjbSessionSblConfiguration" />
+
+    <action name="ejbForm"
+       type="org.ow2.jonas.webapp.jonasadmin.service.ejb.ApplyEjbSessionConfigurationAction"
+       input="/EditEjbSbl.do" validate="true"
+       path="/ApplyEjbSessionSblConfiguration" />
+
+     <!-- END: session configuration actions  -->
+     <action name="ejbContainersStatisticForm"
+       type="org.ow2.jonas.webapp.jonasadmin.service.container.ApplyEjbContainersStatisticAction"
+       input="/EditEjbContainersStatistic.do" validate="true"
+       path="/ApplyEjbContainersStatistic" scope="session"/>
+     <action name="containerForm"
+       type="org.ow2.jonas.webapp.jonasadmin.service.container.ApplyContainersStatisticAction"
+       input="/EditContainerStatistic.do" validate="true"
+       path="/ApplyContainersStatistic" />
+
+
+    <action name="jtmStatisticForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.EditTransactionStatisticAction"
+      path="/EditTransactionStatistic" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ResetCountersAction"
+      path="/ResetCounters" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditCatalinaAction"
+      path="/EditCatalina" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ListConnectorsAction"
+      path="/ListCatalinaConnectors" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditConnectorAction"
+      path="/EditCatalinaConnector" />
+    <action name="jtmMonitorForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.EditTransactionMonitorAction"
+      path="/EditTransactionMonitor" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ResetTransactionsAction"
+      path="/ResetTransactions" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditCatalinaAction"
+      path="/EditCatalina" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ListConnectorsAction"
+      path="/ListCatalinaConnectors" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditConnectorAction"
+      path="/EditCatalinaConnector" />
+    <action name="jtmRecoveryForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.EditTransactionRecoveryAction"
+      path="/EditTransactionRecovery" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ResetRecoveryAction"
+      path="/ResetRecovery" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditCatalinaAction"
+      path="/EditCatalina" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ListConnectorsAction"
+      path="/ListCatalinaConnectors" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditConnectorAction"
+      path="/EditCatalinaConnector" />
+    <action name="jtmXAResourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ListXaResourceAction"
+      path="/ListXaResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ResetRecoveryAction"
+      path="/ResetRecovery" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.CommitResourceAction"
+      path="/CommitResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.RollbackResourceAction"
+      path="/RollbackResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ForgetResourceAction"
+      path="/ForgetResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditCatalinaAction"
+      path="/EditCatalina" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ListConnectorsAction"
+      path="/ListCatalinaConnectors" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditConnectorAction"
+      path="/EditCatalinaConnector" />
+    <action name="itemsXaResourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ApplyConfirmXaResourceAction"
+      scope="request" path="/ApplyConfirmXaResource" />
+    <action name="itemsXaResourceForm"
+      forward="/service/confirmActionXaResource.jsp" scope="session"
+      path="/ConfirmActionXaResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.CommitResourceAction"
+      path="/CommitResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.RollbackResourceAction"
+      path="/RollbackResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ForgetResourceAction"
+      path="/ForgetResource" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditCatalinaAction"
+      path="/EditCatalina" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ListConnectorsAction"
+      path="/ListCatalinaConnectors" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.EditConnectorAction"
+      path="/EditCatalinaConnector" />
+    <action name="itemsXaResourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.jtm.ListXaResourceItemsAction"
+      path="/ListXaResourceItems" />
+    <action name="catalinaConnectorForm"
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ApplyConnectorAction"
+      input="/catalina/connector.jsp" scope="session"
+      path="/ApplyCatalinaConnector" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.CreateConnectorAction"
+      path="/CreateCatalinaConnector" />
+    <action name="itemsConnectorsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ApplyConnectorsAction"
+      scope="session" path="/ApplyCatalinaConnectors" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.ApplyConnectorsConfirmAction"
+      path="/ApplyCatalinaConnectorsConfirm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.ListServicesAction"
+      path="/ListServices" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.EditServiceSecurityAction"
+      path="/EditServiceSecurity" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.webservice.ListWebServiceAction"
+      path="/ListWebService" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.webservice.WebServiceDetailsAction"
+      path="/WebServiceDetails" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.webservice.PortComponentsDetailsAction"
+      path="/PortComponentsDetails" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.webservice.HandlersDetailsAction"
+      path="/HandlersDetails" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.webservice.ViewPortComponentsAction"
+      path="/ViewPortComponents" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.webservice.ViewHandlersAction"
+      path="/ViewHandlers" />
+    <action name="discoveryServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.discovery.EditServiceDiscoveryAction"
+      path="/EditServiceDiscovery" />
+    <action name="depmonitorServiceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.depmonitor.EditServiceDepmonitorAction"
+      input="/service/depmonitorService.jsp" scope="session"
+      path="/EditServiceDepmonitor" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.discovery.DiscoveryServiceStartMasterAction"
+      path="/DiscoveryServiceStartMaster" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.security.EditSecurityCatalinaRealmAction"
+      path="/EditSecurityCatalinaRealm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.catalina.SaveCatalinaAction"
+      path="/SaveCatalina" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditWebAppAction"
+      path="/EditWebApp" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditWebAppCatalinaAction"
+      path="/EditWebAppCatalina" />
+    <action name="webAppCatalinaForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ApplyWebAppCatalinaAction"
+      input="/service/webAppCatalina.jsp" scope="session"
+      path="/ApplyWebAppCatalina" />
+    <action name="webAppVirtualCatalinaForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ApplyWebAppVirtualCatalinaAction"
+      input="/service/webAppVirtualCatalina.jsp" scope="session"
+      path="/ApplyWebAppVirtualCatalina" />
+    <action name="itemsWebContainersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ApplyWebsConfirmAction"
+      scope="session" path="/ApplyWebContainersConfirm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.logging.ListLoggersAction"
+      path="/ListLoggers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.logging.EditCatalinaAccessLoggerAction"
+      path="/EditCatalinaAccessLogger" />
+    <action name="catalinaAccessLoggerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.ApplyCatalinaAccessLoggerAction"
+      input="/logging/catalinaAccessLogger.jsp" scope="session"
+      path="/ApplyCatalinaAccessLogger" />
+    <action name="itemsLoggersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.ApplyLoggersAction"
+      scope="session" path="/ApplyLoggers" />
+    <action name="itemsLoggersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.logging.ApplyLoggersConfirmAction"
+      scope="session" path="/ApplyLoggersConfirm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.ListResourceAdaptersAction"
+      path="/ListResourceAdapters" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.EditResourceAdapterAction"
+      path="/EditResourceAdapter" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.EditResourceAdapterAOAction"
+      path="/EditResourceAdapterAO" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.EditResourceAdapterASAction"
+      path="/EditResourceAdapterAS" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.EditResourceAdapterCFAction"
+      path="/EditResourceAdapterCF" />
+    <action name="resourceAdapterCFForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.EditResourceAdapterCFStatAction"
+      path="/EditResourceAdapterCFStat" />
+    <action name="resourceForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.EditResourceAdapterStatAction" scope="session"
+      path="/EditResourceAdapterStat" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.EditRarAction"
+      path="/EditRar" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.ejb.ExecuteEjbAction"
+      path="/ExecuteEjb" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.EditWebAppJettyAction"
+      path="/EditWebAppJetty" />
+    <action name="resourceAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.ApplyResourceAdapterAction"
+      input="/service/rar10.jsp" scope="session"
+      path="/resourceAdapterForm" />
+    <action name="resourceAdapterCFForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.resource.ApplyResourceAdapterCFAction"
+      input="/service/rar15CF.jsp" scope="session"
+      path="/resourceAdapterCFForm" />
+    <action name="webAppJettyForm"
+      type="org.ow2.jonas.webapp.jonasadmin.service.container.ApplyWebAppJettyAction"
+      input="/service/webAppJetty.jsp" scope="session"
+      path="/ApplyWebAppJetty" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.EditJoramPlatformAction"
+      path="/EditJoramPlatform" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ExportRepository"
+      path="/ExportRepository" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.EditJoramServerAction"
+      path="/EditJoramServer" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.CreateJoramDestinationAction"
+      path="/CreateJoramDestination" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.CreateJoramUserAction"
+      path="/CreateJoramUser" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.AddJoramReaderAction"
+      path="/AddJoramReader" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.AddJoramWriterAction"
+      path="/AddJoramWriter" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ReloadJoramAdmin"
+      path="/ReloadJoramAdmin" />
+
+    <action name="joramAdapterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.EditJoramResourceAdapterAction"
+      path="/EditJoramResourceAdapter" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ListJoramServersAction"
+      path="/ListJoramServers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ListLocalDestinationsAction"
+      path="/ListLocalDestinations" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ListRemoteDestinationsAction"
+      path="/ListRemoteDestinations" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.EditJoramQueueAction"
+      path="/EditJoramQueue" />
+    <action name="joramQueueForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ApplyJoramQueueAction"
+      input="/joramqueue.jsp" scope="session" path="/joramQueueForm" />
+    <action name="joramTopicForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ApplyJoramTopicAction"
+      input="/joramtopic.jsp" scope="session" path="/joramTopicForm" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.EditJoramTopicAction"
+      path="/EditJoramTopic" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.EditJoramDestinationAction"
+      path="/EditJoramDestination" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.EditJoramUserAction"
+      path="/EditJoramUser" />
+    <action name="joramDestinationForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ApplyDestinationAction"
+      validate="true" input="/joramplatform/createdestination.jsp"
+      path="/ApplyJoramDestination" />
+    <action name="joramUserForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ApplyUserAction"
+      validate="true" input="/joramplatform/createuser.jsp"
+      path="/ApplyJoramUser" />
+    <action name="joramReaderWriterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ApplyJoramReaderAction"
+      validate="true" input="/joramplatform/addreader.jsp"
+      path="/ApplyJoramReader" />
+    <action name="joramReaderWriterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.ApplyJoramWriterAction"
+      validate="true" input="/joramplatform/addwriter.jsp"
+      path="/ApplyJoramWriter" />
+
+    <action name="removeDestinationsForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.RemoveJoramDestinationsAction"
+      scope="session" path="/RemoveJoramDestinations" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.RemoveConfirmDestinationsAction"
+      path="/RemoveConfirmDestinations" />
+    <action name="removeUsersForm"
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.RemoveJoramUsersAction"
+      scope="session" path="/RemoveJoramUsers" />
+    <action
+      type="org.ow2.jonas.webapp.jonasadmin.joramplatform.RemoveConfirmUsersAction"
+      path="/RemoveConfirmUsers" />
+
+    <action name="nodeInfoForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.DisplayNodeInfoAction"
+      path="/DisplayNodeInfo" />
+    <action name="daemonProxyClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.DaemonProxyClusterAction"
+      path="/DaemonProxyClusterInfo" scope="session" />
+
+    <!--The servlet to configure a server that would be affected to a cluster daemon-->
+    <action name="clusterdServerForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.DaemonProxyClusterConfigureServerAction"
+      path="/DaemonProxyClusterConfigureServer" />
+
+    <!--servlet action for displaying cluster daemons information when coming from domain jsp ( !monitoring case)-->
+    <action name="daemonProxyClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.DaemonProxyClusterAction"
+      path="/DaemonProxyClusterInfoFromDomain" scope="session" />
+
+    <!--remove  following actions further-->
+    <action name="daemonProxyClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.DaemonProxyClusterModifyAction"
+      path="/DaemonProxyClusterModify" scope="session" />
+    <action name="daemonProxyClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.clusterd.DaemonProxyClusterApplyModifAction"
+      input="/clusterd/daemonProxyClusterModify.jsp" scope="session"
+      path="/DaemonProxyClusterApplyModif" />
+
+    <action name="tomcatClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.TomcatClusterAction"
+      path="/TomcatClusterInfo" />
+    <action name="tomcatMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.TomcatMemberAction"
+      path="/TomcatMemberInfo" />
+    <action name="jkClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JkClusterAction"
+      path="/JkClusterInfo" />
+    <action name="jkMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JkMemberAction"
+      path="/JkMemberInfo" />
+    <action name="cmiClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.CmiClusterAction"
+      path="/CmiClusterInfo" />
+    <action name="cmiClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.ApplyCmiClusterAction"
+      input="/monitoring/cmiCluster.jsp" scope="session"
+      path="/ApplyCmiClusterConfiguration" />
+
+    <!-- Action to design transaction count graph of a server -->
+    <action name="ServerGraphForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.graph.ServerTransactionsCountAction"
+      path="/SeverTransactionsCount" />
+    <!-- Action to design thread count graph of a server  -->
+    <action name="ServerGraphForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.graph.ServerThreadCountAction"
+      path="/ServerThreadCount" />
+
+    <action name="ServerGraphForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.graph.ServerGraphsAction"
+      path="/ServerGraph" />
+
+
+
+
+    <action name="cmiMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.CmiMemberAction"
+      path="/CmiMemberInfo" />
+    <action name="ejbHaClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.EjbHaClusterAction"
+      path="/EjbHaClusterInfo" />
+    <action name="ejbHaMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.EjbHaMemberAction"
+      path="/EjbHaMemberInfo" />
+    <action name="joramClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JoramClusterAction"
+      path="/JoramClusterInfo" />
+    <action name="joramMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.JoramMemberAction"
+      path="/JoramMemberInfo" />
+    <action name="logicalClusterForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.LogicalClusterAction"
+      path="/LogicalClusterInfo" />
+    <action name="logicalMemberForm"
+      type="org.ow2.jonas.webapp.jonasadmin.monitoring.LogicalMemberAction"
+      path="/LogicalMemberInfo" />
+
+    <!-- JONAS_MQ_MARK BEGIN -->
+    <!-- begin of jonasAdmin MQ Extension action mappings -->
+    <action name="JonasMqConnectPlatformForm"
+      path="/JonasMqConnectPlatform"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.JonasMqConnectPlatformAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectForm" path="/JonasMqConnect"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.JonasMqConnectAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectDestinationsForm"
+      path="/JonasMqConnectDestinations"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationsAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectMdbsForm" path="/JonasMqConnectMdbs"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.MdbsAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectDestinationAddForm"
+      path="/JonasMqConnectDestinationAdd"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationAddAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectDestinationAddConfirmForm"
+      path="/JonasMqConnectDestinationAddConfirm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationAddConfirmAction"
+      validate="true" scope="session"
+      input="/jonasmqconnect/DestinationAdd.jsp" />
+    <action name="JonasMqConnectDestinationEditForm"
+      path="/JonasMqConnectDestinationEdit"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationEditAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectMdbEditForm"
+      path="/JonasMqConnectMdbEdit"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.MdbEditAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectDestinationDeleteForm"
+      path="/JonasMqConnectDestinationDelete"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationDeleteAction"
+      validate="false" scope="session" />
+    <action name="JonasMqConnectDestinationDeleteForm"
+      path="/JonasMqConnectDestinationDeleteConfirm"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.DestinationDeleteConfirmAction"
+      validate="false" scope="session"
+      input="/jonasmqconnect/DestinationDelete.jsp" />
+    <action name="JonasMqConnectConnectionFactoryEditForm"
+      path="/JonasMqConnectConnectionFactoryEdit"
+      type="org.ow2.jonas.webapp.jonasadmin.jonasmqconnect.ConnectionFactoryEditAction"
+      validate="false" scope="session" />
+    <!-- end of jonasAdmin MQ Extension action mappings -->
+    <!-- JONAS_MQ_MARK END -->
+    <!-- CMI Actions -->
+     <action name="cmiForm"
+      type="org.ow2.jonas.webapp.jonasadmin.cmi.ApplyCmiAction"
+      scope="session"
+      path="/DisplayCmi" />
+
+     <action name="cmiObjectForm"
+     type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiObjectAction"
+      path="/CmiObject" />
+
+      <action name="cmiClusterForm"
+     type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiClusterAction"
+      path="/CmiCluster" />
+
+      <action name="cmiServerForm"
+     type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiServerAction"
+      path="/CmiServer" />
+
+    <action name="cmiProtocolForm"
+      type="org.ow2.jonas.webapp.jonasadmin.cmi.CmiProtocolAction"
+      path="/DisplayCmiProtocolInfo" />
+
+
+  </action-mappings>
+  <message-resources
+    parameter="org.ow2.jonas.webapp.jonasadmin.ApplicationResources" />
+</struts-config>

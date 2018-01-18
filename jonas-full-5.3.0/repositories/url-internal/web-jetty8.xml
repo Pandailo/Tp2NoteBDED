@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated Tue Oct 01 13:22:00 CEST 2013 by JOnAS. -->
+<deployment-plan xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
+  xmlns:url="http://jonas.ow2.org/ns/deployment-plan/url/1.0"
+  xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0 http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.xsd
+                      http://jonas.ow2.org/ns/deployment-plan/maven2/1.0 http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
+  atomic="false" id="web-jetty8">
+  <deployment id="web-base" xsi:type="url:url-deploymentType">
+    <url:resource>web-base.xml</url:resource>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-util:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-util</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-io:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-io</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-http:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-http</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-continuation:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-continuation</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-server:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-server</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-security:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-security</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-servlet:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-servlet</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-xml:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-xml</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-webapp:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-webapp</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jetty:jetty-ajp:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jetty</m2:groupId>
+    <m2:artifactId>jetty-ajp</m2:artifactId>
+    <m2:version>8.1.1.v20120215</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.glassfish.web:el-impl:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.glassfish.web</m2:groupId>
+    <m2:artifactId>el-impl</m2:artifactId>
+    <m2:version>2.2.1-b05</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.eclipse.jdt.core.compiler:ecj:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.eclipse.jdt.core.compiler</m2:groupId>
+    <m2:artifactId>ecj</m2:artifactId>
+    <m2:version>3.5.1</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.jonas:jonas-web-container-jetty-8.0-core:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.jonas</m2:groupId>
+    <m2:artifactId>jonas-web-container-jetty-8.0-core</m2:artifactId>
+    <m2:version>5.3.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+</deployment-plan>

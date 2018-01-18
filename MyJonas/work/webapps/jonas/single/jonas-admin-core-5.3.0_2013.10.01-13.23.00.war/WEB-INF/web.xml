@@ -1,0 +1,2967 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <display-name>Jonas Administration Application</display-name>
+  <description>Jonas HTML based administration web application.</description>
+  <!-- JonasAdmin-flex filter -->
+  <filter>
+   <filter-name>AMFMessageFilter</filter-name>
+   <filter-class>
+    org.granite.messaging.webapp.AMFMessageFilter
+   </filter-class>
+  </filter>
+  <filter-mapping>
+   <filter-name>AMFMessageFilter</filter-name>
+   <url-pattern>/graniteamf/*</url-pattern>
+  </filter-mapping>
+  <!-- Granite config context listener -->
+  <listener>
+    <listener-class>org.granite.config.GraniteConfigListener</listener-class>
+    </listener>
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>0</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>0</param-value>
+    </init-param>
+    <init-param>
+      <param-name>locale</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>nocache</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>tagsimagesroot</param-name>
+      <param-value>${CONTEXT}/images</param-value>
+    </init-param>
+    <init-param>
+      <param-name>treebuilders</param-name>
+      <param-value>org.ow2.jonas.webapp.jonasadmin.JonasTreeBuilder</param-value>
+    </init-param>
+    <init-param>
+      <param-name>validate</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+    <servlet>
+    <servlet-name>MemoryGraphServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.MemoryGraphServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>MemoryGraphRemoteHostServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.clusterd.servlet.MemoryGraphRemoteHostServlet</servlet-class>
+  </servlet>
+  <!-- other server servlets -->
+  <servlet>
+    <servlet-name>ThreadCountServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.ThreadCountServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServerCurrentTxServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.ServerCurrentTxServlet</servlet-class>
+  </servlet>
+  <!-- JonasAdmin-flex servlet -->
+  <servlet>
+   <servlet-name>AMFMessageServlet</servlet-name>
+   <servlet-class>
+    org.granite.messaging.webapp.AMFMessageServlet
+   </servlet-class>
+   <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- Tomcat server -->
+   <!-- BytesReceivedByConnectorTomcatServlet compared To total received + sent bytes -->
+  <servlet>
+    <servlet-name>BytesReceivedByConnectorTomcatServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.BytesReceivedByConnectorTomcatServlet</servlet-class>
+  </servlet>
+  <!-- BytesSentByConnectorTomcatServlet compared To total received + sent bytes -->
+  <servlet>
+    <servlet-name>BytesSentByConnectorTomcatServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.BytesSentByConnectorTomcatServlet</servlet-class>
+  </servlet>
+
+  <!-- ErrorCountByConnectorTomcat -->
+  <servlet>
+    <servlet-name>ErrorCountByConnectorTomcatServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ErrorCountByConnectorTomcatServlet</servlet-class>
+  </servlet>
+
+   <!-- ProcessingTimeByConnectorTomcatServlet -->
+  <servlet>
+    <servlet-name>ProcessingTimeByConnectorTomcatServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ProcessingTimeByConnectorTomcatServlet</servlet-class>
+  </servlet>
+   <!-- RequestCountByConnectorTomcat -->
+  <servlet>
+    <servlet-name>RequestCountByConnectorTomcatServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.RequestCountByConnectorTomcatServlet</servlet-class>
+  </servlet>
+
+   <!-- RequestCountByConnectorTomcat -->
+  <servlet>
+    <servlet-name>ThreadBusyConnectorTomcatServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ThreadBusyConnectorTomcatServlet</servlet-class>
+  </servlet>
+
+
+
+<!-- JMS -->
+ <!-- JmsQMsgDeliverServlet compared to total jms messages -->
+  <servlet>
+    <servlet-name>JmsQMsgDeliverServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.JmsQMsgDeliverServlet</servlet-class>
+  </servlet>
+
+  <!-- JmsQueuesNbMsgsReceiveSinceCreation compared to Total jms messages -->
+  <servlet>
+    <servlet-name>JmsQMsgReceiveServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.JmsQMsgReceiveServlet</servlet-class>
+  </servlet>
+
+
+  <!-- JmsTopicMsgDeliverServlet compared to total jms topics -->
+  <servlet>
+    <servlet-name>JmsTopicMsgDeliverServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.JmsTopicMsgDeliverServlet</servlet-class>
+  </servlet>
+
+  <!-- JmsTopicMsgReceiveServlet compared to Total jms topics -->
+  <servlet>
+    <servlet-name>JmsTopicMsgReceiveServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.JmsTopicMsgReceiveServlet</servlet-class>
+  </servlet>
+
+
+  <!-- Transactions -->
+  <!-- TotalCommittedTransactionsServlet compared To total transactions -->
+  <servlet>
+    <servlet-name>TotalCommittedTransactionsServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.TotalCommittedTransactionsServlet</servlet-class>
+  </servlet>
+   <!-- Begun transaction compared To total transactions -->
+  <servlet>
+    <servlet-name>BegunTransactionsServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.BegunTransactionsServlet</servlet-class>
+  </servlet>
+  <!-- TotalExpiredTransactionsServlet compared To total transactions -->
+  <servlet>
+    <servlet-name>TotalExpiredTransactionsServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.TotalExpiredTransactionsServlet</servlet-class>
+  </servlet>
+
+   <!-- TotalRolledbackTransactionsServlet compared To total transactions -->
+  <servlet>
+    <servlet-name>TotalRolledbackTransactionsServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.TotalRolledbackTransactionsServlet</servlet-class>
+  </servlet>
+
+  <!-- JCA connections  -->
+  <!-- ConnectionFailuresJCAConnection compared To total OpenedJCAConnections -->
+  <servlet>
+    <servlet-name>ConnectionFailuresJCAConnectionServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ConnectionFailuresJCAConnectionServlet</servlet-class>
+  </servlet>
+
+<!-- ConnectionLeaksJCAConnection compared To total OpenedJCAConnections -->
+  <servlet>
+    <servlet-name>ConnectionLeaksJCAConnectionServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ConnectionLeaksJCAConnectionServlet</servlet-class>
+  </servlet>
+
+  <!-- CurrentBusyJCAConnection compared To total OpenedJCAConnections -->
+  <servlet>
+    <servlet-name>CurrentBusyJCAConnectionServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.CurrentBusyJCAConnectionServlet</servlet-class>
+  </servlet>
+
+<!-- RejectedOpenJCAConnection compared To total OpenedJCAConnections -->
+  <servlet>
+    <servlet-name>RejectedOpenJCAConnectionServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.RejectedOpenJCAConnectionServlet</servlet-class>
+  </servlet>
+
+  <!-- ServedOpenJCAConnection compared To total OpenedJCAConnections -->
+  <servlet>
+    <servlet-name>ServedOpenJCAConnectionServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ServedOpenJCAConnectionServlet</servlet-class>
+  </servlet>
+
+  <!-- WaiterCountJCAConnection compared To total OpenedJCAConnections -->
+  <servlet>
+    <servlet-name>WaiterCountJCAConnectionServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.WaiterCountJCAConnectionServlet</servlet-class>
+  </servlet>
+
+
+<!-- JDBC resources  -->
+
+<!-- ConnectionLeaksJDBCResource compared To total JDBCResources -->
+  <servlet>
+    <servlet-name>ConnectionLeaksJDBCResourceServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ConnectionLeaksJDBCResourceServlet</servlet-class>
+  </servlet>
+
+  <!-- CurrentBusyJDBCResource compared To total JDBCResources -->
+  <servlet>
+    <servlet-name>CurrentBusyJDBCResourceServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.CurrentBusyJDBCResourceServlet</servlet-class>
+  </servlet>
+
+<!-- RejectedOpenJDBCResource compared To total JDBCResources -->
+  <servlet>
+    <servlet-name>RejectedOpenJDBCResourceServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.RejectedOpenJDBCResourceServlet</servlet-class>
+  </servlet>
+
+  <!-- ServedOpenJDBCResource compared To total JDBCResources -->
+  <servlet>
+    <servlet-name>ServedOpenJDBCResourceServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.ServedOpenJDBCResourceServlet</servlet-class>
+  </servlet>
+
+  <!-- WaiterCountJDBCResourceServlet compared To total JDBCResources -->
+  <servlet>
+    <servlet-name>WaiterCountJDBCResourceServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.WaiterCountJDBCResourceServlet</servlet-class>
+  </servlet>
+<!-- EJB count compared to total Beans count-->
+<servlet>
+    <servlet-name>CurrentNumberOfEJBServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.CurrentNumberOfEJBServlet</servlet-class>
+  </servlet>
+
+
+<!-- CurrentNumberOfEntityBeanServlet compared to total Beans count-->
+  <servlet>
+    <servlet-name>CurrentNumberOfEntityBeanServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.CurrentNumberOfEntityBeanServlet</servlet-class>
+  </servlet>
+
+<!-- Message Driven Beans compared to total Beans count-->
+<servlet>
+    <servlet-name>CurrentNumberOfMDBServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.CurrentNumberOfMDBServlet</servlet-class>
+  </servlet>
+
+<!-- CurrentNumberOfSBF compared to total Beans count-->
+<servlet>
+    <servlet-name>CurrentNumberOfSBFServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.CurrentNumberOfSBFServlet</servlet-class>
+  </servlet>
+
+
+<!-- CurrentNumberOfSBL compared to total Beans count-->
+<servlet>
+    <servlet-name>CurrentNumberOfSBLServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.CurrentNumberOfSBLServlet</servlet-class>
+  </servlet>
+<!--Load CPU -->
+<servlet>
+    <servlet-name>LoadCPUServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.LoadCPUServlet</servlet-class>
+  </servlet>
+
+<!--WorkersServlet count -->
+<servlet>
+    <servlet-name>WorkersServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.webapp.jonasadmin.monitoring.graph.servlets.server.WorkersServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>org.ow2.jasmine.kerneos.login.LogoutServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.admin.autostart.servlet.FileUploadServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>FileDownloadServlet</servlet-name>
+    <servlet-class>org.ow2.jonas.admin.autostart.servlet.FileDownloadServlet</servlet-class>
+  </servlet>
+
+
+  
+<!--
+Automatically created by Apache Jakarta Tomcat JspC.
+Place this fragment in the web.xml before all icon, display-name,
+description, distributable, and context-param elements.
+-->
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.login_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.login_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.framemain_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.framemain_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.tree_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.tree_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.end_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.end_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.welcomeContent_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.welcomeContent_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.TestNavigator_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.TestNavigator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.index_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.TestFont_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.TestFont_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.error_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.blank_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.blank_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.globalerror_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.globalerror_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.frameright_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.frameright_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.begin_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.begin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.top_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.top_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.realms_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.realms_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.confirmActionMemoryRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.confirmActionMemoryRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.securityCatalinaRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.securityCatalinaRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.realmsConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.realmsConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.userMemoryRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.userMemoryRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmGroups_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmGroups_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.roleMemoryRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.roleMemoryRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmUsers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmUsers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.ldapRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.ldapRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmRoles_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmRoles_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.groupMemoryRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.groupMemoryRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.realmsStopped_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.realmsStopped_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.datasourceRealm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.security.datasourceRealm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.DaemonProxyClusterDisplayServerConfig_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.DaemonProxyClusterDisplayServerConfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.addServerCd_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.addServerCd_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.serversConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.serversConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.daemonProxyClusterModify_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.daemonProxyClusterModify_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.graph.vmMemory_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.graph.vmMemory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.common.end_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.common.end_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.common.begin_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.common.begin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionRecovery_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionRecovery_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CF_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CF_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsQueues_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsQueues_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.versioningService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.versioningService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rars_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rars_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionFactories_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionFactories_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.warWebXml_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.warWebXml_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CFStats_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CFStats_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionMonitor_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionMonitor_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.smartclientService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.smartclientService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbDependency_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbDependency_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.security_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.security_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.containerStatistic_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.containerStatistic_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppCatalina_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppCatalina_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.workmanagerService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.workmanagerService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webApp_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.webApp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.securityStopped_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.securityStopped_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.services_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.services_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.war_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.war_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.databases_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.databases_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionStatistic_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionStatistic_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppVirtualCatalina_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppVirtualCatalina_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartFactories_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartFactories_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsConnFactories_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsConnFactories_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.cfUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.cfUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbContainerService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbContainerService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.confirmActionXaResource_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.confirmActionXaResource_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.depmonitorService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.depmonitorService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsTopic_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsTopic_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbEntity_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbEntity_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarStatistics_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarStatistics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppJetty_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppJetty_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.warServlets_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.warServlets_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.warJonasXml_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.warJonasXml_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.discovery_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.discovery_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsTopics_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsTopics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.appContainers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.appContainers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earXmlDeployment_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.earXmlDeployment_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarUsedBy15_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarUsedBy15_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasource_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasource_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsDestinations_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsDestinations_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasourceUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasourceUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbContainersStatistic_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbContainersStatistic_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbMessage_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbMessage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jtmService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jtmService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AOs_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AOs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.container_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.container_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar10Stats_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar10Stats_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejb_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejb_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.containerEjbs_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.containerEjbs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasourceStatistics_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasourceStatistics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webContainers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.webContainers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionFactory_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionFactory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CFs_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CFs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartFactory_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartFactory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.workcleanerService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.workcleanerService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earJars_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.earJars_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarUsedBy10_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarUsedBy10_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.queueUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.queueUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.containers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.containers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AS_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AS_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarPoolStatistics_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarPoolStatistics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jtmServiceStopped_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jtmServiceStopped_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsQueue_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsQueue_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ear_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ear_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earRars_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.earRars_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbVirtual_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbVirtual_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartMailFactoryUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartMailFactoryUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsConnFactory_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsConnFactory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar10_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar10_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.xaresourceRecovery_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.xaresourceRecovery_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AO_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AO_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mailService_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.mailService_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earWars_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.earWars_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15ASs_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15ASs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbSession_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbSession_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionMailFactoryUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionMailFactoryUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.topicUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.topicUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.viewPortComponents_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.viewPortComponents_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.portComponentsDetails_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.portComponentsDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.viewHandlers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.viewHandlers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.webserviceDescriptions_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.webserviceDescriptions_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.handlersDetails_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.handlersDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.webserviceDetails_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.webserviceDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.remove_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.remove_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.removeConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.removeConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.deploy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.deploy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeploy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeploy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeployConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeployConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.uploadResult_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.uploadResult_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeployProgress_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeployProgress_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainUndeployConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainUndeployConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.upload_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.upload_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.deployConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.deployConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigSelect_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigSelect_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigAdvanced_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigAdvanced_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfig_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigAjax_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigAjax_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.displaynode_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.displaynode_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.joramCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.joramCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.daemonProxyCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.daemonProxyCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.daemonProxyMember_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.daemonProxyMember_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.jkCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.jkCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.logicalMember_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.logicalMember_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.ejbHaMember_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.ejbHaMember_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.memory_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.memory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.tomcatCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.tomcatCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.stackDump_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.stackDump_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.cmiCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.cmiCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.cmiMember_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.cmiMember_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.logicalCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.logicalCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.monitoring_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.monitoring_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.tomcatMember_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.tomcatMember_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.ejbHaCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.ejbHaCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.joramMember_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.joramMember_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.jkMember_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.jkMember_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.graph.serverTransactionCount_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.graph.serverTransactionCount_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.graph.serverGraphs_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.graph.serverGraphs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanAttributes_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanAttributes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeans_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeans_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listUnknownMBeans_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listUnknownMBeans_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listOwnerMBeans_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listOwnerMBeans_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listJ2eeMBeans_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listJ2eeMBeans_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanOperations_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanOperations_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanProperties_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanProperties_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jonasversions_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jonasversions_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jmxserver_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jmxserver_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.registry_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.registry_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.servletServer_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.servletServer_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jvm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jvm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.listRegistry_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.listRegistry_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jonasserver_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jonasserver_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramservers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramservers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramdeststatistics_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramdeststatistics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.createuser_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.createuser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramremoteserver_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramremoteserver_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.createdestination_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.createdestination_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueue_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueue_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramdestinations_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramdestinations_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramadapter_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramadapter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.addreader_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.addreader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.removeDestinationsConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.removeDestinationsConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueuewriters_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueuewriters_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramremotedestinations_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramremotedestinations_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.addwriter_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.addwriter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.removeUsersConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.removeUsersConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueuereaders_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueuereaders_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.queueUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.queueUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopicwriters_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopicwriters_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramxml_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramxml_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopic_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopic_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramplatform_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramplatform_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopicreaders_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopicreaders_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramusers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramusers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.topicUsedBy_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.topicUsedBy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiProtocolInfo_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiProtocolInfo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiObjectInfo_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiObjectInfo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiServerInfo_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiServerInfo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiClusterInfo_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiClusterInfo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiInfo_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiInfo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createJDBCResourceAdapter_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createJDBCResourceAdapter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createResourceAdapter_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createResourceAdapter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createOtherResourceAdapter_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createOtherResourceAdapter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addServerCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addServerCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addCluster_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addCluster_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.serversConfirmMove_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.domain.serversConfirmMove_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addServer_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addServer_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.domain_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.domain.domain_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.serversConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.domain.serversConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.clustercmi_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.domain.clustercmi_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.datasourceProperties_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.datasourceProperties_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.datasources_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.datasources_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.deployDatasource_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.deployDatasource_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.sessionFactoryProperties_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.sessionFactoryProperties_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.createDestination_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.createDestination_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mimePartFactoryProperties_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mimePartFactoryProperties_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.deployMailFactory_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.deployMailFactory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mailFactoryProperties_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mailFactoryProperties_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mailFactories_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mailFactories_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.destinationsConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.destinationsConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.jmsResources_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.resource.jmsResources_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationDeleteConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationDeleteConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.ConnectionFactoryEdit_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.ConnectionFactoryEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.Destinations_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.Destinations_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationAddConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationAddConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationEdit_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.JonasMqConnect_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.JonasMqConnect_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.Mdbs_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.Mdbs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationAdd_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationAdd_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.MdbEdit_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.MdbEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationDelete_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationDelete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.JonasMqConnectPlatform_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.JonasMqConnectPlatform_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connectorsConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connectorsConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connector_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connector_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connectors_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connectors_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggingJonas_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggingJonas_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.catalinaAccessLogger_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.logging.catalinaAccessLogger_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggingView_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggingView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggers_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggersConfirm_jsp</servlet-name>
+        <servlet-class>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggersConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.login_jsp</servlet-name>
+        <url-pattern>/login.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.framemain_jsp</servlet-name>
+        <url-pattern>/framemain.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.tree_jsp</servlet-name>
+        <url-pattern>/tree.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.end_jsp</servlet-name>
+        <url-pattern>/end.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.welcomeContent_jsp</servlet-name>
+        <url-pattern>/welcomeContent.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.TestNavigator_jsp</servlet-name>
+        <url-pattern>/TestNavigator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.index_jsp</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.TestFont_jsp</servlet-name>
+        <url-pattern>/TestFont.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.error_jsp</servlet-name>
+        <url-pattern>/error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.blank_jsp</servlet-name>
+        <url-pattern>/blank.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.globalerror_jsp</servlet-name>
+        <url-pattern>/globalerror.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.frameright_jsp</servlet-name>
+        <url-pattern>/frameright.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.begin_jsp</servlet-name>
+        <url-pattern>/begin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.top_jsp</servlet-name>
+        <url-pattern>/top.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.realms_jsp</servlet-name>
+        <url-pattern>/security/realms.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealm_jsp</servlet-name>
+        <url-pattern>/security/memoryRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.confirmActionMemoryRealm_jsp</servlet-name>
+        <url-pattern>/security/confirmActionMemoryRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.securityCatalinaRealm_jsp</servlet-name>
+        <url-pattern>/security/securityCatalinaRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.realmsConfirm_jsp</servlet-name>
+        <url-pattern>/security/realmsConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.userMemoryRealm_jsp</servlet-name>
+        <url-pattern>/security/userMemoryRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmGroups_jsp</servlet-name>
+        <url-pattern>/security/memoryRealmGroups.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.roleMemoryRealm_jsp</servlet-name>
+        <url-pattern>/security/roleMemoryRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmUsers_jsp</servlet-name>
+        <url-pattern>/security/memoryRealmUsers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.ldapRealm_jsp</servlet-name>
+        <url-pattern>/security/ldapRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.memoryRealmRoles_jsp</servlet-name>
+        <url-pattern>/security/memoryRealmRoles.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.groupMemoryRealm_jsp</servlet-name>
+        <url-pattern>/security/groupMemoryRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.realmsStopped_jsp</servlet-name>
+        <url-pattern>/security/realmsStopped.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.security.datasourceRealm_jsp</servlet-name>
+        <url-pattern>/security/datasourceRealm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.DaemonProxyClusterDisplayServerConfig_jsp</servlet-name>
+        <url-pattern>/clusterd/DaemonProxyClusterDisplayServerConfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.addServerCd_jsp</servlet-name>
+        <url-pattern>/clusterd/addServerCd.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.serversConfirm_jsp</servlet-name>
+        <url-pattern>/clusterd/serversConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.daemonProxyClusterModify_jsp</servlet-name>
+        <url-pattern>/clusterd/daemonProxyClusterModify.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.clusterd.graph.vmMemory_jsp</servlet-name>
+        <url-pattern>/clusterd/graph/vmMemory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.common.end_jsp</servlet-name>
+        <url-pattern>/common/end.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.common.begin_jsp</servlet-name>
+        <url-pattern>/common/begin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionRecovery_jsp</servlet-name>
+        <url-pattern>/service/transactionRecovery.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CF_jsp</servlet-name>
+        <url-pattern>/service/rar15CF.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsQueues_jsp</servlet-name>
+        <url-pattern>/service/jmsQueues.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.versioningService_jsp</servlet-name>
+        <url-pattern>/service/versioningService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rars_jsp</servlet-name>
+        <url-pattern>/service/rars.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionFactories_jsp</servlet-name>
+        <url-pattern>/service/sessionFactories.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.warWebXml_jsp</servlet-name>
+        <url-pattern>/service/warWebXml.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CFStats_jsp</servlet-name>
+        <url-pattern>/service/rar15CFStats.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionMonitor_jsp</servlet-name>
+        <url-pattern>/service/transactionMonitor.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.smartclientService_jsp</servlet-name>
+        <url-pattern>/service/smartclientService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbDependency_jsp</servlet-name>
+        <url-pattern>/service/ejbDependency.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.security_jsp</servlet-name>
+        <url-pattern>/service/security.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.containerStatistic_jsp</servlet-name>
+        <url-pattern>/service/containerStatistic.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppCatalina_jsp</servlet-name>
+        <url-pattern>/service/webAppCatalina.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.workmanagerService_jsp</servlet-name>
+        <url-pattern>/service/workmanagerService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webApp_jsp</servlet-name>
+        <url-pattern>/service/webApp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.securityStopped_jsp</servlet-name>
+        <url-pattern>/service/securityStopped.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.services_jsp</servlet-name>
+        <url-pattern>/service/services.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.war_jsp</servlet-name>
+        <url-pattern>/service/war.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.databases_jsp</servlet-name>
+        <url-pattern>/service/databases.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.transactionStatistic_jsp</servlet-name>
+        <url-pattern>/service/transactionStatistic.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppVirtualCatalina_jsp</servlet-name>
+        <url-pattern>/service/webAppVirtualCatalina.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartFactories_jsp</servlet-name>
+        <url-pattern>/service/mimepartFactories.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsConnFactories_jsp</servlet-name>
+        <url-pattern>/service/jmsConnFactories.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.cfUsedBy_jsp</servlet-name>
+        <url-pattern>/service/cfUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbContainerService_jsp</servlet-name>
+        <url-pattern>/service/ejbContainerService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.confirmActionXaResource_jsp</servlet-name>
+        <url-pattern>/service/confirmActionXaResource.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.depmonitorService_jsp</servlet-name>
+        <url-pattern>/service/depmonitorService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsTopic_jsp</servlet-name>
+        <url-pattern>/service/jmsTopic.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbEntity_jsp</servlet-name>
+        <url-pattern>/service/ejbEntity.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarStatistics_jsp</servlet-name>
+        <url-pattern>/service/rarStatistics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webAppJetty_jsp</servlet-name>
+        <url-pattern>/service/webAppJetty.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.warServlets_jsp</servlet-name>
+        <url-pattern>/service/warServlets.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.warJonasXml_jsp</servlet-name>
+        <url-pattern>/service/warJonasXml.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.discovery_jsp</servlet-name>
+        <url-pattern>/service/discovery.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsTopics_jsp</servlet-name>
+        <url-pattern>/service/jmsTopics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15_jsp</servlet-name>
+        <url-pattern>/service/rar15.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.appContainers_jsp</servlet-name>
+        <url-pattern>/service/appContainers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earXmlDeployment_jsp</servlet-name>
+        <url-pattern>/service/earXmlDeployment.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarUsedBy15_jsp</servlet-name>
+        <url-pattern>/service/rarUsedBy15.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasource_jsp</servlet-name>
+        <url-pattern>/service/datasource.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsDestinations_jsp</servlet-name>
+        <url-pattern>/service/jmsDestinations.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasourceUsedBy_jsp</servlet-name>
+        <url-pattern>/service/datasourceUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbContainersStatistic_jsp</servlet-name>
+        <url-pattern>/service/ejbContainersStatistic.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbMessage_jsp</servlet-name>
+        <url-pattern>/service/ejbMessage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jtmService_jsp</servlet-name>
+        <url-pattern>/service/jtmService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AOs_jsp</servlet-name>
+        <url-pattern>/service/rar15AOs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.container_jsp</servlet-name>
+        <url-pattern>/service/container.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar10Stats_jsp</servlet-name>
+        <url-pattern>/service/rar10Stats.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejb_jsp</servlet-name>
+        <url-pattern>/service/ejb.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.containerEjbs_jsp</servlet-name>
+        <url-pattern>/service/containerEjbs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.datasourceStatistics_jsp</servlet-name>
+        <url-pattern>/service/datasourceStatistics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.webContainers_jsp</servlet-name>
+        <url-pattern>/service/webContainers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionFactory_jsp</servlet-name>
+        <url-pattern>/service/sessionFactory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15CFs_jsp</servlet-name>
+        <url-pattern>/service/rar15CFs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartFactory_jsp</servlet-name>
+        <url-pattern>/service/mimepartFactory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.workcleanerService_jsp</servlet-name>
+        <url-pattern>/service/workcleanerService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earJars_jsp</servlet-name>
+        <url-pattern>/service/earJars.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarUsedBy10_jsp</servlet-name>
+        <url-pattern>/service/rarUsedBy10.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.queueUsedBy_jsp</servlet-name>
+        <url-pattern>/service/queueUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsService_jsp</servlet-name>
+        <url-pattern>/service/jmsService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.containers_jsp</servlet-name>
+        <url-pattern>/service/containers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AS_jsp</servlet-name>
+        <url-pattern>/service/rar15AS.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rarPoolStatistics_jsp</servlet-name>
+        <url-pattern>/service/rarPoolStatistics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jtmServiceStopped_jsp</servlet-name>
+        <url-pattern>/service/jtmServiceStopped.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsQueue_jsp</servlet-name>
+        <url-pattern>/service/jmsQueue.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ear_jsp</servlet-name>
+        <url-pattern>/service/ear.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earRars_jsp</servlet-name>
+        <url-pattern>/service/earRars.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbVirtual_jsp</servlet-name>
+        <url-pattern>/service/ejbVirtual.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mimepartMailFactoryUsedBy_jsp</servlet-name>
+        <url-pattern>/service/mimepartMailFactoryUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.jmsConnFactory_jsp</servlet-name>
+        <url-pattern>/service/jmsConnFactory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar10_jsp</servlet-name>
+        <url-pattern>/service/rar10.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.xaresourceRecovery_jsp</servlet-name>
+        <url-pattern>/service/xaresourceRecovery.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15AO_jsp</servlet-name>
+        <url-pattern>/service/rar15AO.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.mailService_jsp</servlet-name>
+        <url-pattern>/service/mailService.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.earWars_jsp</servlet-name>
+        <url-pattern>/service/earWars.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.rar15ASs_jsp</servlet-name>
+        <url-pattern>/service/rar15ASs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ejbSession_jsp</servlet-name>
+        <url-pattern>/service/ejbSession.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.sessionMailFactoryUsedBy_jsp</servlet-name>
+        <url-pattern>/service/sessionMailFactoryUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.topicUsedBy_jsp</servlet-name>
+        <url-pattern>/service/topicUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.viewPortComponents_jsp</servlet-name>
+        <url-pattern>/service/ws/viewPortComponents.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.portComponentsDetails_jsp</servlet-name>
+        <url-pattern>/service/ws/portComponentsDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.viewHandlers_jsp</servlet-name>
+        <url-pattern>/service/ws/viewHandlers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.webserviceDescriptions_jsp</servlet-name>
+        <url-pattern>/service/ws/webserviceDescriptions.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.handlersDetails_jsp</servlet-name>
+        <url-pattern>/service/ws/handlersDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.service.ws.webserviceDetails_jsp</servlet-name>
+        <url-pattern>/service/ws/webserviceDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.remove_jsp</servlet-name>
+        <url-pattern>/deploy/remove.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.removeConfirm_jsp</servlet-name>
+        <url-pattern>/deploy/removeConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.deploy_jsp</servlet-name>
+        <url-pattern>/deploy/deploy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeploy_jsp</servlet-name>
+        <url-pattern>/deploy/domainDeploy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeployConfirm_jsp</servlet-name>
+        <url-pattern>/deploy/domainDeployConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.uploadResult_jsp</servlet-name>
+        <url-pattern>/deploy/uploadResult.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainDeployProgress_jsp</servlet-name>
+        <url-pattern>/deploy/domainDeployProgress.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.domainUndeployConfirm_jsp</servlet-name>
+        <url-pattern>/deploy/domainUndeployConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.upload_jsp</servlet-name>
+        <url-pattern>/deploy/upload.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.deploy.deployConfirm_jsp</servlet-name>
+        <url-pattern>/deploy/deployConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigSelect_jsp</servlet-name>
+        <url-pattern>/xml/archiveConfigSelect.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigConfirm_jsp</servlet-name>
+        <url-pattern>/xml/archiveConfigConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigAdvanced_jsp</servlet-name>
+        <url-pattern>/xml/archiveConfigAdvanced.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfig_jsp</servlet-name>
+        <url-pattern>/xml/archiveConfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.xml.archiveConfigAjax_jsp</servlet-name>
+        <url-pattern>/xml/archiveConfigAjax.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.displaynode_jsp</servlet-name>
+        <url-pattern>/monitoring/displaynode.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.joramCluster_jsp</servlet-name>
+        <url-pattern>/monitoring/joramCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.daemonProxyCluster_jsp</servlet-name>
+        <url-pattern>/monitoring/daemonProxyCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.daemonProxyMember_jsp</servlet-name>
+        <url-pattern>/monitoring/daemonProxyMember.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.jkCluster_jsp</servlet-name>
+        <url-pattern>/monitoring/jkCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.logicalMember_jsp</servlet-name>
+        <url-pattern>/monitoring/logicalMember.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.ejbHaMember_jsp</servlet-name>
+        <url-pattern>/monitoring/ejbHaMember.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.memory_jsp</servlet-name>
+        <url-pattern>/monitoring/memory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.tomcatCluster_jsp</servlet-name>
+        <url-pattern>/monitoring/tomcatCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.stackDump_jsp</servlet-name>
+        <url-pattern>/monitoring/stackDump.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.cmiCluster_jsp</servlet-name>
+        <url-pattern>/monitoring/cmiCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.cmiMember_jsp</servlet-name>
+        <url-pattern>/monitoring/cmiMember.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.logicalCluster_jsp</servlet-name>
+        <url-pattern>/monitoring/logicalCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.monitoring_jsp</servlet-name>
+        <url-pattern>/monitoring/monitoring.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.tomcatMember_jsp</servlet-name>
+        <url-pattern>/monitoring/tomcatMember.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.ejbHaCluster_jsp</servlet-name>
+        <url-pattern>/monitoring/ejbHaCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.joramMember_jsp</servlet-name>
+        <url-pattern>/monitoring/joramMember.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.jkMember_jsp</servlet-name>
+        <url-pattern>/monitoring/jkMember.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.graph.serverTransactionCount_jsp</servlet-name>
+        <url-pattern>/monitoring/graph/serverTransactionCount.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.monitoring.graph.serverGraphs_jsp</servlet-name>
+        <url-pattern>/monitoring/graph/serverGraphs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanAttributes_jsp</servlet-name>
+        <url-pattern>/mbean/listMBeanAttributes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeans_jsp</servlet-name>
+        <url-pattern>/mbean/listMBeans.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listUnknownMBeans_jsp</servlet-name>
+        <url-pattern>/mbean/listUnknownMBeans.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listOwnerMBeans_jsp</servlet-name>
+        <url-pattern>/mbean/listOwnerMBeans.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listJ2eeMBeans_jsp</servlet-name>
+        <url-pattern>/mbean/listJ2eeMBeans.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanOperations_jsp</servlet-name>
+        <url-pattern>/mbean/listMBeanOperations.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.mbean.listMBeanProperties_jsp</servlet-name>
+        <url-pattern>/mbean/listMBeanProperties.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jonasversions_jsp</servlet-name>
+        <url-pattern>/jonasserver/jonasversions.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jmxserver_jsp</servlet-name>
+        <url-pattern>/jonasserver/jmxserver.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.registry_jsp</servlet-name>
+        <url-pattern>/jonasserver/registry.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.servletServer_jsp</servlet-name>
+        <url-pattern>/jonasserver/servletServer.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jvm_jsp</servlet-name>
+        <url-pattern>/jonasserver/jvm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.listRegistry_jsp</servlet-name>
+        <url-pattern>/jonasserver/listRegistry.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasserver.jonasserver_jsp</servlet-name>
+        <url-pattern>/jonasserver/jonasserver.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramservers_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramservers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramdeststatistics_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramdeststatistics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.createuser_jsp</servlet-name>
+        <url-pattern>/joramplatform/createuser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramremoteserver_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramremoteserver.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.createdestination_jsp</servlet-name>
+        <url-pattern>/joramplatform/createdestination.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueue_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramqueue.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramdestinations_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramdestinations.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramadapter_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramadapter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.addreader_jsp</servlet-name>
+        <url-pattern>/joramplatform/addreader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.removeDestinationsConfirm_jsp</servlet-name>
+        <url-pattern>/joramplatform/removeDestinationsConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueuewriters_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramqueuewriters.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramremotedestinations_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramremotedestinations.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.addwriter_jsp</servlet-name>
+        <url-pattern>/joramplatform/addwriter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.removeUsersConfirm_jsp</servlet-name>
+        <url-pattern>/joramplatform/removeUsersConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramqueuereaders_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramqueuereaders.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.queueUsedBy_jsp</servlet-name>
+        <url-pattern>/joramplatform/queueUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopicwriters_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramtopicwriters.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramxml_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramxml.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopic_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramtopic.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramplatform_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramplatform.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramtopicreaders_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramtopicreaders.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.joramusers_jsp</servlet-name>
+        <url-pattern>/joramplatform/joramusers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.joramplatform.topicUsedBy_jsp</servlet-name>
+        <url-pattern>/joramplatform/topicUsedBy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiProtocolInfo_jsp</servlet-name>
+        <url-pattern>/cmi/displayCmiProtocolInfo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiObjectInfo_jsp</servlet-name>
+        <url-pattern>/cmi/displayCmiObjectInfo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiServerInfo_jsp</servlet-name>
+        <url-pattern>/cmi/displayCmiServerInfo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiClusterInfo_jsp</servlet-name>
+        <url-pattern>/cmi/displayCmiClusterInfo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.cmi.displayCmiInfo_jsp</servlet-name>
+        <url-pattern>/cmi/displayCmiInfo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createJDBCResourceAdapter_jsp</servlet-name>
+        <url-pattern>/resourceadapter/createJDBCResourceAdapter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createResourceAdapter_jsp</servlet-name>
+        <url-pattern>/resourceadapter/createResourceAdapter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resourceadapter.createOtherResourceAdapter_jsp</servlet-name>
+        <url-pattern>/resourceadapter/createOtherResourceAdapter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addServerCluster_jsp</servlet-name>
+        <url-pattern>/domain/addServerCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addCluster_jsp</servlet-name>
+        <url-pattern>/domain/addCluster.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.serversConfirmMove_jsp</servlet-name>
+        <url-pattern>/domain/serversConfirmMove.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.addServer_jsp</servlet-name>
+        <url-pattern>/domain/addServer.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.domain_jsp</servlet-name>
+        <url-pattern>/domain/domain.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.serversConfirm_jsp</servlet-name>
+        <url-pattern>/domain/serversConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.domain.clustercmi_jsp</servlet-name>
+        <url-pattern>/domain/clustercmi.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.datasourceProperties_jsp</servlet-name>
+        <url-pattern>/resource/datasourceProperties.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.datasources_jsp</servlet-name>
+        <url-pattern>/resource/datasources.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.deployDatasource_jsp</servlet-name>
+        <url-pattern>/resource/deployDatasource.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.sessionFactoryProperties_jsp</servlet-name>
+        <url-pattern>/resource/sessionFactoryProperties.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.createDestination_jsp</servlet-name>
+        <url-pattern>/resource/createDestination.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mimePartFactoryProperties_jsp</servlet-name>
+        <url-pattern>/resource/mimePartFactoryProperties.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.deployMailFactory_jsp</servlet-name>
+        <url-pattern>/resource/deployMailFactory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mailFactoryProperties_jsp</servlet-name>
+        <url-pattern>/resource/mailFactoryProperties.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.mailFactories_jsp</servlet-name>
+        <url-pattern>/resource/mailFactories.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.destinationsConfirm_jsp</servlet-name>
+        <url-pattern>/resource/destinationsConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.resource.jmsResources_jsp</servlet-name>
+        <url-pattern>/resource/jmsResources.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationDeleteConfirm_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/DestinationDeleteConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.ConnectionFactoryEdit_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/ConnectionFactoryEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.Destinations_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/Destinations.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationAddConfirm_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/DestinationAddConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationEdit_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/DestinationEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.JonasMqConnect_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/JonasMqConnect.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.Mdbs_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/Mdbs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationAdd_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/DestinationAdd.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.MdbEdit_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/MdbEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.DestinationDelete_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/DestinationDelete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.jonasmqconnect.JonasMqConnectPlatform_jsp</servlet-name>
+        <url-pattern>/jonasmqconnect/JonasMqConnectPlatform.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connectorsConfirm_jsp</servlet-name>
+        <url-pattern>/catalina/connectorsConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connector_jsp</servlet-name>
+        <url-pattern>/catalina/connector.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.catalina.connectors_jsp</servlet-name>
+        <url-pattern>/catalina/connectors.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggingJonas_jsp</servlet-name>
+        <url-pattern>/logging/loggingJonas.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.catalinaAccessLogger_jsp</servlet-name>
+        <url-pattern>/logging/catalinaAccessLogger.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggingView_jsp</servlet-name>
+        <url-pattern>/logging/loggingView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggers_jsp</servlet-name>
+        <url-pattern>/logging/loggers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.ow2.jonas.webapp.jonasadmin.jsp.logging.loggersConfirm_jsp</servlet-name>
+        <url-pattern>/logging/loggersConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+<!--
+All session-config, mime-mapping, welcome-file-list, error-page, taglib,
+resource-ref, security-constraint, login-config, security-role,
+env-entry, and ejb-ref elements should follow this fragment.
+-->
+
+  <servlet-mapping>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <url-pattern>/FileUploadServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>FileDownloadServlet</servlet-name>
+    <url-pattern>/FileDownloadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MemoryGraphRemoteHostServlet</servlet-name>
+    <url-pattern>/MemoryGraphRemoteHostServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MemoryGraphServlet</servlet-name>
+    <url-pattern>/MemoryGraphServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ThreadCountServlet</servlet-name>
+    <url-pattern>/ThreadCountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServerCurrentTxServlet</servlet-name>
+    <url-pattern>/ServerCurrentTxServlet</url-pattern>
+  </servlet-mapping>
+<!-- Tomcat -->
+<servlet-mapping>
+    <servlet-name>BytesReceivedByConnectorTomcatServlet</servlet-name>
+    <url-pattern>/BytesReceivedByConnectorTomcatServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>BytesSentByConnectorTomcatServlet</servlet-name>
+    <url-pattern>/BytesSentByConnectorTomcatServlet</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>ErrorCountByConnectorTomcatServlet</servlet-name>
+    <url-pattern>/ErrorCountByConnectorTomcatServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ProcessingTimeByConnectorTomcatServlet</servlet-name>
+    <url-pattern>/ProcessingTimeByConnectorTomcatServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RequestCountByConnectorTomcatServlet</servlet-name>
+    <url-pattern>/RequestCountByConnectorTomcatServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ThreadBusyConnectorTomcatServlet</servlet-name>
+    <url-pattern>/ThreadBusyConnectorTomcatServlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- JonasAdmin-flex servlet-mapping -->
+  <servlet-mapping>
+   <servlet-name>AMFMessageServlet</servlet-name>
+   <url-pattern>/graniteamf/*</url-pattern>
+  </servlet-mapping>
+
+<!-- JMS -->
+
+ <servlet-mapping>
+    <servlet-name>JmsQMsgDeliverServlet</servlet-name>
+    <url-pattern>/JmsQMsgDeliverServlet</url-pattern>
+  </servlet-mapping>
+
+ <servlet-mapping>
+    <servlet-name>JmsQMsgReceiveServlet</servlet-name>
+    <url-pattern>/JmsQMsgReceiveServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>JmsTopicMsgDeliverServlet</servlet-name>
+    <url-pattern>/JmsTopicMsgDeliverServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>JmsTopicMsgReceiveServlet</servlet-name>
+    <url-pattern>/JmsTopicMsgReceiveServlet</url-pattern>
+  </servlet-mapping>
+<!-- transactions -->
+<servlet-mapping>
+    <servlet-name>TotalCommittedTransactionsServlet</servlet-name>
+    <url-pattern>/TotalCommittedTransactionsServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>BegunTransactionsServlet</servlet-name>
+    <url-pattern>/BegunTransactionsServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>TotalExpiredTransactionsServlet</servlet-name>
+    <url-pattern>/TotalExpiredTransactionsServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>TotalRolledbackTransactionsServlet</servlet-name>
+    <url-pattern>/TotalRolledbackTransactionsServlet</url-pattern>
+  </servlet-mapping>
+<!-- JCA -->
+<servlet-mapping>
+    <servlet-name>ConnectionFailuresJCAConnectionServlet</servlet-name>
+    <url-pattern>/ConnectionFailuresJCAConnectionServlet</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>ConnectionLeaksJCAConnectionServlet</servlet-name>
+    <url-pattern>/ConnectionLeaksJCAConnectionServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>CurrentBusyJCAConnectionServlet</servlet-name>
+    <url-pattern>/CurrentBusyJCAConnectionServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>RejectedOpenJCAConnectionServlet</servlet-name>
+    <url-pattern>/RejectedOpenJCAConnectionServlet</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>ServedOpenJCAConnectionServlet</servlet-name>
+    <url-pattern>/ServedOpenJCAConnectionServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>WaiterCountJCAConnectionServlet</servlet-name>
+    <url-pattern>/WaiterCountJCAConnectionServlet</url-pattern>
+  </servlet-mapping>
+
+<!-- JDBC resources  -->
+<servlet-mapping>
+    <servlet-name>ConnectionLeaksJDBCResourceServlet</servlet-name>
+    <url-pattern>/ConnectionLeaksJDBCResourceServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>CurrentBusyJDBCResourceServlet</servlet-name>
+    <url-pattern>/CurrentBusyJDBCResourceServlet</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>RejectedOpenJDBCResourceServlet</servlet-name>
+    <url-pattern>/RejectedOpenJDBCResourceServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>ServedOpenJDBCResourceServlet</servlet-name>
+    <url-pattern>/ServedOpenJDBCResourceServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>WaiterCountJDBCResourceServlet</servlet-name>
+    <url-pattern>/WaiterCountJDBCResourceServlet</url-pattern>
+  </servlet-mapping>
+
+<!-- BEANS -->
+
+<servlet-mapping>
+    <servlet-name>CurrentNumberOfEJBServlet</servlet-name>
+    <url-pattern>/CurrentNumberOfEJBServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>CurrentNumberOfEntityBeanServlet</servlet-name>
+    <url-pattern>/CurrentNumberOfEntityBeanServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>CurrentNumberOfMDBServlet</servlet-name>
+    <url-pattern>/CurrentNumberOfMDBServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>CurrentNumberOfSBFServlet</servlet-name>
+    <url-pattern>/CurrentNumberOfSBFServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>CurrentNumberOfSBLServlet</servlet-name>
+    <url-pattern>/CurrentNumberOfSBLServlet</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>LoadCPUServlet</servlet-name>
+    <url-pattern>/LoadCPUServlet</url-pattern>
+  </servlet-mapping>
+
+  <taglib>
+    <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+    <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+    <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+    <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>/WEB-INF/struts-template.tld</taglib-uri>
+    <taglib-location>/WEB-INF/struts-template.tld</taglib-location>
+  </taglib>
+  <security-constraint>
+    <display-name>Jonas Server Configuration Security Constraint</display-name>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/MemoryGraphServlet</url-pattern>
+      <url-pattern>/MemoryGraphRemoteHostServlet</url-pattern>
+      <url-pattern>/ThreadCountServlet</url-pattern>
+      <url-pattern>/ServerCurrentTxServlet</url-pattern>
+
+      <url-pattern>/BytesReceivedByConnectorTomcatServlet</url-pattern>
+      <url-pattern>/BytesSentByConnectorTomcatServlet</url-pattern>
+      <url-pattern>/ErrorCountByConnectorTomcatServlet</url-pattern>
+      <url-pattern>/ProcessingTimeByConnectorTomcatServlet</url-pattern>
+      <url-pattern>/RequestCountByConnectorTomcatServlet</url-pattern>
+      <url-pattern>/ThreadBusyConnectorTomcatServlet</url-pattern>
+      <url-pattern>/JmsQMsgDeliverServlet</url-pattern>
+      <url-pattern>/JmsQMsgReceiveServlet</url-pattern>
+      <url-pattern>/JmsTopicMsgDeliverServlet</url-pattern>
+      <url-pattern>/JmsTopicMsgReceiveServlet</url-pattern>
+      <url-pattern>/TotalCommittedTransactionsServlet</url-pattern>
+      <url-pattern>/BegunTransactionsServlet</url-pattern>
+      <url-pattern>/TotalExpiredTransactionsServlet</url-pattern>
+      <url-pattern>/TotalRolledbackTransactionsServlet</url-pattern>
+      <url-pattern>/ConnectionFailuresJCAConnectionServlet</url-pattern>
+      <url-pattern>/ConnectionLeaksJCAConnectionServlet</url-pattern>
+      <url-pattern>/CurrentBusyJCAConnectionServlet</url-pattern>
+      <url-pattern>/RejectedOpenJCAConnectionServlet</url-pattern>
+      <url-pattern>/ServedOpenJCAConnectionServlet</url-pattern>
+      <url-pattern>/WaiterCountJCAConnectionServlet</url-pattern>
+      <url-pattern>/ConnectionLeaksJDBCResourceServlet</url-pattern>
+      <url-pattern>/CurrentBusyJDBCResourceServlet</url-pattern>
+      <url-pattern>/RejectedOpenJDBCResourceServlet</url-pattern>
+      <url-pattern>/ServedOpenJDBCResourceServlet</url-pattern>
+      <url-pattern>/WaiterCountJDBCResourceServlet</url-pattern>
+      <url-pattern>/CurrentNumberOfEJBServlet</url-pattern>
+      <url-pattern>/CurrentNumberOfEntityBeanServlet</url-pattern>
+      <url-pattern>/CurrentNumberOfMDBServlet</url-pattern>
+      <url-pattern>/CurrentNumberOfSBFServlet</url-pattern>
+      <url-pattern>/CurrentNumberOfSBLServlet</url-pattern>
+      <url-pattern>/LoadCPUServlet</url-pattern>
+      <url-pattern>*.jsp</url-pattern>
+      <url-pattern>*.do</url-pattern>
+      <url-pattern>*.html</url-pattern>
+      <url-pattern>*.swf</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>jonas-admin</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+
+    <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>JOnAS Realm</realm-name>
+    <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/error.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <description>The role that is required to log in to the Administration Application</description>
+    <role-name>jonas-admin</role-name>
+  </security-role>
+</web-app>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated Tue Oct 01 13:22:00 CEST 2013 by JOnAS. -->
+<deployment-plan xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
+  xmlns:url="http://jonas.ow2.org/ns/deployment-plan/url/1.0"
+  xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0 http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.xsd
+                      http://jonas.ow2.org/ns/deployment-plan/maven2/1.0 http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
+  atomic="false" id="cmi">
+  <deployment id="jgroups" xsi:type="url:url-deploymentType">
+    <url:resource>jgroups.xml</url:resource>
+  </deployment>
+  <deployment id="ow2-util-common-impl" xsi:type="url:url-deploymentType">
+    <url:resource>ow2-util-common-impl.xml</url:resource>
+  </deployment>
+  <deployment id="ow2-util-event-common-ejb" xsi:type="url:url-deploymentType">
+    <url:resource>ow2-util-event-common-ejb.xml</url:resource>
+  </deployment>
+  <deployment id="org.ow2.util.component:component-impl:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.util.component</m2:groupId>
+    <m2:artifactId>component-impl</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.cmi.osgi:cmi-all:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.cmi.osgi</m2:groupId>
+    <m2:artifactId>cmi-all</m2:artifactId>
+    <m2:version>2.2.6</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.cmi.osgi:cmi-loader:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.cmi.osgi</m2:groupId>
+    <m2:artifactId>cmi-loader</m2:artifactId>
+    <m2:version>2.2.6</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.jonas:jonas-cmi-core:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.jonas</m2:groupId>
+    <m2:artifactId>jonas-cmi-core</m2:artifactId>
+    <m2:version>5.3.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+</deployment-plan>

@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------------
+# JOnAS: Java(TM) Open Application Server
+# Copyright (C) 2008-2010 Bull S.A.S.
+# Contact: jonas-team@ow2.org
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+# USA
+#
+#
+# ---------------------------------------------------------------------------
+# $Id: jonas.properties 17416 2009-05-19 13:49:51Z durieuxp $
+# ---------------------------------------------------------------------------
+
+# When JMX security is enabled and jonas.service.jmx.authorization.method is
+# set to jmx.remote.x.access.rolebased.file, this file contains the access
+# rights of each role (as defined in the JAAS realm).
+#
+# We define two levels of access:
+#     - readonly can access all getter methods
+#     - readwrite can access all methods
+#
+# If one user has multiple roles, then the role with the highest level of
+# access rights will be used.
+
+# jonas-admin role can do everything (access right: readwrite)
+jonas-admin readwrite
+
+# jonas-monitor role can only read data (access right: readonly)
+jonas-monitor readonly
+
+# The * role means "everyone" (including users that already have roles)
+#
+# This role is optional, if not set then all users with no role that appears
+# in this file will have no access rights at all.
+# * readonly

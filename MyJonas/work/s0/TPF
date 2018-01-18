@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Transaction properties</comment>
+<entry key="Transaction.UseLockFile">false</entry>
+</properties>

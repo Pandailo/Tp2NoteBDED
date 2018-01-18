@@ -1,0 +1,659 @@
+body {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  background-color: #a9a9a9;
+  SCROLLBAR-FACE-COLOR: #FFFFFF;
+  SCROLLBAR-HIGHLIGHT-COLOR: #FFFFFF;
+  SCROLLBAR-SHADOW-COLOR: #FFFFFF;
+  SCROLLBAR-ARROW-COLOR: #FFFFFF;
+  SCROLLBAR-TRACK-COLOR: #FFFFFF;
+  scrollbar-3d-light-color: #FFFFFF;
+  scrollbar-dark-shadow-color: #FFFFFF
+}
+
+img, div {
+  behavior: url("./style/iepngfix.htc");
+}
+
+td {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+}
+
+a {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+}
+
+select {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+}
+
+select.deploy {
+  width: 250px;
+}
+
+select.dispatch {
+  width: 150px;
+}
+
+input {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  color:#000000;
+}
+.longButton {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  background-color: #404e55;
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  margin: em;
+  text-decoration: none;
+}
+
+
+.button {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  color: #FFFFFF;
+  background-color: #404e55;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+
+.buttonDeploy {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  background-color: #404e55;
+  color: #FFFFFF;
+  font-weight: bold;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+.buttonSelect {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  background-color: #404e55;
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+
+td.top {
+  font-size: 12px;
+}
+
+a.top {
+  font-size: 12px;
+  font-weight: bold;
+  color: #404e55;
+}
+
+a.top:active {
+  color: #404e55;
+  text-decoration: none;
+}
+
+a.top:link {
+  color: #404e55;
+  text-decoration: none;
+}
+
+a.top:visited {
+  color: #404e55;
+  text-decoration: none;
+}
+
+a.top:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+select.top {
+  font-size: 12px;
+}
+
+td.topTitle {
+  font-size: 24px;
+  color: #000000;
+}
+
+td.maintitle {
+  font-size: 36px;
+  color: #FFFFFF;
+}
+
+td.tomthumb {
+  font-size: 14px;
+}
+
+td.topErrors {
+  font-size: 10px;
+  color: #000000;
+  background-color: #E0ECFF;
+}
+
+tr.errors {
+  color: #000000;
+  background-color: #E0ECFF;
+}
+
+td.errors {
+  font-size: 12px;
+}
+
+td.errorTitle {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+td.errorLink {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+a.error {
+  font-size: 16px;
+  font-weight: bold;
+  color: #404e55;
+}
+
+a.error:active {
+  color: #404e55;
+  text-decoration: none;
+}
+
+a.error:link {
+  color: #404e55;
+  text-decoration: none;
+}
+
+a.error:visited {
+  color: #404e55;
+  text-decoration: none;
+}
+
+a.error:hover {
+  color: #666666;
+  text-decoration: none;
+}
+
+td.contentTitle {
+  font-size: 16px;
+  color: #404e55;
+  font-weight: bold;
+}
+
+td.contentTitleImage {
+
+}
+
+td.contentTitleTomThumb {
+  color: #000000;
+}
+
+.contentTitleTomThumbNotLink {
+  color: #404e55;
+}
+
+a.contentTitleTomThumb:active {
+  color: #404e55;
+  text-decoration: none
+  font-weight: bold;
+}
+
+a.contentTitleTomThumb:link {
+  color: #404e55;
+  font-weight: bold;
+  text-decoration: none
+}
+
+a.contentTitleTomThumb:visited {
+  color: #404e55;
+  text-decoration: none
+}
+
+a.contentTitleTomThumb:hover {
+  color: #000000;
+  text-decoration: none
+}
+
+tr.gridRowEven {
+  background-color: #87a4b3;
+}
+
+tr.gridRowOdd {
+  background-color: #FFFFFF;
+}
+
+a.tab {
+  text-decoration: none;
+  font-weight: bold;
+  color:#D4D0C8;
+
+
+}
+a.tab:visited {
+  color:#D4D0C8;
+}
+
+
+a.tab:hover {
+  color: #FFFFFF;
+  font-weight: bold;
+
+}
+
+td.tab {
+  background-color:#738188;
+  color:#FFFFFF;
+  border: thick;
+  border-bottom-color: #404e55;
+  border-bottom-width: 2px;
+}
+
+td.tabSelect {
+  color: #FFFFFF;
+  background-color:#404e55;
+  border: thick;
+  font-weight: bold;
+  border-bottom-color: #404e55;
+  border-bottom-width: 2px;
+  border-bottom-width: 1px;
+
+}
+
+td.tabSeparatorVertical {
+  width: 5px;
+  background-color: transparent;
+  border-bottom-color: #404e55;
+  border-bottom-width: 2px;
+}
+
+td.tabSeparatorHorizontal {
+  width: 0px;
+}
+
+
+
+tr.panel {
+  background-color:#87a4b3;
+}
+
+td.panel {
+  background-color:#404e55;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 3px;
+}
+
+a.panel {
+  font-size: 12px;
+  font-weight: bold;
+  color: #404e55;
+}
+
+a.panel:active {
+  color: #404e55;
+  text-decoration: underline;
+}
+
+a.panel:link {
+  color: #404e55;
+  text-decoration: underline;
+}
+
+a.panel:visited {
+  color: #404e55;
+  text-decoration: underline;
+}
+
+a.panel:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+tr.panelTitle {
+  background-color: #404e55;
+}
+
+td.panelTitle {
+  font-size: 14px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+tr.panelTitle2 {
+  background-color: #D4D0C8;
+}
+
+td.panelTitle2 {
+  font-size: 14px;
+  color: #404e55;
+  font-weight: bold;
+}
+
+tr.panelSeparator {
+  background-color: #D4D0C8;
+}
+
+td.panelSeparator {
+  background-color: #87a4b3;
+  font-size: 1px;
+}
+
+a.action {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  color: #660066;
+}
+
+a.action:active {
+  color: #660066;
+  text-decoration: underline;
+}
+
+a.action:link {
+  color: #660066;
+  text-decoration: none;
+}
+
+a.action:visited {
+  color: #660066;
+  text-decoration: none;
+}
+
+a.action:hover {
+  color: olive;
+  text-decoration: none;
+}
+
+td.btn {
+  background-color: #404e55;
+  text-decoration: none;
+}
+
+td.btnBorderLight {
+  background-color: #999999;
+}
+
+td.btnBorderShadow {
+  background-color: #000000;
+}
+
+td.btnDisabled {
+  font-size: 12px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #404e55;
+  text-decoration: none;
+}
+
+a.btn {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  color: #FFFFFF;
+  background-color: #404e55;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+ }
+
+a.btn:active {
+  color: #FFFFFF;
+  background-color: #404e55;
+}
+
+a.btn:link {
+  color: #FFFFFF;
+}
+
+a.btn:visited {
+  color: #E9F3F2;
+  text-decoration: none;
+}
+
+a.btn:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+a.panel2 {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
+}
+
+a.panel2:active {
+  color: #000000;
+  text-decoration: underline;
+}
+
+a.panel2:link {
+  color: #000000;
+  text-decoration: underline;
+}
+
+a.panel2:visited {
+  color: #000000;
+  text-decoration: underline;
+}
+
+a.panel2:hover {
+  color: #404e55;
+  text-decoration: underline;
+}
+
+.tree-control {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 80%;
+  line-height: 1.0;
+}
+
+.tree-control-selected {
+  color:#404e55;
+  font-weight: bold;
+  font-size:13px;
+  text-decoration: none;
+}
+
+.tree-control-unselected {
+  color: black;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.xmlElement {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  color: #404e55;
+}
+
+.xmlText {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  color: #000000;
+}
+
+.xmlHeader {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  color: #000000;
+}
+
+.xmlComment {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  color: #660066;
+}
+
+<!--
+The following style definitions are used by the XML configuration component -->div.element
+  {
+  margin-left: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  background-color: #FFFFCC;
+}
+
+div.element2 {
+  margin-left: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 2px;
+}
+
+div.element1 {
+  margin-left: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 2px;
+  border: 1px solid #dcdcdc;
+}
+
+div.element2-new {
+  margin-left: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 2px;
+  background-color: #FFFFCC;
+}
+
+div.element1-new {
+  margin-left: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 2px;
+  border: 1px solid #dcdcdc;
+  background-color: #FFFFCC;
+}
+
+div.buttons {
+  float: right;
+  padding: 3px;
+  border-left: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.elementSelect {
+  font-size: 12px;
+  border: 1px solid;
+  border-color: #999 #ccc #ccc #999;
+}
+.actionButton {
+  font-size: 12px;
+  padding: 3px;
+  background-color: #E4E4E4;
+  border: 1px solid;
+  border-color: #999 #ccc #ccc #999;
+  text-align: center;
+}
+.removeButton {
+  font-size: 9px;
+  padding: 1px;
+  background-color: #EAEAEA;
+  border: 1px;
+}
+
+.textElement {
+  font-size: 12px;
+  padding: 3px;
+  background-color: #D4D0C8;
+  border: 1px solid;
+  border-color: #999 #ccc #ccc #999;
+}
+
+.textElement:focus {
+  background-color: #FFFFCC;
+}
+
+.attribute {
+  font-size: 12px;
+  padding: 3px;
+  background-color: #D4D0C8;
+  border: 1px solid;
+  border-color: #999 #ccc #ccc #999;
+}
+
+.elementName {
+  cursor: pointer;
+  cursor: hand;
+}
+
+td.loginTr {
+  align: center;
+  color: #FFFFFF;
+}
+.graphButton {
+  background-image:url(../images/button/GraphButton.png);
+  height: 10px;
+  width: 47px;
+  float: right;
+  padding: 3px;
+  border-left: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+
+
+  }
+
+selectSoft {
+  font-family: arial, verdana, geneva, helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+}
+
+selectSoft.deploy {
+  width: 250px;
+}
+
+selectSoft.dispatch {
+  width: 150px;
+}
+.mainLoginTable {
+  background-image:url(../images/logo/jonasAdmin.png);
+  background-repeat:no-repeat;
+}
+
+.authentifLoginTable{
+  filter:alpha(opacity=70);
+  -moz-opacity:0.70;
+  opacity: 0.70;
+  background-repeat:no-repeat;
+}
+
+.htmlText{
+    width : 100px;
+ }
+ .htmlTextLbPolicy{
+    width : 150px;
+ }
+
+ .htmlTextLbPolicyChanged{
+    width : 150px;
+    background-color: #FFCC99;
+ }
+.boldText{
+    font-weight: bold;
+}
+.htmlTextChanged{
+    width : 100px;
+    background-color: #FFCC99;
+ }

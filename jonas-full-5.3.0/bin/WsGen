@@ -1,0 +1,50 @@
+#! /bin/sh
+# ---------------------------------------------------------------------------
+# JOnAS: Java(TM) Open Application Server
+# Copyright (C) 1999-2008 Bull S.A.S.
+# Contact: jonas-team@ow2.org
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+# USA
+#
+# Initial developer(s): Philippe Durieux
+# Contributor(s): ______________________________________.
+#
+# ---------------------------------------------------------------------------
+# $Id: WsGen 21566 2011-08-08 12:28:12Z cazauxj $
+# ---------------------------------------------------------------------------
+
+# Check JONAS_ROOT is set.
+if [ ! -d $JONAS_ROOT/deploy ]
+then
+    echo "JONAS_ROOT must be set"
+    exit 1
+fi
+
+# Set CLASSPATH and JONAS_BASE
+. $JONAS_ROOT/bin/setenv
+
+JAVA_OPTS="$JAVA_OPTS \
+    -Djonas.root=$JONAS_ROOT \
+    -Djonas.base=$JONAS_BASE \
+    -Djava.security.manager \
+    -Djava.security.policy=$JONAS_BASE/conf/java.policy \
+    -Djava.endorsed.dirs=$JONAS_ROOT/lib/endorsed \
+"
+
+# add /client-bootstrap.jar to the classpath for the bootstrap class
+JONAS_CLASSPATH=$JONAS_CLASSPATH$SPS$JONAS_ROOT/lib/bootstrap/client-bootstrap.jar$SPS$JONAS_ROOT/lib/client.jar
+
+$JAVA -cp $JONAS_CLASSPATH $JAVA_OPTS org.ow2.jonas.client.boot.Bootstrap org.ow2.jonas.generators.wsgen.WsGen "$@"

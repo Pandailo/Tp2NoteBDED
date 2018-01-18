@@ -1,0 +1,31 @@
+JAX-WS sample
+-------------
+This example shows how to access to a webservice deployed via a web application (quote.ear).
+The web service is implemented by an annotated POJO  (QuoteReporterPoOJO)
+A java client launched by the client container calls ten times the web service and prints results
+
+The service directory contains :
+    - the POJO QuoteReporterPoOJO that implements QuoteReporter interface that needs the quote class
+    - an application.xml descriptor in order to package an enterprise application quote.ear
+    - an empty web.xml descriptor in order to package a web application quote.war
+The client directory contains:
+    - the main class QuoteMain that access to the web service
+
+In order to run this example JOnAS must be launched with ejb3, jaxws, web and ear services
+
+##################################################
+To build and deploy the application quote.ear do:
+    1. ant clean build-deploy-service
+    2. ant run-client
+##################################################
+    
+The target build-deploy:
+    - compiles the services classes, build the quote.ear and put it under $JONAS_BASE/deploy.
+     when quote.ear is deployed by JOnAS a WSDL is created and published at the following URL:
+        http://localhost:9000/quote/QuoteReporterService?WSDL
+    
+The target run-client:
+    - creates the artifacts needs by the client from the published WSDL, compiles the corresponding classes
+      and package the whole in a quote-client.jar client application
+    - runs quote-client.jar using the container client and executes the main class QuoteMain
+    - prints the result in the shell of the client

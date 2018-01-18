@@ -1,0 +1,36 @@
+ ===============================
+|       SampleCluster3          |
+ ===============================
+
+Date: 14/10/2008
+Version: v1.1
+
+CMI client
+----------
+Examples of a rich java client using the CMI protocol.
+
+Running
+--------
+1) cd $JONAS_ROOT/examples/cluster-javaee5
+2) create the directory './clientConfig'
+3) copy $JONAS_ROOT/conf/carol.properties to '/clientConfig'
+4) configure a carol.properties file pointing to a registry within a cluster in ./clientConfig/carol.properties.
+   For instance :
+
+carol.protocols=jrmp
+carol.jrmp.url=rmi://localhost:1099
+
+5) run the clients with the following commands :
+# for testing the load-balancing at the lookup
+..../client/clientLBLookup.sh
+
+# for testing the load-balancing at the home interface
+..../client/clientLBHome.sh
+
+# for testing the load-balancing at the remote interface
+..../client/clientLBRemote.sh
+
+# for testing the exception retrieving
+..../client/clientException.sh
+
+=================================================================================

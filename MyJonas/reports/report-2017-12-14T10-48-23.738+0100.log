@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report xmlns="http://jonas.ow2.org/report/1.0" xmlns:ns2="http://jonas.ow2.org/report/ipojo/instances/1.0" xmlns:ns3="http://jonas.ow2.org/report/server/info/1.0" xmlns:ns4="http://jonas.ow2.org/report/deployables/1.0" xmlns:ns5="http://jonas.ow2.org/report/ipojo/factories/1.0" xmlns:ns6="http://jonas.ow2.org/report/bundles/1.0" xmlns:ns7="http://jonas.ow2.org/report/deployers/1.0" xmlns:ns8="http://jonas.ow2.org/report/ipojo/handlers/1.0" xmlns:ns9="http://jonas.ow2.org/report/jvm/1.0" xmlns:ns10="http://jonas.ow2.org/report/endpoints/1.0">
+    <info>
+        <current-time dateTime="2017-12-14T10:48:23.738+01:00" timestamp="1513244903738"/>
+        <ns2:ipojo-instances>
+            <ns2:ipojo-instance name="JOnASConfiguration-0" state="VALID" source="ipojo/instance/JOnASConfiguration-0" objectName="org.ow2.jonas.services.bootstrap.JOnASConfiguration@177" bundleId="117">
+                <ns2:start-time dateTime="2017-12-14T10:46:49.154+01:00" timestamp="1513244809154"/>
+                <ns2:up-time dateTime="1970-01-01T01:01:34.590+01:00" timestamp="94590"/>
+                <ns2:provides>
+                    <ns2:provide specifications="[org.osgi.service.cm.ConfigurationPlugin,org.ow2.jonas.configuration.ConfigurationManager]" state="registered">
+                        <ns2:property name="factory.name">JOnASConfiguration</ns2:property>
+                        <ns2:property name="instance.name">JOnASConfiguration-0</ns2:property>
+                    </ns2:provide>
+                </ns2:provides>
+            </ns2:ipojo-instance>
+            <ns2:ipojo-instance name="PlatformMBeanServerDelegate-0" state="VALID" source="ipojo/instance/PlatformMBeanServerDelegate-0" objectName="org.ow2.jonas.services.bootstrap.PlatformMBeanServerDelegate@849767" bundleId="117">
+                <ns2:start-time dateTime="2017-12-14T10:46:49.215+01:00" timestamp="1513244809215"/>
+                <ns2:up-time dateTime="1970-01-01T01:01:34.530+01:00" timestamp="94530"/>
+                <ns2:provides>
+                    <ns2:provide specifications="[javax.management.MBeanServerConnection,javax.management.MBeanServer]" state="registered">
+                        <ns2:property name="factory.name">PlatformMBeanServerDelegate</ns2:property>
+                        <ns2:property name="instance.name">PlatformMBeanServerDelegate-0</ns2:property>
+                    </ns2:provide>
+                </ns2:provides>
+            </ns2:ipojo-instance>
+            <ns2:ipojo-instance name="JOnASRepositories-0" state="VALID" source="ipojo/instance/JOnASRepositories-0" objectName="org.ow2.jonas.services.bootstrap.repository.JOnASRepositories@1bce5d9" bundleId="117">
+                <ns2:start-time dateTime="2017-12-14T10:46:49.269+01:00" timestamp="1513244809269"/>
+                <ns2:up-time dateTime="1970-01-01T01:01:34.477+01:00" timestamp="94477"/>
+                <ns2:provides/>
+            </ns2:ipojo-instance>
+            <ns2:ipojo-instance name="JOnASDeploymentPlanDeployer-0" state="VALID" source="ipojo/instance/JOnASDeploymentPlanDeployer-0" objectName="org.ow2.jonas.services.bootstrap.JOnASDeploymentPlanDeployer@aaaa58" bundleId="117">
+                <ns2:start-time dateTime="2017-12-14T10:46:49.991+01:00" timestamp="1513244809991"/>
+                <ns2:up-time dateTime="1970-01-01T01:01:33.755+01:00" timestamp="93755"/>
+                <ns2:provides>
+                    <ns2:provide specifications="[org.ow2.jonas.configuration.DeploymentPlanDeployer]" state="registered">
+                        <ns2:property name="factory.name">JOnASDeploymentPlanDeployer</ns2:property>
+                        <ns2:property name="instance.name">JOnASDeploymentPlanDeployer-0</ns2:property>
+                    </ns2:provide>
+                </ns2:provides>
+            </ns2:ipojo-instance>
+            <ns2:ipojo-instance name="JOnASDeploymentPlan-0" state="VALID" source="ipojo/instance/JOnASDeploymentPlan-0" objectName="org.ow2.jonas.services.bootstrap.deploymentplan.JOnASDeploymentPlan@1576f4c" bundleId="117">
+                <ns2:start-time dateTime="2017-12-14T10:46:50.002+01:00" timestamp="1513244810002"/>
+                <ns2:up-time dateTime="1970-01-01T01:01:33.745+01:00" timestamp="93745"/>
+                <ns2:provides/>
+            </ns2:ipojo-instance>
+        </ns2:ipojo-instances>
+        <ns3:server-info state="j2ee.state.stopped" version="5.3.0">
+            <ns3:jonas-root>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0</ns3:jonas-root>
+            <ns3:jonas-base>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas</ns3:jonas-base>
+            <ns3:start-time dateTime="2017-12-14T10:46:50.132+01:00" timestamp="1513244810132"/>
+            <ns3:up-time dateTime="1970-01-01T01:01:33.616+01:00" timestamp="93616"/>
+        </ns3:server-info>
+        <ns4:deployables>
+            <ns4:deployable name="jdbc-ds.xml" state="DEPLOYED" source="deployable/jdbc-ds.xml" startTime="385">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jdbc-ds.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="joramAdminConfig.xml" state="DEPLOYED" source="deployable/joramAdminConfig.xml" startTime="125">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/joramAdminConfig.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="joramAdminUserConfig.xml" state="DEPLOYED" source="deployable/joramAdminUserConfig.xml" startTime="126">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/joramAdminUserConfig.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="tomcat7-http-connector.xml" state="DEPLOYED" source="deployable/tomcat7-http-connector.xml" startTime="125">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/tomcat7-http-connector.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="jms-joram-client-plan.xml" state="DEPLOYED" source="deployable/jms-joram-client-plan.xml" startTime="2054">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jms-joram-client-plan.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="jms-joram-server-plan.xml" state="DEPLOYED" source="deployable/jms-joram-server-plan.xml" startTime="2055">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jms-joram-server-plan.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="jonas-admin-plan.xml" state="DEPLOYED" source="deployable/jonas-admin-plan.xml" startTime="2054">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-admin-plan.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="jonas-ctxroot-plan.xml" state="DEPLOYED" source="deployable/jonas-ctxroot-plan.xml" startTime="2053">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-ctxroot-plan.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="jonas-doc-en-plan.xml" state="DEPLOYED" source="deployable/jonas-doc-en-plan.xml" startTime="2052">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-doc-en-plan.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="jonas-jca-scout-plan.xml" state="DEPLOYED" source="deployable/jonas-jca-scout-plan.xml" startTime="2052">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-jca-scout-plan.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="mejb-plan.xml" state="DEPLOYED" source="deployable/mejb-plan.xml" startTime="2057">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/mejb-plan.xml</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="helloWorld.jar" state="NOT_DEPLOYED" source="deployable/helloWorld.jar">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar</ns4:path>
+            </ns4:deployable>
+            <ns4:deployable name="javaee5-earsample.ear" state="DEPLOYED" source="deployable/javaee5-earsample.ear" startTime="1761">
+                <ns4:path>/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/javaee5-earsample.ear</ns4:path>
+            </ns4:deployable>
+        </ns4:deployables>
+        <ns5:ipojo-factories>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.FunctionConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.HistoryAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.EachAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="DeployablesReportExtension" state="VALID" bundleId="107"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.completer.ComponentFactoryCompleter" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.completer.ComponentInstanceCompleter" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="NamingManager" state="VALID" bundleId="86"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.BundleConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.console.AnsiUsagePrinter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.history.DefaultIdentityProvider" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.HandlersActionCommandFactory" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.PropertySetAction" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.FactoryAction" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="IpojoFactoriesReportExtension" state="VALID" bundleId="112"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.PropertyDeleteAction" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.DetailsConfigurationAction" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.handler.completer.CommandsCompleter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.InstancesAction" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="EndpointsReportExtension" state="VALID" bundleId="108"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.PropertyDeleteActionCommandFactory" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.spec.ee.osgi.registry.internal.OW2ProviderRegistry" state="VALID" bundleId="46"/>
+            <ns5:ipojo-factory name="org.ow2.jonas.configadmin.internal.ConfigAdminDeployer" state="VALID" bundleId="96"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.CollectionConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.jonas.configadmin.internal.generic.DefaultConfigurationAdapterRegistry" state="VALID" bundleId="96"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.ExitActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.history.DefaultHistoryFileProvider" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.ListConfigurationAction" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.gogo.GogoShellCommands" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.jonas.registry.carol.CarolRegistryService" state="VALID" bundleId="92"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.InstanceAction" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="EndpointCollector" state="VALID" bundleId="88"/>
+            <ns5:ipojo-factory name="WSSecurityContextInitializer" state="VALID" bundleId="101"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.InstanceActionCommandFactory" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="EventProviderComponent" state="VALID" bundleId="90"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.EachActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.EchoAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.NumberConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.HistoryActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.prompt.DefaultPromptService" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.felix.internal.FelixCommandManager" state="VALID" bundleId="21"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.DetailsConfigurationActionCommandFactory" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.GrepActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="Extension Loader (lib/ext)" state="VALID" bundleId="75"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.ListConfigurationActionCommandFactory" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.HelpAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="IpojoInstancesReportExtension" state="VALID" bundleId="110"/>
+            <ns5:ipojo-factory name="JOnAS-SHB-HistoryFileProvider" state="VALID" bundleId="24"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.registry.supplier.gogo.GogoInfoSupplier" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="META-INF Scanner" state="VALID" bundleId="83"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.CreateConfigurationAction" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.DateConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.system.DefaultSystemService" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.completer.ConfigurationCompleter" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="DeployersReportExtension" state="VALID" bundleId="109"/>
+            <ns5:ipojo-factory name="IpojoHandlersReportExtension" state="VALID" bundleId="111"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.HelpActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="MonologExtension" state="VALID" bundleId="81"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.ClearAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.FactoriesAction" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.PropertySetActionCommandFactory" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.DeleteConfigurationActionCommandFactory" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.ServiceReferenceConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="Carol JNDI Interceptor Manager" state="VALID" bundleId="92"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.GrepAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.HandlersAction" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="JOnAS-SHB-PromptService" state="VALID" bundleId="24"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.EchoActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.UnsetAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.manager.ConverterManagerImpl" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.BasicTypesConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.FactoryActionCommandFactory" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.registry.DefaultCommandRegistry" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.jonas.security.internal.JonasSecurityServiceImpl" state="VALID" bundleId="101"/>
+            <ns5:ipojo-factory name="ComponentContextFactory" state="VALID" bundleId="86"/>
+            <ns5:ipojo-factory name="org.ow2.jonas.configadmin.internal.Initializer" state="VALID" bundleId="96"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.CreateConfigurationActionCommandFactory" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.ShutdownActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.InstancesActionCommandFactory" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="LogProviderComponent" state="VALID" bundleId="91"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.UnsetActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.config.internal.DeleteConfigurationAction" state="VALID" bundleId="22"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.ClearActionCommandFactory" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.jonas.jmx.internal.JOnASJMXService" state="VALID" bundleId="95"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.handler.GogoPreparator" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.internal.converter.InputStreamConverter" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.ipojo.internal.FactoriesActionCommandFactory" state="VALID" bundleId="23"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.ShutdownAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.core.console.startup.ConsoleStartupComponent" state="VALID" bundleId="18"/>
+            <ns5:ipojo-factory name="org.ow2.shelbie.commands.builtin.internal.ExitAction" state="VALID" bundleId="20"/>
+            <ns5:ipojo-factory name="BundlesReportExtension" state="VALID" bundleId="113"/>
+            <ns5:ipojo-factory name="ServerInfoReportExtension" state="VALID" bundleId="114"/>
+            <ns5:ipojo-factory name="JvmReportExtension" state="VALID" bundleId="115"/>
+            <ns5:ipojo-factory name="JOnASConfiguration" state="VALID" bundleId="117"/>
+            <ns5:ipojo-factory name="PlatformMBeanServerDelegate" state="VALID" bundleId="117"/>
+            <ns5:ipojo-factory name="JOnASDeploymentPlanDeployer" state="VALID" bundleId="117"/>
+            <ns5:ipojo-factory name="JOnASRepositories" state="VALID" bundleId="117"/>
+            <ns5:ipojo-factory name="JOnASDeploymentPlan" state="VALID" bundleId="117"/>
+            <ns5:ipojo-factory name="ServiceManager" state="VALID" bundleId="118"/>
+            <ns5:ipojo-factory name="MBeansRegistration" state="VALID" bundleId="119"/>
+            <ns5:ipojo-factory name="J2EEServer" state="VALID" bundleId="119"/>
+            <ns5:ipojo-factory name="ReportComponent" state="VALID" bundleId="120"/>
+        </ns5:ipojo-factories>
+        <ns6:bundles>
+            <ns6:bundle Id="122" state="Resolved" symbolicName="org.ow2.jonas.workcleaner-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-workcleaner-core/5.3.0/jonas-workcleaner-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="123" state="Resolved" symbolicName="org.ow2.jotm.core" version="2.2.3">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jotm/jotm-core/2.2.3/jotm-core-2.2.3.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="124" state="Resolved" symbolicName="org.ow2.jotm.interceptor-jrmp" version="2.2.3">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jotm/jotm-interceptor-jrmp/2.2.3/jotm-interceptor-jrmp-2.2.3.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="125" state="Resolved" symbolicName="org.ow2.jonas.tm-jotm-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-tm-jotm-core/5.3.0/jonas-tm-jotm-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="126" state="Resolved" symbolicName="org.ow2.jonas.db-base-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-db-base-core/5.3.0/jonas-db-base-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="175" state="Resolved" symbolicName="org.apache.servicemix.bundles.lucene" version="3.5.0.1">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/servicemix/bundles/org.apache.servicemix.bundles.lucene/3.5.0_1/org.apache.servicemix.bundles.lucene-3.5.0_1.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="127" state="Resolved" symbolicName="org.ow2.jonas.db-h2-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-db-h2-core/5.3.0/jonas-db-h2-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="128" state="Resolved" symbolicName="org.ow2.util.bundles.slf4j-jcl-1.6.1" version="1.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/bundles/slf4j-jcl-1.6.1/1.0.0/slf4j-jcl-1.6.1-1.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="129" state="Resolved" symbolicName="org.ow2.util.bundles.hibernate-validator-4.3.1.Final" version="1.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/bundles/hibernate-validator-4.3.1.Final/1.0.0/hibernate-validator-4.3.1.Final-1.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="130" state="Resolved" symbolicName="org.ow2.jonas.validation-hibernate-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-validation-hibernate-core/5.3.0/jonas-validation-hibernate-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="131" state="Resolved" symbolicName="org.ow2.jonas.workmanager-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-workmanager-core/5.3.0/jonas-workmanager-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="132" state="Resolved" symbolicName="org.ow2.jonas.resource-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-resource-core/5.3.0/jonas-resource-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="133" state="Resolved" symbolicName="org.ow2.util.stream" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/stream/stream/2.0.0/stream-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="134" state="Resolved" symbolicName="org.ow2.util.pool.basic" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/pool/pool-basic/2.0.0/pool-basic-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="135" state="Resolved" symbolicName="org.ow2.util.pool.enhanced" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/pool/pool-enhanced/2.0.0/pool-enhanced-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="136" state="Resolved" symbolicName="org.ow2.util.event.base-ee-events" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/event/base-ee-events/2.0.0/base-ee-events-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="137" state="Resolved" symbolicName="org.ow2.spec.ee.ow2-javamail-1.4-spec" version="1.0.13">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/spec/ee/ow2-javamail-1.4-spec/1.0.13/ow2-javamail-1.4-spec-1.0.13.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="138" state="Resolved" symbolicName="org.ow2.easybeans.component.quartz" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/easybeans/osgi/easybeans-component-quartz/2.0.0/easybeans-component-quartz-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="139" state="Resolved" symbolicName="org.apache.felix.dependencymanager" version="2.0.1">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/felix/org.apache.felix.dependencymanager/2.0.1/org.apache.felix.dependencymanager-2.0.1.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="140" state="Resolved" symbolicName="org.ow2.util.marshalling" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/marshalling/marshalling/2.0.0/marshalling-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="141" state="Resolved" symbolicName="org.ow2.util.metadata.ejbjar-impl" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/metadata/metadata-ejbjar-impl/2.0.0/metadata-ejbjar-impl-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="142" state="Resolved" symbolicName="org.ow2.easybeans.core" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/easybeans/osgi/easybeans-modules-core/2.0.0/easybeans-modules-core-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="143" state="Resolved" symbolicName="org.ow2.util.bundles.javassist-3.14.0-GA" version="1.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/bundles/javassist-3.14.0-GA/1.0.0/javassist-3.14.0-GA-1.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="144" state="Resolved" symbolicName="org.ow2.easybeans.persistence.hibernate.v4.1" version="1.0.4">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/easybeans/persistence/easybeans-persistence-hibernate-4.1/1.0.4/easybeans-persistence-hibernate-4.1-1.0.4.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="145" state="Resolved" symbolicName="org.ow2.jonas.jndi-interceptors-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jndi-interceptors-core/5.3.0/jndi-interceptors-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="146" state="Resolved" symbolicName="org.ow2.jonas.ejb-easybeans-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-ejb-easybeans-core/5.3.0/jonas-ejb-easybeans-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="147" state="Resolved" symbolicName="org.ow2.spec.ee.ow2-el-2.2-spec" version="1.0.13">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/spec/ee/ow2-el-2.2-spec/1.0.13/ow2-el-2.2-spec-1.0.13.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="148" state="Resolved" symbolicName="org.ow2.spec.ee.ow2-jsp-2.2-spec" version="1.0.13">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/spec/ee/ow2-jsp-2.2-spec/1.0.13/ow2-jsp-2.2-spec-1.0.13.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="149" state="Resolved" symbolicName="org.ow2.spec.ee.ow2-jstl-1.2-spec" version="1.0.13">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/spec/ee/ow2-jstl-1.2-spec/1.0.13/ow2-jstl-1.2-spec-1.0.13.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="150" state="Resolved" symbolicName="org.ow2.spec.ee.ow2-jsf-2.0-spec" version="1.0.13">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/spec/ee/ow2-jsf-2.0-spec/1.0.13/ow2-jsf-2.0-spec-1.0.13.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="151" state="Resolved" symbolicName="org.ow2.jonas.jsf-mojarra-2.0-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-jsf-mojarra-2.0-core/5.3.0/jonas-jsf-mojarra-2.0-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="152" state="Resolved" symbolicName="org.ow2.jonas.osgi.saaj-ri" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/osgi/saaj-ri/5.3.0/saaj-ri-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="153" state="Resolved" symbolicName="org.ow2.jonas.audit-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-audit-core/5.3.0/jonas-audit-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="154" state="Resolved" symbolicName="org.ow2.spec.ee.ow2-jws-2.0-spec" version="1.0.13">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/spec/ee/ow2-jws-2.0-spec/1.0.13/ow2-jws-2.0-spec-1.0.13.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="155" state="Resolved" symbolicName="org.ow2.util.annotation-processor" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/annotation-processor/annotation-processor/2.0.0/annotation-processor-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="156" state="Resolved" symbolicName="org.ow2.util.ee.builders.reference-builder-webserviceref" version="2.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/ee/builders/reference-builder-webserviceref/2.0.0/reference-builder-webserviceref-2.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="157" state="Resolved" symbolicName="org.ow2.spec.ee.ow2-jaxr-1.0-spec" version="1.0.13">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/spec/ee/ow2-jaxr-1.0-spec/1.0.13/ow2-jaxr-1.0-spec-1.0.13.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="158" state="Resolved" symbolicName="org.ow2.jonas.webservices-publish-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-webservices-publish-core/5.3.0/jonas-webservices-publish-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="159" state="Resolved" symbolicName="org.ow2.jonas.webservices-jaxws-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-webservices-jaxws-core/5.3.0/jonas-webservices-jaxws-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="160" state="Resolved" symbolicName="org.ow2.jonas.osgi.neethi" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/osgi/neethi/5.3.0/neethi-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="161" state="Resolved" symbolicName="stax2-api" version="3.1.1">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/codehaus/woodstox/stax2-api/3.1.1/stax2-api-3.1.1.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="162" state="Resolved" symbolicName="woodstox-core-asl" version="4.2.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/codehaus/woodstox/woodstox-core-asl/4.2.0/woodstox-core-asl-4.2.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="163" state="Resolved" symbolicName="org.apache.ws.xmlschema.core" version="2.0.1">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/ws/xmlschema/xmlschema-core/2.0.1/xmlschema-core-2.0.1.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="164" state="Resolved" symbolicName="com.springsource.org.apache.xml.resolver" version="1.2.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/xml/com.springsource.org.apache.xml.resolver/1.2.0/com.springsource.org.apache.xml.resolver-1.2.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="165" state="Resolved" symbolicName="org.springframework.asm" version="3.1.4.RELEASE">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/springframework/spring-asm/3.1.4.RELEASE/spring-asm-3.1.4.RELEASE.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="166" state="Resolved" symbolicName="org.springframework.core" version="3.1.4.RELEASE">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/springframework/spring-core/3.1.4.RELEASE/spring-core-3.1.4.RELEASE.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="167" state="Resolved" symbolicName="com.springsource.org.aopalliance" version="1.0.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/aopalliance/com.springsource.org.aopalliance/1.0.0/com.springsource.org.aopalliance-1.0.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="168" state="Resolved" symbolicName="org.springframework.aop" version="3.1.4.RELEASE">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/springframework/spring-aop/3.1.4.RELEASE/spring-aop-3.1.4.RELEASE.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="169" state="Resolved" symbolicName="org.springframework.beans" version="3.1.4.RELEASE">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/springframework/spring-beans/3.1.4.RELEASE/spring-beans-3.1.4.RELEASE.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="170" state="Resolved" symbolicName="org.springframework.expression" version="3.1.4.RELEASE">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/springframework/spring-expression/3.1.4.RELEASE/spring-expression-3.1.4.RELEASE.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="171" state="Resolved" symbolicName="org.springframework.context" version="3.1.4.RELEASE">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/springframework/spring-context/3.1.4.RELEASE/spring-context-3.1.4.RELEASE.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="172" state="Resolved" symbolicName="org.apache.httpcomponents.httpcore" version="4.2.3">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/httpcomponents/httpcore-osgi/4.2.3/httpcore-osgi-4.2.3.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="173" state="Resolved" symbolicName="org.apache.httpcomponents.httpclient" version="4.2.2">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/httpcomponents/httpclient-osgi/4.2.2/httpclient-osgi-4.2.2.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="174" state="Resolved" symbolicName="org.apache.httpcomponents.httpclient" version="4.0.0.beta3">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/httpcomponents/httpasyncclient-osgi/4.0-beta3/httpasyncclient-osgi-4.0-beta3.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="206" state="Resolved" symbolicName="org.ow2.jonas.osgi.xmlbeans" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/osgi/xmlbeans/5.3.0/xmlbeans-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="176" state="Resolved" symbolicName="org.apache.cxf.bundle" version="2.7.4">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/apache/cxf/cxf-bundle/2.7.4/cxf-bundle-2.7.4.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="177" state="Resolved" symbolicName="org.ow2.jonas.webservices-cxf-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-webservices-cxf-core/5.3.0/jonas-webservices-cxf-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="178" state="Resolved" symbolicName="osgi.cmpn" version="4.2.0.200908310645">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="179" state="Resolved" symbolicName="org.ow2.jonas.web-container-base-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-web-container-base-core/5.3.0/jonas-web-container-base-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="180" state="Resolved" symbolicName="org.ow2.jonas.web-container-tomcat-7.0-core" version="5.3.0">
+                <ns6:error>java.lang.NullPointerException
+         at org.apache.felix.ipojo.handlers.dependency.DependencyCallback.call(DependencyCallback.java:231)
+         at org.apache.felix.ipojo.handlers.dependency.Dependency.invokeCallback(Dependency.java:314)
+         at org.apache.felix.ipojo.handlers.dependency.Dependency.callUnbindMethod(Dependency.java:298)
+         at org.apache.felix.ipojo.handlers.dependency.Dependency.onServiceDeparture(Dependency.java:496)
+         at org.apache.felix.ipojo.util.DependencyModel.manageDeparture(DependencyModel.java:466)
+         at org.apache.felix.ipojo.util.DependencyModel.removedService(DependencyModel.java:424)
+         at org.apache.felix.ipojo.util.Tracker$Tracked.untrack(Tracker.java:753)
+         at org.apache.felix.ipojo.util.Tracker$Tracked.serviceChanged(Tracker.java:651)
+         at org.apache.felix.framework.util.EventDispatcher.invokeServiceListenerCallback(EventDispatcher.java:932)
+         at org.apache.felix.framework.util.EventDispatcher.fireEventImmediately(EventDispatcher.java:793)
+         at org.apache.felix.framework.util.EventDispatcher.fireServiceEvent(EventDispatcher.java:543)
+         at org.apache.felix.framework.Felix.fireServiceEvent(Felix.java:4260)
+         at org.apache.felix.framework.Felix.access$000(Felix.java:74)
+         at org.apache.felix.framework.Felix$1.serviceChanged(Felix.java:390)
+         at org.apache.felix.framework.ServiceRegistry.unregisterService(ServiceRegistry.java:148)
+         at org.apache.felix.framework.ServiceRegistrationImpl.unregister(ServiceRegistrationImpl.java:127)
+         at org.apache.felix.ipojo.handlers.providedservice.ProvidedService.unregisterService(ProvidedService.java:415)
+         at org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler.__M_stateChanged(ProvidedServiceHandler.java:501)
+         at org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler.stateChanged(ProvidedServiceHandler.java)
+         at org.apache.felix.ipojo.InstanceManager.setState(InstanceManager.java:548)
+         at org.apache.felix.ipojo.InstanceManager.stop(InstanceManager.java:437)
+         at org.apache.felix.ipojo.InstanceManager.dispose(InstanceManager.java:481)
+         at org.apache.felix.ipojo.IPojoFactory.stop(IPojoFactory.java:554)
+         at org.apache.felix.ipojo.Extender.closeManagementFor(Extender.java:181)
+         at org.apache.felix.ipojo.Extender.bundleChanged(Extender.java:153)
+         at org.apache.felix.framework.util.EventDispatcher.invokeBundleListenerCallback(EventDispatcher.java:868)
+         at org.apache.felix.framework.util.EventDispatcher.fireEventImmediately(EventDispatcher.java:789)
+         at org.apache.felix.framework.util.EventDispatcher.fireBundleEvent(EventDispatcher.java:514)
+         at org.apache.felix.framework.Felix.fireBundleEvent(Felix.java:4244)
+         at org.apache.felix.framework.Felix.stopBundle(Felix.java:2351)
+         at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1214)
+         at org.apache.felix.framework.FrameworkStartLevelImpl.run(FrameworkStartLevelImpl.java:295)
+         at java.lang.Thread.run(Thread.java:722)
+</ns6:error>
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-web-container-tomcat-7.0-core/5.3.0/jonas-web-container-tomcat-7.0-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="181" state="Resolved" symbolicName="org.ow2.jonas.eclipse-compiler" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/eclipse-compiler/5.3.0/eclipse-compiler-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="182" state="Resolved" symbolicName="org.ow2.jonas.generators-base" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-generators-base/5.3.0/jonas-generators-base-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="183" state="Resolved" symbolicName="org.ow2.jonas.generators-clientstubs" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-generators-clientstubs/5.3.0/jonas-generators-clientstubs-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="184" state="Resolved" symbolicName="org.ow2.jonas.ear-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-ear-core/5.3.0/jonas-ear-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="185" state="Resolved" symbolicName="org.ow2.jonas.deployable-monitor-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-deployable-monitor-core/5.3.0/jonas-deployable-monitor-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="186" state="Resolved" symbolicName="org.ow2.jonas.generators-raconfig" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-generators-raconfig/5.3.0/jonas-generators-raconfig-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="187" state="Resolved" symbolicName="org.ow2.jonas.services-datasource-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-services-datasource-core/5.3.0/jonas-services-datasource-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="188" state="Resolved" symbolicName="org.ow2.bundles.ow2-util-substitution" version="1.0.36">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/bundles/ow2-util-substitution/1.0.36/ow2-util-substitution-1.0.36.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="189" state="Resolved" symbolicName="a3-common" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/a3-common/5.8.0/a3-common-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="190" state="Resolved" symbolicName="a3-rt" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/a3-rt/5.8.0/a3-rt-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="191" state="Resolved" symbolicName="JCup" version="0.0.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/objectweb/joram/jcup/5.3.1/jcup-5.3.1.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="192" state="Resolved" symbolicName="jndi-shared" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/jndi-shared/5.8.0/jndi-shared-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="193" state="Resolved" symbolicName="jndi-server" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/jndi-server/5.8.0/jndi-server-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="194" state="Resolved" symbolicName="joram-shared" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/joram-shared/5.8.0/joram-shared-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="195" state="Resolved" symbolicName="joram-mom-core" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/joram-mom-core/5.8.0/joram-mom-core-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="196" state="Resolved" symbolicName="a3-services" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/a3-services/5.8.0/a3-services-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="199" state="Resolved" symbolicName="jndi-client" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/jndi-client/5.8.0/jndi-client-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="200" state="Resolved" symbolicName="joram-client-jms" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/joram-client-jms/5.8.0/joram-client-jms-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="201" state="Resolved" symbolicName="joram-client-jca" version="5.8.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/joram/joram-client-jca/5.8.0/joram-client-jca-5.8.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="202" state="Resolved" symbolicName="org.ow2.jonas.audit-jms" version="5.3.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-audit-jms/5.3.0/jonas-audit-jms-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="203" state="Resolved" symbolicName="org.ow2.jonas.joram-admin" version="5.3.0">
+                <ns6:location>file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/joram-admin/5.3.0/joram-admin-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="204" state="Resolved" symbolicName="org.ow2.jonas.management-api" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-management-api/5.3.0/jonas-management-api-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="205" state="Resolved" symbolicName="org.ow2.jonas.management-extensions" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-management-extensions/5.3.0/jonas-management-extensions-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+            <ns6:bundle Id="214" state="Resolved" symbolicName="org.ow2.jonas.mail-core" version="5.3.0">
+                <ns6:location>reference:file:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-mail-core/5.3.0/jonas-mail-core-5.3.0.jar</ns6:location>
+            </ns6:bundle>
+        </ns6:bundles>
+        <ns7:deployers>
+            <ns7:deployer>org.ow2.util.ee.deploy.impl.osgi.OSGiDeployer</ns7:deployer>
+            <ns7:deployer>org.ow2.util.plan.deployer.impl.DeploymentPlanDeployer</ns7:deployer>
+            <ns7:deployer>org.ow2.util.plan.deployer.OsgiRepositoryDeployerImpl</ns7:deployer>
+            <ns7:deployer>org.ow2.jonas.configadmin.internal.ConfigAdminDeployer</ns7:deployer>
+            <ns7:deployer>org.ow2.jonas.datasource.deployer.JonasDatasourceDeployer</ns7:deployer>
+        </ns7:deployers>
+        <ns8:ipojo-handlers>
+            <ns8:ipojo-handler name="requires" state="VALID" bundleId="10"/>
+            <ns8:ipojo-handler name="publisher" state="VALID" bundleId="15"/>
+            <ns8:ipojo-handler name="callback" state="VALID" bundleId="10"/>
+            <ns8:ipojo-handler name="properties" state="VALID" bundleId="10"/>
+            <ns8:ipojo-handler name="provides" state="VALID" bundleId="10"/>
+            <ns8:ipojo-handler name="publishes" state="VALID" bundleId="15"/>
+            <ns8:ipojo-handler name="command" state="VALID" bundleId="18"/>
+            <ns8:ipojo-handler name="whiteboards" state="VALID" bundleId="13"/>
+            <ns8:ipojo-handler name="subscriber" state="VALID" bundleId="15"/>
+            <ns8:ipojo-handler name="interceptor" state="VALID" bundleId="87"/>
+            <ns8:ipojo-handler name="architecture" state="VALID" bundleId="10"/>
+            <ns8:ipojo-handler name="controller" state="VALID" bundleId="10"/>
+            <ns8:ipojo-handler name="wbp" state="VALID" bundleId="13"/>
+        </ns8:ipojo-handlers>
+        <ns9:jvm>
+            <ns9:system-properties>
+                <ns9:property name="howl.log.MaximumBuffers">16</ns9:property>
+                <ns9:property name="java.vendor">Oracle Corporation</ns9:property>
+                <ns9:property name="javax.xml.soap.SOAPFactory">com.sun.xml.messaging.saaj.soap.ver1_1.SOAPFactory1_1Impl</ns9:property>
+                <ns9:property name="sun.java.launcher">SUN_STANDARD</ns9:property>
+                <ns9:property name="catalina.base">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas</ns9:property>
+                <ns9:property name="sun.management.compiler">HotSpot Tiered Compilers</ns9:property>
+                <ns9:property name="catalina.useNaming">false</ns9:property>
+                <ns9:property name="os.name">Linux</ns9:property>
+                <ns9:property name="service.pid">fr.dyade.aaa.agent.services.A3ManagedService</ns9:property>
+                <ns9:property name="sun.boot.class.path">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed/xalan-2.7.1.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed/carol-iiop-delegate-3.0.10.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed/serializer-2.7.1.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed/jacorb-idl-2.3.1-jonas-patch-20110823.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed/xercesImpl-2.9.1.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed/jacorb-2.3.1-jonas-patch-20110823.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed/xml-apis-1.3.04.jar:/usr/local/jdk1.7.0_03/jre/lib/resources.jar:/usr/local/jdk1.7.0_03/jre/lib/rt.jar:/usr/local/jdk1.7.0_03/jre/lib/sunrsasign.jar:/usr/local/jdk1.7.0_03/jre/lib/jsse.jar:/usr/local/jdk1.7.0_03/jre/lib/jce.jar:/usr/local/jdk1.7.0_03/jre/lib/charsets.jar:/usr/local/jdk1.7.0_03/jre/classes</ns9:property>
+                <ns9:property name="javax.security.jacc.PolicyConfigurationFactory.provider">org.ow2.jonas.lib.security.jacc.PolicyConfigurationFactoryWrapper</ns9:property>
+                <ns9:property name="carol.multipro.protocol">any</ns9:property>
+                <ns9:property name="jonas.start.date">1513244805319</ns9:property>
+                <ns9:property name="howl.log.MaximumBlocksPerFile">200</ns9:property>
+                <ns9:property name="java.vm.specification.vendor">Oracle Corporation</ns9:property>
+                <ns9:property name="java.runtime.version">1.7.0_03-b04</ns9:property>
+                <ns9:property name="howl.log.FileName">howl</ns9:property>
+                <ns9:property name="ipojo.log.level">ERROR</ns9:property>
+                <ns9:property name="org.ow2.carol.jndi.spi.VirtualJNDIContextFactory_PARENT_java.naming.factory.initial">org.ow2.carol.jndi.intercept.spi.InterceptorInitialContextFactory</ns9:property>
+                <ns9:property name="user.name">yv965015</ns9:property>
+                <ns9:property name="shared.loader"></ns9:property>
+                <ns9:property name="tomcat.util.buf.StringCache.byte.enabled">true</ns9:property>
+                <ns9:property name="javax.xml.soap.MetaFactory">com.sun.xml.messaging.saaj.soap.SAAJMetaFactoryImpl</ns9:property>
+                <ns9:property name="jonas.configadmin.deployable">true</ns9:property>
+                <ns9:property name="user.language">fr</ns9:property>
+                <ns9:property name="java.naming.factory.initial">org.ow2.carol.jndi.spi.VirtualJNDIContextFactory</ns9:property>
+                <ns9:property name="com.sun.CORBA.ORBDynamicStubFactoryFactoryClass">com.sun.corba.se.impl.presentation.rmi.StubFactoryFactoryStaticImpl</ns9:property>
+                <ns9:property name="sun.boot.library.path">/usr/local/jdk1.7.0_03/jre/lib/i386</ns9:property>
+                <ns9:property name="jonas.workdirectory">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work</ns9:property>
+                <ns9:property name="java.version">1.7.0_03</ns9:property>
+                <ns9:property name="jonas.root">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0</ns9:property>
+                <ns9:property name="user.timezone">Europe/Paris</ns9:property>
+                <ns9:property name="sun.arch.data.model">32</ns9:property>
+                <ns9:property name="javax.rmi.CORBA.UtilClass">org.ow2.carol.util.delegate.UtilDelegateImpl</ns9:property>
+                <ns9:property name="java.endorsed.dirs">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/endorsed</ns9:property>
+                <ns9:property name="sun.cpu.isalist"></ns9:property>
+                <ns9:property name="sun.jnu.encoding">UTF-8</ns9:property>
+                <ns9:property name="file.encoding.pkg">sun.io</ns9:property>
+                <ns9:property name="javax.xml.ws.spi.Provider">org.apache.cxf.jaxws.spi.ProviderImpl</ns9:property>
+                <ns9:property name="package.access">sun.,org.apache.catalina.,org.apache.coyote.,org.apache.tomcat.,org.apache.jasper.</ns9:property>
+                <ns9:property name="file.separator">/</ns9:property>
+                <ns9:property name="java.specification.name">Java Platform API Specification</ns9:property>
+                <ns9:property name="java.class.version">51.0</ns9:property>
+                <ns9:property name="user.country">FR</ns9:property>
+                <ns9:property name="Transaction">fr.dyade.aaa.util.NTransaction</ns9:property>
+                <ns9:property name="java.home">/usr/local/jdk1.7.0_03/jre</ns9:property>
+                <ns9:property name="java.vm.info">mixed mode</ns9:property>
+                <ns9:property name="os.version">3.16.0-4-amd64</ns9:property>
+                <ns9:property name="org.omg.CORBA.ORBSingletonClass">org.jacorb.orb.ORBSingleton</ns9:property>
+                <ns9:property name="path.separator">:</ns9:property>
+                <ns9:property name="java.vm.version">22.1-b02</ns9:property>
+                <ns9:property name="org.omg.PortableInterceptor.ORBInitializerClass.standard_init">org.jacorb.orb.standardInterceptors.IORInterceptorInitializer</ns9:property>
+                <ns9:property name="jboss.i18n.generate-proxies">true</ns9:property>
+                <ns9:property name="java.awt.printerjob">sun.print.PSPrinterJob</ns9:property>
+                <ns9:property name="java.security.policy">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/conf/java.policy</ns9:property>
+                <ns9:property name="tomcat.util.scan.DefaultJarScanner.jarsToSkip">bootstrap.jar,commons-daemon.jar,tomcat-juli.jar,annotations-api.jar,el-api.jar,jsp-api.jar,servlet-api.jar,catalina.jar,catalina-ant.jar,catalina-ha.jar,catalina-tribes.jar,jasper.jar,jasper-el.jar,ecj-*.jar,tomcat-api.jar,tomcat-util.jar,tomcat-coyote.jar,tomcat-dbcp.jar,tomcat-jni.jar,tomcat-spdy.jar,tomcat-i18n-en.jar,tomcat-i18n-es.jar,tomcat-i18n-fr.jar,tomcat-i18n-ja.jar,tomcat-juli-adapters.jar,catalina-jmx-remote.jar,catalina-ws.jar,tomcat-jdbc.jar,commons-beanutils*.jar,commons-codec*.jar,commons-collections*.jar,commons-dbcp*.jar,commons-digester*.jar,commons-fileupload*.jar,commons-httpclient*.jar,commons-io*.jar,commons-lang*.jar,commons-logging*.jar,commons-math*.jar,commons-pool*.jar,jstl.jar,geronimo-spec-jaxrpc*.jar,wsdl4j*.jar,ant.jar,ant-junit*.jar,aspectj*.jar,jmx.jar,h2*.jar,hibernate*.jar,httpclient*.jar,jmx-tools.jar,jta*.jar,log4j*.jar,mail*.jar,slf4j*.jar,xercesImpl.jar,xmlParserAPIs.jar,xml-apis.jar,dnsns.jar,ldapsec.jar,localedata.jar,sunjce_provider.jar,sunmscapi.jar,sunpkcs11.jar,jhall.jar,tools.jar,apple_provider.jar,AppleScriptEngine.jar,CoreAudio.jar,dns_sd.jar,j3daudio.jar,j3dcore.jar,j3dutils.jar,jai_core.jar,jai_codec.jar,mlibwrapper_jai.jar,MRJToolkit.jar,vecmath.jar,junit.jar,junit-*.jar,ant-launcher.jar,_jonas*.jar,jonas-*.jar</ns9:property>
+                <ns9:property name="sun.io.unicode.encoding">UnicodeLittle</ns9:property>
+                <ns9:property name="howl.log.BufferSize">4</ns9:property>
+                <ns9:property name="awt.toolkit">sun.awt.X11.XToolkit</ns9:property>
+                <ns9:property name="howl.log.ListConfiguration">false</ns9:property>
+                <ns9:property name="rmi.local.registry">true</ns9:property>
+                <ns9:property name="package.definition">sun.,java.,org.apache.catalina.,org.apache.coyote.,org.apache.tomcat.,org.apache.jasper.</ns9:property>
+                <ns9:property name="monolog.wrappers">mx4j.log.CommonsLogger,mx4j.log.Logger,java.util.logging.Logger,org.apache.commons.logging.impl.Jdk14Logger,org.apache.juli.logging.impl.Jdk14Logger,org.ow2.util.log.JDKLogger,org.ow2.util.log.jul.internal.JDKLogger,org.apache.juli.logging.DirectJDKLog,org.jgroups.logging.JDKLogImpl,org.ow2.carol.util.configuration.TraceCarol,org.slf4j.impl.JCLLoggerAdapter</ns9:property>
+                <ns9:property name="java.naming.factory.url.pkgs">org.ow2.jonas.lib.naming</ns9:property>
+                <ns9:property name="Transaction.UseLockFile">false</ns9:property>
+                <ns9:property name="user.home">/home1/yv965015</ns9:property>
+                <ns9:property name="org.apache.catalina.startup.ContextConfig.jarsToSkip"></ns9:property>
+                <ns9:property name="java.specification.vendor">Oracle Corporation</ns9:property>
+                <ns9:property name="howl.log.FileDirectory">c:/logs</ns9:property>
+                <ns9:property name="java.library.path">/usr/java/packages/lib/i386:/lib:/usr/lib</ns9:property>
+                <ns9:property name="java.vendor.url">http://java.oracle.com/</ns9:property>
+                <ns9:property name="jotm.recovery.Enabled">false</ns9:property>
+                <ns9:property name="org.apache.catalina.startup.TldConfig.jarsToSkip"></ns9:property>
+                <ns9:property name="java.vm.vendor">Oracle Corporation</ns9:property>
+                <ns9:property name="common.loader">${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar</ns9:property>
+                <ns9:property name="java.runtime.name">Java(TM) SE Runtime Environment</ns9:property>
+                <ns9:property name="sun.java.command">org.ow2.jonas.commands.admin.ClientAdmin -start</ns9:property>
+                <ns9:property name="java.class.path">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/conf:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/bootstrap/jonas-launcher.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/bootstrap/jonas-commands.jar:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/lib/bootstrap/jonas-version.jar</ns9:property>
+                <ns9:property name="fr.dyade.aaa.agent.A3CONF_DIR">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/conf</ns9:property>
+                <ns9:property name="carol.server.mode">true</ns9:property>
+                <ns9:property name="java.vm.specification.name">Java Virtual Machine Specification</ns9:property>
+                <ns9:property name="catalina.home">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0</ns9:property>
+                <ns9:property name="java.vm.specification.version">1.7</ns9:property>
+                <ns9:property name="javax.rmi.CORBA.PortableRemoteObjectClass">org.ow2.carol.rmi.multi.MultiPRODelegate</ns9:property>
+                <ns9:property name="sun.cpu.endian">little</ns9:property>
+                <ns9:property name="sun.os.patch.level">unknown</ns9:property>
+                <ns9:property name="java.awt.headless">true</ns9:property>
+                <ns9:property name="jonas.base">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas</ns9:property>
+                <ns9:property name="java.io.tmpdir">/tmp</ns9:property>
+                <ns9:property name="java.vendor.url.bug">http://bugreport.sun.com/bugreport/</ns9:property>
+                <ns9:property name="server.loader"></ns9:property>
+                <ns9:property name="os.arch">i386</ns9:property>
+                <ns9:property name="java.awt.graphicsenv">sun.awt.X11GraphicsEnvironment</ns9:property>
+                <ns9:property name="java.ext.dirs">/usr/local/jdk1.7.0_03/jre/lib/ext:/usr/java/packages/lib/ext</ns9:property>
+                <ns9:property name="user.dir">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS</ns9:property>
+                <ns9:property name="line.separator">
+</ns9:property>
+                <ns9:property name="java.vm.name">Java HotSpot(TM) Server VM</ns9:property>
+                <ns9:property name="rmi.local.call">false</ns9:property>
+                <ns9:property name="java.security.auth.login.config">/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/conf/jaas.config</ns9:property>
+                <ns9:property name="javax.xml.soap.MessageFactory">com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl</ns9:property>
+                <ns9:property name="javax.xml.soap.SOAPConnectionFactory">com.sun.xml.messaging.saaj.client.p2p.HttpSOAPConnectionFactory</ns9:property>
+                <ns9:property name="javax.management.builder.initial">org.ow2.jonas.services.bootstrap.mbeanbuilder.JOnASMBeanServerBuilder</ns9:property>
+                <ns9:property name="file.encoding">UTF-8</ns9:property>
+                <ns9:property name="org.omg.CORBA.ORBClass">org.jacorb.orb.ORB</ns9:property>
+                <ns9:property name="monolog.filename">a3debug.cfg</ns9:property>
+                <ns9:property name="howl.log.MinimumBuffers">16</ns9:property>
+                <ns9:property name="java.specification.version">1.7</ns9:property>
+                <ns9:property name="howl.log.MaximumFiles">2</ns9:property>
+            </ns9:system-properties>
+        </ns9:jvm>
+        <ns10:endpoints>
+            <ns10:endpoint source="endpoint/jmx" protocol="jmx" url="service:jmx:rmi://localhost/jndi/rmi://localhost:1099/jrmpconnector_jonas"/>
+            <ns10:endpoint source="endpoint/jrmp" protocol="jrmp" url="rmi://localhost:1099"/>
+            <ns10:endpoint source="endpoint/db" protocol="db" host="localhost" port="9001"/>
+            <ns10:endpoint source="endpoint/http" protocol="http" host="localhost" port="8998" url="http://localhost:8998"/>
+        </ns10:endpoints>
+    </info>
+    <events>
+        <event type="INFO" timestamp="1513244903553">CXF service stopped</event>
+        <event type="INFO" timestamp="1513244903601">Undeploying 'mejb-core-5.3.0.jar'...</event>
+        <event type="INFO" timestamp="1513244903616">Container '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/ejb3s/jonas/mejb-core-5.3.0_2013.10.01-13.23.00.jar' removed</event>
+        <event type="INFO" timestamp="1513244903617">'mejb-core-5.3.0.jar' EJB3 Deployable is now undeployed</event>
+        <event type="INFO" timestamp="1513244903622">Stopped</event>
+        <event type="INFO" timestamp="1513244903623">Carol Component Stopped</event>
+        <event type="INFO" timestamp="1513244903623">stopped.</event>
+        <event type="INFO" timestamp="1513244903624">EasyBeans '2.0.0' est désormais arrêté.</event>
+        <event type="INFO" timestamp="1513244903626">JNDI Interceptors component stopped</event>
+        <event type="INFO" timestamp="1513244903637">Undeploying jonas-jca-jdbc-dm-5.3.0.rar</event>
+        <event type="INFO" timestamp="1513244903640">Undeploying ds-jdbc_xa1-3398764558583794871.rar</event>
+        <event type="INFO" timestamp="1513244903647">Undeploying jonas-jca-scout-rar-5.3.0.rar</event>
+        <event type="INFO" timestamp="1513244903649">Stopping Scout ResourceAdapter</event>
+        <event type="INFO" timestamp="1513244903650">Undeploying ds-jdbc_1-8673709214510956501.rar</event>
+        <event type="INFO" timestamp="1513244903655">Undeploying jonas-jca-jdbc-xa-5.3.0.rar</event>
+        <event type="INFO" timestamp="1513244903657">Undeploying jonas-jca-jdbc-ds-5.3.0.rar</event>
+        <event type="INFO" timestamp="1513244903659">Undeploying joram-jca-jonas-5.8.0.rar</event>
+        <event type="INFO" timestamp="1513244903662">Undeploying ds-jdbc_xa2-2054981454020212088.rar</event>
+        <event type="INFO" timestamp="1513244903694">Undeploying jonas-jca-jdbc-cp-5.3.0.rar</event>
+        <event type="INFO" timestamp="1513244903697">Resource Service stopped</event>
+        <event type="INFO" timestamp="1513244903707">WorkManager Service stopped.</event>
+        <event type="INFO" timestamp="1513244903717">H2 Server '1.3.164' stopped.</event>
+        <event type="INFO" timestamp="1513244903732">TransactionService stopped</event>
+        <event type="INFO" timestamp="1513244903735">JOnAS AS v5.3.0 named 'jonas' STANDBY</event>
+        <event type="INFO" timestamp="1513244903736">WorkCleaner Service stopped.</event>
+        <event type="EXCEPTION" timestamp="1513244816937" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:184)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244823974" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244829206" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244834408" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244839609" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244844792" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244850008" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244855208" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244860405" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244865593" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244870788" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244875992" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244881180" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244886383" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244891596" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244896804" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="EXCEPTION" timestamp="1513244902005" source="deployable/helloWorld.jar">org.ow2.util.ee.deploy.api.deployer.UnsupportedDeployerException : No deployer founded for the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]
+
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.findDeployerForDeployables(DeployerManager.java:137)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+         at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+         at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+</event>
+        <event type="WARNING" timestamp="1513244814984">Cannot deploy a bundle that is already installed OSGiDeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-services-api/5.3.0/jonas-services-api-5.3.0.jar]. </event>
+        <event type="WARNING" timestamp="1513244815002">Cannot deploy a bundle that is already installed OSGiDeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/log/log-bridge-jul/2.0.0/log-bridge-jul-2.0.0.jar]. </event>
+    </events>
+</report>

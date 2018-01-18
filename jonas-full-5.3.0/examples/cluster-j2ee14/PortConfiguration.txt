@@ -1,0 +1,63 @@
+
+This file shows a configuration of 
+- a cluster of 4 JOnAS instances running on the same machine,
+- a master JOnAS instance to manage the domain, and
+- a db JOnAS instance 
+The table below lists a possible configuration of all the ports used by those 6 JOnAS instances.
+In the following configuration we will deploy the entity beans on node3 and node4.
+The Web application is deployed on node1 and node2.
+
+			          __--- Node1 --- Node3 ---__
+Apache with mod_jk ---__           x           __--- DB
+                        --- Node2 --- Node4 ---
+
+				             Web       Ejb
+                          Container  Container
+
+Note :
+- You have to activate the AJP Connector (tomcat6-server.xml) for node1 and node2
+in order to be able to communicate with the mod_jk module.
+Two different ports (for example 9010 and 9011) must be choosen.
+Configure the mod_jk to use the 2 instances.
+For further information please consult
+    http://jonas.objectweb.org/JONAS_5_1_0/doc/doc-en/html/clustering_guide.html
+in the section -WEB clustering with Apache/Tomcat -
+
+- Please note that the database used to store the data of the entity beans has to be
+the same on both nodes where the ejb's are deployed.
+In this example we use the database HSQL mapped to the JNDI name jdbc_1.
+We will use the database started by db node, therefore the url defined in
+rajdbc.HSQL1.url of build-jc.properties, must be conform to the db.port defined in build-db.properties.
+In this example, we have to start the DB node before the node3 and node4.
+
+
+
+FILENAME        PROPERTY                                   DB   NODE1 NODE2 NODE3 NODE4 MASTER
+--------        --------                                  ----- ----- ----- ----- ----- ------
+
+
+jonas.properties
+            jonas.service.db.port                         9005   xxx   xxx   xxx   xxx   xxx
+
+            jonas.service.discovery.source.port           9888  9888  9888  9888  9888  9888
+            jonas.service.discovery.greeting.port         9903  9899  9900  9901  9902  9904
+
+tomcat6-server.xml
+			<Connector port=                              9500  9000  9200  9300  9400  9600
+			<Receiver tcpListenPort=                            4003  4004                    #for session replication
+
+carol.properties
+            carol.port.url                                2053  2002  2022  2032  2043  2063
+
+
+joramAdmin.xml
+            port                                           xxx  16010 16020 16030 16040  xxx
+a3servers.xml
+			<service ... args=                             xxx  16010 16020 16030 16040  xxx
+
+
+Remark: multicast addresses used in example:
+- jgroups-cmi.xml : mcast_addr="224.0.0.35",mcast_port="35467"
+- jgroups-discovery.xml : mcast_addr="224.0.0.36",mcast_port="35468"
+- jgroups-ha.xml : mcast_addr="224.0.0.36",mcast_port="35468"
+- tomcat6-server.xml : addr="228.0.0.4",port=="45564"

@@ -1,0 +1,55 @@
+#!/bin/sh
+# ---------------------------------------------------------------------------
+# JOnAS: Java(TM) Open Application Server
+# Copyright (C) 2005-2007 Bull S.A.S.
+# Contact: jonas-team@objectweb.org
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+# USA
+#
+# Initial developer(s): Benoit Pelletier
+# Contributor(s): Nicolas Duvauchel
+# ---------------------------------------------------------------------------
+# $Id: newjc 22065 2012-01-31 13:14:39Z joaninh $
+# ---------------------------------------------------------------------------
+echo $0
+if [ ! -d $JONAS_ROOT/lib ]
+then
+    echo "JONAS_ROOT must be set"
+    exit 1
+fi
+
+NEWJCDIR=$JONAS_ROOT/templates/newjc;
+
+# Force endorsed directory for the ant process
+# Ensure that the XML parser used is recent enough
+ANT_OPTS="$ANT_OPTS -Djava.endorsed.dirs=$JONAS_ROOT/lib/endorsed"
+export ANT_OPTS
+
+if [ $# -eq 0 ]
+then
+  echo 1>&2 Mode Step by Step
+  ant -file $NEWJCDIR/build-jc.xml -Dsilence.mode="false"
+else
+  if [ $1 = "-auto" ]
+  then
+        echo 1>&2 Mode Auto
+        ant -file $NEWJCDIR/build-jc.xml -Dsilence.mode="true"
+  fi
+fi
+
+
+
+

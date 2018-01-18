@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - JOnAS
+  - Copyright (C) 2009-2011 Bull S.A.S.
+  - Contact: jonas@ow2.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  - USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: kerneos-config.xml 22028 2012-01-26 08:47:24Z cazauxj $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+<kerneos-config xmlns="org.ow2.jasmine.kerneos:kerneos-config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="../resources/kerneos-config.xsd">
+
+  <!--Kerneos Configuration file for JOnAS Admin. -->
+
+  <!--
+    ################################################################################## # Options
+    ###################################################################################
+  -->
+
+  <!--
+    - The two parts of the mark displayed on the top right corner. - - * Optional - * Default value: JASMINe / Kerneos
+  -->
+  <application-project>JOnAS</application-project>
+  <application-name>Administration</application-name>
+
+  <!--
+    - The path to the application logo (64x64 image). - - * Optional - * Default value: none (no logo displayed)
+  -->
+  <application-logo>resources/icons/jonas.png</application-logo>
+
+  <!--
+      - Show the "Minimize all" button in the taskbar ?
+      -
+      - * Optional
+      - * Default value: true
+      -->
+  <show-minimize-all-button>true</show-minimize-all-button>
+
+  <!--
+    - Show the "Cascade windows" button in the taskbar ? - - * Optional - * Default value: true
+  -->
+  <show-cascade-button>true</show-cascade-button>
+
+  <!--
+      - Show the "Tile windows" button in the taskbar ?
+      -
+      - * Optional
+      - * Default value: true
+      -->
+  <show-tile-button>true</show-tile-button>
+
+  <!--
+      - Show popups on modules notifications ?
+      -
+      - * Optional
+      - * Default value: true
+      -->
+  <show-notification-popups>true</show-notification-popups>
+
+  <!--
+    - Show notifications popups, even on windows that have the focus ? - - * Optional - * Default value: true
+  -->
+  <show-popups-from-active-window>true</show-popups-from-active-window>
+
+  <!--
+      - Enable modules notifications logging ?
+      -
+      - * Optional
+      - * Default value: true
+      -->
+  <enable-notifications-log>true</enable-notifications-log>
+
+  <!--
+    - Show a "confirm close" dialog when the user tries to close the window/tab ? - - * Optional - * Default value: true
+  -->
+  <show-confirm-close-dialog>false</show-confirm-close-dialog>
+
+  <!--
+    - The default language of the application. - - * Optional - * Allowed values: "fr_FR", "en_US" - * Default value: en_US
+  -->
+  <default-language>en_US</default-language>
+
+
+  <!--
+    ##################################################################################
+    # Modules
+    ###################################################################################
+  -->
+
+  <modules>
+
+    <!--
+       - Embedded JOnAS Admin iframe
+       -->
+    <iframe-module>
+      <name>JOnAS Administration</name>
+      <description>JOnAS Administration</description>
+      <url>/jonasAdmin/Welcome.do</url>
+      <small-icon>resources/icons/jonasAdmin16.png</small-icon>
+      <big-icon>resources/icons/jonasAdmin64.png</big-icon>
+      <load-maximized>false</load-maximized>
+      <load-on-startup>true</load-on-startup>
+      <prompt-before-close>never</prompt-before-close>
+      <resizable>true</resizable>
+      <maximizable>true</maximizable>
+      <show-open-in-browser-button>true</show-open-in-browser-button>
+      <show-history-navigation-buttons>true</show-history-navigation-buttons>
+    </iframe-module>
+
+    <!--
+      - JMX Browser
+    -->
+  <swf-module>
+    <name>JMX MBeans Browser</name>
+    <description>Browse the MBeans on the remote server.</description>
+    <file>jmxbrowser.swf</file>
+    <small-icon>resources/icons/easybeansJMXBrowser16.png</small-icon>
+    <big-icon>resources/icons/easybeansJMXBrowser64.png</big-icon>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <services>
+      <service id="JMXBrowserService" destination="jmxBrowser" />
+    </services>
+  </swf-module>
+
+    <!--
+      - Registry Browser
+    -->
+    <swf-module>
+      <name>JNDI Registry Browser</name>
+      <description>Browse JNDI entries.</description>
+      <file>registry.swf</file>
+      <small-icon>resources/icons/easybeansRegistry16.png</small-icon>
+      <big-icon>resources/icons/easybeansRegistry64.png</big-icon>
+      <load-maximized>false</load-maximized>
+      <load-on-startup>false</load-on-startup>
+      <prompt-before-close>never</prompt-before-close>
+      <resizable>true</resizable>
+      <maximizable>true</maximizable>
+      <services>
+        <service id="RegistryService" destination="registryBrowser" />
+      </services>
+    </swf-module>
+
+    <!--
+      - Connection Leak detector
+    -->
+
+  <swf-module>
+    <name>JDBC Connection Leaks</name>
+    <description>Displays data about JDBC Connection Leaks.</description>
+    <file>jdbcconnections.swf</file>
+    <small-icon>resources/icons/jdbconnections16.png</small-icon>
+    <big-icon>resources/icons/jdbconnections64.png</big-icon>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <services>
+      <service id="jdbcConnectionsService" destination="jdbcConnections" />
+    </services>
+  </swf-module>
+
+  <!--
+    - ClassLoader module
+  -->
+  <swf-module>
+    <name>ClassLoader Monitoring</name>
+    <description>Monitoring of classloaders with some actions.</description>
+    <file>classloader.swf</file>
+    <small-icon>resources/icons/classloader16.png</small-icon>
+    <big-icon>resources/icons/classloader64.png</big-icon>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <services>
+      <service id="classLoaderService" destination="classLoaderService" />
+    </services>
+  </swf-module>
+
+  <swf-module>
+    <name>Audit</name>
+    <description>Audit System of JOnAS</description>
+    <file>audit.swf</file>
+    <small-icon>resources/icons/audit16.png</small-icon>
+    <big-icon>resources/icons/audit64.png</big-icon>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <services>
+      <service id="auditService" destination="auditService" />
+    </services>
+  </swf-module>
+
+  <swf-module>
+    <name>Web Services Console</name>
+    <description>Web Services Console of JOnAS to easily test reachable Web Services</description>
+    <file>webservices-console.swf</file>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <services>
+      <service id="webServicesConsole" destination="webServicesConsole"/>
+    </services>
+  </swf-module>
+
+  <swf-module>
+    <name>OSGi Console</name>
+    <description>OSGi Console of JOnAS</description>
+    <file>osgiconsole.swf</file>
+    <small-icon>resources/icons/osgi16.png</small-icon>
+    <big-icon>resources/icons/osgi64.png</big-icon>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <services>
+      <service id="bundleService" destination="bundleService" />
+      <service id="obrService" destination="obrService" />
+      <service id="serviceService" destination="serviceService" />
+      <service id="shellService" destination="shellService" />
+    </services>
+  </swf-module>
+
+  <swf-module>
+    <name>JOnAS Builder</name>
+    <description>Builder of All-in-One JAR file</description>
+    <file>builder.swf</file>
+<!-- Icons to design
+    <small-icon>resources/icons/osgi16.png</small-icon>
+    <big-icon>resources/icons/osgi64.png</big-icon>
+-->
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <services>
+      <service id="builderService" destination="builderService" />
+    </services>
+  </swf-module>
+
+  <!--
+       - Links
+       -->
+  <iframe-module>
+    <name>JOnAS Web Site</name>
+    <description>JOnAS Web Site</description>
+    <url>http://jonas.ow2.org</url>
+    <small-icon>resources/icons/jonasAdmin16.png</small-icon>
+    <big-icon>resources/icons/jonasAdmin64.png</big-icon>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <show-open-in-browser-button>true</show-open-in-browser-button>
+    <show-history-navigation-buttons>true</show-history-navigation-buttons>
+  </iframe-module>
+
+
+
+  <!--
+       - Documentation folder
+       -->
+  <folder>
+    <name>Documentation</name>
+    <description>JOnAS Documentation</description>
+    <small-icon>resources/icons/jonasAdmin16.png</small-icon>
+    <big-icon>resources/icons/jonasAdmin64.png</big-icon>
+    <load-maximized>false</load-maximized>
+    <load-on-startup>false</load-on-startup>
+    <prompt-before-close>never</prompt-before-close>
+    <resizable>true</resizable>
+    <maximizable>true</maximizable>
+    <modules>
+      <iframe-module>
+        <name>Online Documentation</name>
+        <description>JOnAS Online Documentation Site</description>
+        <url>http://jonas.ow2.org/JONAS_5_1_1/doc/doc-en/html/index.html
+          </url>
+        <small-icon>resources/icons/jonasAdmin16.png</small-icon>
+        <big-icon>resources/icons/jonasAdmin64.png</big-icon>
+        <load-maximized>false</load-maximized>
+        <load-on-startup>false</load-on-startup>
+        <prompt-before-close>never</prompt-before-close>
+        <resizable>true</resizable>
+        <maximizable>true</maximizable>
+        <show-open-in-browser-button>true</show-open-in-browser-button>
+        <show-history-navigation-buttons>true</show-history-navigation-buttons>
+      </iframe-module>
+
+      <iframe-module>
+        <name>JOnAS JavaDoc</name>
+        <description>JOnAS Online JavaDoc Site</description>
+        <url>http://jonas.ow2.org/JONAS_5_1_1/apidocs/index.html</url>
+        <small-icon>resources/icons/jonasAdmin16.png</small-icon>
+        <big-icon>resources/icons/jonasAdmin64.png</big-icon>
+        <load-maximized>false</load-maximized>
+        <load-on-startup>false</load-on-startup>
+        <prompt-before-close>never</prompt-before-close>
+        <resizable>true</resizable>
+        <maximizable>true</maximizable>
+        <show-open-in-browser-button>true</show-open-in-browser-button>
+        <show-history-navigation-buttons>true</show-history-navigation-buttons>
+      </iframe-module>
+    </modules>
+  </folder>
+
+  </modules>
+
+</kerneos-config>

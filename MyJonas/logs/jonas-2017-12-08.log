@@ -1,0 +1,619 @@
+2017-12-08 14:05:43,907 : INFO : Thread-2 : NameServiceManager.startNonStartedNS :    Name service for jrmp is started on port ' 1099'.
+2017-12-08 14:05:43,911 : INFO : Thread-2 : CarolRegistryService.__M_doStart :    Carol Registry Service started
+2017-12-08 14:05:44,068 : INFO : Thread-2 : JOnASJMXService$2.execute :    JMX security is disabled
+2017-12-08 14:05:44,069 : INFO : Thread-2 : JOnASJMXService.__M_doStart :    JMX Service started using connector(s)[service:jmx:rmi://localhost/jndi/rmi://localhost:1099/jrmpconnector_jonas]
+2017-12-08 14:05:44,142 : INFO : Thread-2 : PolicyProvider.init :    Using JOnAS PolicyConfigurationFactory provider and JOnAS Policy provider
+2017-12-08 14:05:44,293 : INFO : Thread-2 : JonasSecurityServiceImpl.__M_doStart :    Security Service started
+2017-12-08 14:05:44,454 : INFO : Thread-2 : EndpointCollector.__M_doStart :    Endpoint Collector started.
+2017-12-08 14:05:44,693 : INFO : Thread-2 : J2EEServer.__M_setStarting :    JVM used is 1.7.0_03 version of Java HotSpot(TM) Server VM-22.1-b02/Oracle Corporation vendor on Linux 3.16.0-4-amd64/i386 OS.
+2017-12-08 14:05:44,694 : INFO : Thread-2 : J2EEServer.__M_info :    JOnAS AS v5.3.0 named 'jonas' STARTING
+2017-12-08 14:05:44,939 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.workcleaner.internal.JOnASWorkCleanerService) : JOnASWorkCleanerService.__M_doStart :    WorkCleaner Service started.
+2017-12-08 14:05:45,077 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.tm.jotm.JOTMTransactionService) : TransactionRecoveryImpl.<init> :    JOTM properties file= /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/conf/jotm.properties
+2017-12-08 14:05:45,079 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.tm.jotm.JOTMTransactionService) : Current.setDefaultRecovery :    Jotm Recovery= false
+2017-12-08 14:05:45,142 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.tm.jotm.JOTMTransactionService) : JOTMTransactionService.__M_doStart :    TransactionService started, default timeout= 60
+2017-12-08 14:05:45,188 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.db.h2.H2DBServiceImpl.b40e3a0c-3eaa-42a2-8309-6ed153e4decf) : H2DBServiceImpl.__M_doStart :    Starting H2 Server '1.3.164' on port '9001'
+2017-12-08 14:05:45,360 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.db.h2.H2DBServiceImpl.b40e3a0c-3eaa-42a2-8309-6ed153e4decf) : H2DBServiceImpl.__M_doStart :    Dropping and adding user 'jonas' with password 'jonas'.
+2017-12-08 14:05:45,470 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.workmanager.internal.JOnASWorkManagerService.da20d230-6d32-4aa5-862d-c4294d3db454) : JOnASWorkManagerService.__M_doStart :    WorkManager Service started.
+2017-12-08 14:05:45,616 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : RARDeployer.doDeploy :    Deploying jonas-jca-jdbc-cp-5.3.0.rar
+2017-12-08 14:05:45,882 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : Rar.processRar :    jonas-jca-jdbc-cp-5.3.0.rar available
+2017-12-08 14:05:45,898 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : RARDeployer.doDeploy :    Deploying jonas-jca-jdbc-ds-5.3.0.rar
+2017-12-08 14:05:45,962 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : Rar.processRar :    jonas-jca-jdbc-ds-5.3.0.rar available
+2017-12-08 14:05:45,979 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : RARDeployer.doDeploy :    Deploying jonas-jca-jdbc-dm-5.3.0.rar
+2017-12-08 14:05:46,025 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : Rar.processRar :    jonas-jca-jdbc-dm-5.3.0.rar available
+2017-12-08 14:05:46,038 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : RARDeployer.doDeploy :    Deploying jonas-jca-jdbc-xa-5.3.0.rar
+2017-12-08 14:05:46,088 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : Rar.processRar :    jonas-jca-jdbc-xa-5.3.0.rar available
+2017-12-08 14:05:46,089 : INFO : CM Configuration Updater (Update: pid=org.ow2.jonas.resource.internal.JOnASResourceService.bf28fc29-e9e0-4e14-88b7-46f29d3d5fed) : JOnASResourceService.__M_doStart :    Resource Service started
+2017-12-08 14:05:46,158 : INFO : Thread-2 : JNDIInterceptorsComponent.__M_start :    JNDI Interceptors component started
+2017-12-08 14:05:46,371 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.ejb.easybeans.EasyBeansService) : SchedulerSignalerImpl.<init> :    Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2017-12-08 14:05:46,374 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.ejb.easybeans.EasyBeansService) : EventComponent.start :    started.
+2017-12-08 14:05:46,380 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.ejb.easybeans.EasyBeansService) : StatisticComponent.start :    Statistics component started with factories: [org.ow2.easybeans.statistic.MeanCallTimeStatisticFactory, org.ow2.easybeans.statistic.CallCountStatisticFactory, org.ow2.easybeans.statistic.TotalCallTimeStatisticFactory]
+2017-12-08 14:05:46,380 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.ejb.easybeans.EasyBeansService) : ComponentManager.startComponents :    [ Component(s) started : Quartz Event Carol RemoteJNDIResolver Jmx Statistic ]
+2017-12-08 14:05:46,393 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.ejb.easybeans.EasyBeansService) : Embedded.start :    Démarrage de EasyBeans '2.0.0' effectué en '87' ms.
+2017-12-08 14:05:47,749 : INFO : Thread-2 : InstrumentationManagerImpl.registerMBeanWithServer :    registering MBean org.apache.cxf:bus.id=cxf27405001,WorkQueueManager=Bus.WorkQueueManager,type=WorkQueues,name=default,instance.id=15131384: org.apache.cxf.bus.managers.WorkQueueImplMBeanWrapper@3f1fd6
+2017-12-08 14:05:47,752 : INFO : Thread-2 : InstrumentationManagerImpl.registerMBeanWithServer :    registering MBean org.apache.cxf:bus.id=cxf27405001,WorkQueueManager=Bus.WorkQueueManager,type=WorkQueues,name=default,instance.id=15131384: javax.management.modelmbean.RequiredModelMBean@1b4e501
+2017-12-08 14:05:47,756 : INFO : Thread-2 : CXFService.__M_doStart :    Apache CXF 2.7.4 started
+2017-12-08 14:05:48,474 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.web.tomcat7.Tomcat7Service) : StandardService.startInternal :    Starting service jonas
+2017-12-08 14:05:48,476 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.web.tomcat7.Tomcat7Service) : StandardEngine.startInternal :    Starting Servlet Engine: Apache Tomcat/7.0.39
+2017-12-08 14:05:48,701 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.web.tomcat7.Tomcat7Service) : WebappLoader.startInternal :    Dual registration of jndi stream handler: factory already defined
+2017-12-08 14:05:49,306 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.ear.internal.JOnASEARService) : JOnASEARService.__M_doStart :    EAR Service started
+2017-12-08 14:05:49,589 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.deployablemonitor.DeployableMonitorService) : DeployableMonitorService.__M_doStart :    Use the deploy directories '[]', development mode is 'true'
+2017-12-08 14:05:50,922 : INFO : Thread-12 : DeployableMonitor.detectNewArchives :    Deployables to deploy at startup: [[[DatasourceDeployable:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jdbc-ds.xml], [ConfigAdminDeployable:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/joramAdminConfig.xml], [ConfigAdminDeployable:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/joramAdminUserConfig.xml], [ConfigAdminDeployable:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/tomcat7-http-connector.xml], [DeploymentPlan:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jms-joram-client-plan.xml], [DeploymentPlan:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jms-joram-server-plan.xml], [DeploymentPlan:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-admin-plan.xml], [DeploymentPlan:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-ctxroot-plan.xml], [DeploymentPlan:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-doc-en-plan.xml], [DeploymentPlan:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jonas-jca-scout-plan.xml], [DeploymentPlan:/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/mejb-plan.xml]]]
+2017-12-08 14:05:50,946 : INFO : Thread-12 : DatasourceDeployer.deployDatasource :    Deploying datasource DatasourceDeployable[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/jdbc-ds.xml]
+2017-12-08 14:05:50,988 : INFO : Thread-12 : DatasourceDeployer.deployDatasource :    Generate RAR /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-jca-jdbc-dm/5.3.0/jonas-jca-jdbc-dm-5.3.0.rar -> /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/deployer/datasources/jonas/ds-jdbc_1-1060784111212017368.rar
+2017-12-08 14:05:51,058 : INFO : Thread-12 : RARDeployer.doDeploy :    Deploying ds-jdbc_1-1060784111212017368.rar
+2017-12-08 14:05:51,124 : INFO : Thread-12 : Rar.processRar :    ds-jdbc_1-1060784111212017368.rar available
+2017-12-08 14:05:51,128 : INFO : Thread-12 : DatasourceDeployer.deployDatasource :    Generate RAR /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-jca-jdbc-dm/5.3.0/jonas-jca-jdbc-dm-5.3.0.rar -> /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/deployer/datasources/jonas/ds-jdbc_xa1-3940201690630298792.rar
+2017-12-08 14:05:51,167 : INFO : Thread-12 : RARDeployer.doDeploy :    Deploying ds-jdbc_xa1-3940201690630298792.rar
+2017-12-08 14:05:51,202 : INFO : Thread-12 : Rar.processRar :    ds-jdbc_xa1-3940201690630298792.rar available
+2017-12-08 14:05:51,206 : INFO : Thread-12 : DatasourceDeployer.deployDatasource :    Generate RAR /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-jca-jdbc-dm/5.3.0/jonas-jca-jdbc-dm-5.3.0.rar -> /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/deployer/datasources/jonas/ds-jdbc_xa2-5385815384296815674.rar
+2017-12-08 14:05:51,233 : INFO : Thread-12 : RARDeployer.doDeploy :    Deploying ds-jdbc_xa2-5385815384296815674.rar
+2017-12-08 14:05:51,259 : INFO : Thread-12 : Rar.processRar :    ds-jdbc_xa2-5385815384296815674.rar available
+2017-12-08 14:05:51,325 : INFO : Thread-12 : ConfigAdminDeployer.__M_deploy :    Deployed 4 Configuration(s) [4 bound, 0 unbound, 0 failed] for 'joramAdminConfig.xml'
+2017-12-08 14:05:51,395 : INFO : Thread-12 : ConfigAdminDeployer.__M_deploy :    Deployed 7 Configuration(s) [7 bound, 0 unbound, 0 failed] for 'joramAdminUserConfig.xml'
+2017-12-08 14:05:51,407 : INFO : Thread-12 : ConfigAdminDeployer.__M_deploy :    Deployed 1 Configuration(s) [1 bound, 0 unbound, 0 failed] for 'tomcat7-http-connector.xml'
+2017-12-08 14:05:51,467 : INFO : CM Configuration Updater (Update: pid=Tomcat7HttpConnector.856fee2b-c926-4592-a711-7abe876a567e) : AbstractProtocol.init :    Initializing ProtocolHandler ["http-bio-8992"]
+2017-12-08 14:05:51,473 : INFO : CM Configuration Updater (Update: pid=Tomcat7HttpConnector.856fee2b-c926-4592-a711-7abe876a567e) : AbstractProtocol.start :    Starting ProtocolHandler ["http-bio-8992"]
+2017-12-08 14:05:51,485 : INFO : CM Configuration Updater (Update: pid=Tomcat7HttpConnector.856fee2b-c926-4592-a711-7abe876a567e) : BaseWebContainerService.setDefaultHttpPort :    OnDemand Feature enabled: Listening on '9000' port (internal:8992).
+2017-12-08 14:05:51,485 : INFO : CM Configuration Updater (Update: pid=Tomcat7HttpConnector.856fee2b-c926-4592-a711-7abe876a567e) : Tomcat7HttpConnector.__M_start :    Tomcat HTTP connector /9000 created - enableLookups=false
+2017-12-08 14:05:51,698 : WARNING : Thread-12 : OSGiDeployer.installBundle :    Cannot deploy a bundle that is already installed OSGiDeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-services-api/5.3.0/jonas-services-api-5.3.0.jar]. 
+2017-12-08 14:05:51,715 : WARNING : Thread-12 : OSGiDeployer.installBundle :    Cannot deploy a bundle that is already installed OSGiDeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/util/log/log-bridge-jul/2.0.0/log-bridge-jul-2.0.0.jar]. 
+2017-12-08 14:05:51,982 : INFO : Thread-12 : RARDeployer.doDeploy :    Deploying joram-jca-jonas-5.8.0.rar
+2017-12-08 14:05:52,932 : INFO : Thread-12 : Rar.processRar :    joram-jca-jonas-5.8.0.rar available
+2017-12-08 14:05:53,058 : INFO : Thread-12 : WARDeployer.doDeploy :    Deploying jonas-admin-core-5.3.0.war
+2017-12-08 14:05:53,065 : INFO : Thread-12 : HttpOnDemandProxy.addWar :    The war file '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-admin-core/5.3.0/jonas-admin-core-5.3.0.war' is available on demand at the context /jonasAdmin
+2017-12-08 14:05:53,076 : INFO : Thread-12 : WARDeployer.doDeploy :    Deploying jonas-ctxroot-core-5.3.0.war
+2017-12-08 14:05:53,079 : INFO : Thread-12 : HttpOnDemandProxy.addWar :    The war file '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/jonas-ctxroot-core/5.3.0/jonas-ctxroot-core-5.3.0.war' is available on demand at the context /
+2017-12-08 14:05:53,096 : INFO : Thread-12 : WARDeployer.doDeploy :    Deploying jonas-doc-en-5.3.0-M7.war
+2017-12-08 14:05:53,100 : INFO : Thread-12 : HttpOnDemandProxy.addWar :    The war file '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/jonas-full-5.3.0/repositories/maven2-internal/org/ow2/jonas/documentation/jonas-doc-en/5.3.0-M7/jonas-doc-en-5.3.0-M7.war' is available on demand at the context /jonas-doc-en
+2017-12-08 14:05:53,181 : INFO : Thread-12 : RARDeployer.doDeploy :    Deploying jonas-jca-scout-rar-5.3.0.rar
+2017-12-08 14:05:53,336 : INFO : Thread-12 : JAXRResourceAdapter.start :    Starting Scout ResourceAdapter
+2017-12-08 14:05:53,351 : INFO : Thread-12 : Rar.processRar :    jonas-jca-scout-rar-5.3.0.rar available
+2017-12-08 14:05:53,430 : INFO : Thread-12 : EasyBeansDeployer.doDeploy :    Deploying 'mejb-core-5.3.0.jar'...
+2017-12-08 14:05:53,649 : INFO : Thread-12 : Enhancer.enhance :    Beans found are [MEJB]
+2017-12-08 14:05:53,905 : INFO : Thread-12 : JDK14LoggerAdapter.info :    created ORBSingleton
+2017-12-08 14:05:54,041 : INFO : Thread-12 : JContainer3.start :    Container '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/ejb3s/jonas/mejb-core-5.3.0_2013.10.01-13.23.00.jar' [1 SLSB, 0 SFSB, 0 Sing, 0 MDB, 0 MB] started in 584 ms
+2017-12-08 14:05:54,044 : INFO : Thread-12 : EasyBeansDeployer.doDeploy :    'mejb-core-5.3.0.jar' EJB3 Deployable is now deployed
+2017-12-08 14:05:54,192 : INFO : Thread-12 : J2EEServer.__M_info :    JOnAS AS v5.3.0 named 'jonas' RUNNING
+2017-12-08 14:06:47,045 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-0 : BaseWebContainerService.registerWar :    War jonas-ctxroot-core-5.3.0.war available at the context /.
+2017-12-08 14:07:59,786 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : TaglibUriRule.body :    TLD skipped. URI: http://struts.apache.org/tags-html is already defined
+2017-12-08 14:07:59,790 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : TaglibUriRule.body :    TLD skipped. URI: http://struts.apache.org/tags-bean is already defined
+2017-12-08 14:07:59,791 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : TaglibUriRule.body :    TLD skipped. URI: http://struts.apache.org/tags-logic is already defined
+2017-12-08 14:07:59,792 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : TaglibUriRule.body :    TLD skipped. URI: http://jakarta.apache.org/struts/tags-template-1.0.2 is already defined
+2017-12-08 14:07:59,842 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : TaglibUriRule.body :    TLD skipped. URI: http://struts.apache.org/tags-bean is already defined
+2017-12-08 14:07:59,853 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : TaglibUriRule.body :    TLD skipped. URI: http://struts.apache.org/tags-html is already defined
+2017-12-08 14:07:59,864 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : TaglibUriRule.body :    TLD skipped. URI: http://struts.apache.org/tags-logic is already defined
+2017-12-08 14:08:00,851 : INFO : org.ow2.jonas.web.base.proxy.HttpSocketHandler-19 : BaseWebContainerService.registerWar :    War jonas-admin-core-5.3.0.war available at the context /jonasAdmin.
+2017-12-08 14:13:28,808 : INFO : http-bio-8992-exec-1 : AuditService.getNewRegistrations :    Start listening audit notifications
+2017-12-08 14:13:45,659 : INFO : http-bio-8992-exec-1 : AuditService.unregister :    Stop listening audit notifications
+2017-12-08 14:14:52,176 : INFO : http-bio-8992-exec-9 : AuditService.getNewRegistrations :    Start listening audit notifications
+2017-12-08 14:14:52,179 : INFO : http-bio-8992-exec-9 : AuditService.getNewRegistrations :    Start listening audit notifications
+2017-12-08 14:41:10,502 : INFO : http-bio-8992-exec-2 : J2EEServer.__M_sendFile :    sendFile return directoryUploadedFile= /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar
+2017-12-08 14:41:29,876 : INFO : CM Configuration Updater (ManagedServiceFactory Update: factoryPid=org.ow2.jonas.ejb2.internal.JOnASEJBService) : JOnASEJBService.__M_doStart :    EJB 2.1 Service started
+2017-12-08 14:41:29,916 : INFO : http-bio-8992-exec-7 : EJB21Deployer.doDeploy :    Deploying helloWorld.jar
+2017-12-08 14:41:29,926 : INFO : http-bio-8992-exec-7 : JOnASEJBService.__M_checkGenIC :    JOnAS version was not found in the '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/ejb2s/jonas/helloWorld_2017.12.08-14.41.10.jar/helloWorld.jar' manifest file. Auto-generating container classes...
+2017-12-08 14:41:30,134 : INFO : http-bio-8992-exec-7 : GenIC.<init> :    GenIC for JOnAS 5.3.0: 'HelloWorld' generation ...
+2017-12-08 14:41:30,163 : INFO : http-bio-8992-exec-7 : GenIC.<init> :    Sources classes successfully generated for 'HelloWorld'
+2017-12-08 14:41:30,181 : INFO : http-bio-8992-exec-7 : GenIC.compilClasses :    Compiling Interposition classes ...
+2017-12-08 14:41:30,503 : INFO : http-bio-8992-exec-7 : GenIC.compilClasses :    Sources classes successfully compiled with Eclipse compiler.
+2017-12-08 14:41:30,510 : INFO : http-bio-8992-exec-7 : GenIC.compilClasses :    Running fastrmic
+2017-12-08 14:41:30,680 : INFO : http-bio-8992-exec-7 : GenIC.compilClasses :    Stubs and Skels successfully generated with fastrmic for rmi/jrmp
+2017-12-08 14:41:31,042 : INFO : http-bio-8992-exec-7 : JContainer.addBean :    HelloWorld available
+2017-12-08 14:48:04,876 : INFO : http-bio-8992-exec-8 : AuditService.unregister :    Stop listening audit notifications
+2017-12-08 14:48:04,878 : INFO : http-bio-8992-exec-8 : AuditService.unregister :    Stop listening audit notifications
+2017-12-08 15:04:52,046 : SEVERE : http-bio-8992-exec-7 : BaseModelMBean.invoke :    Exception invoking method sendFile
+java.lang.Exception: File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy' already exists on the server.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_sendFile(J2EEServer.java:1850)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.sendFile(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction.executeAction(ApplyUploadAction.java:121)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:04:58,315 : SEVERE : http-bio-8992-exec-4 : BaseModelMBean.invoke :    Exception invoking method sendFile
+java.lang.Exception: File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar' already exists on the server.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_sendFile(J2EEServer.java:1850)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.sendFile(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction.executeAction(ApplyUploadAction.java:121)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:05:04,392 : INFO : http-bio-8992-exec-8 : EJB21Deployer.doUndeploy :    Undeploying helloWorld.jar
+2017-12-08 15:05:04,395 : INFO : http-bio-8992-exec-8 : JContainer.remove :    helloWorld: HelloWorld no longer available
+2017-12-08 15:05:05,040 : INFO : Thread-12 : EJB21Deployer.doDeploy :    Deploying helloWorld.jar
+2017-12-08 15:05:05,208 : SEVERE : Thread-12 : DeployableMonitor.deploy :    DeployerException : Cannot deploy the deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]'
+org.ow2.util.ee.deploy.api.deployer.DeployerException: Cannot deploy the EJB 2.1 deployable 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]'.
+	at org.ow2.jonas.ejb2.internal.EJB21Deployer.doDeploy(EJB21Deployer.java:81)
+	at org.ow2.util.ee.deploy.impl.deployer.AbsDeployer$1.execute(AbsDeployer.java:85)
+	at org.ow2.util.ee.deploy.impl.deployer.AbsDeployer$1.execute(AbsDeployer.java:83)
+	at org.ow2.util.execution.helper.RunnableHelper.execute(RunnableHelper.java:69)
+	at org.ow2.util.ee.deploy.impl.deployer.AbsDeployer.deploy(AbsDeployer.java:83)
+	at org.ow2.util.ee.deploy.impl.deployer.AbsDeployerList.deploy(AbsDeployerList.java:44)
+	at org.ow2.util.ee.deploy.impl.deployer.AbsDeployer.doDeploy(AbsDeployer.java:225)
+	at org.ow2.util.ee.deploy.impl.deployer.AbsDeployer.deploy(AbsDeployer.java:205)
+	at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deployOneTypeList(DeployerManager.java:231)
+	at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.doDeploymentOperation(DeployerManager.java:198)
+	at org.ow2.util.ee.deploy.impl.deployer.DeployerManager.deploy(DeployerManager.java:212)
+	at org.ow2.jonas.deployablemonitor.DeployableMonitor.deploy(DeployableMonitor.java:644)
+	at org.ow2.jonas.deployablemonitor.DeployableMonitor.detectNewArchives(DeployableMonitor.java:557)
+	at org.ow2.jonas.deployablemonitor.DeployableMonitor.checkNewArchives(DeployableMonitor.java:380)
+	at org.ow2.jonas.deployablemonitor.DeployableMonitor.run(DeployableMonitor.java:260)
+Caused by: java.lang.Exception: Cannot create Container
+	at org.ow2.jonas.ejb2.internal.JOnASEJBService.__M_createContainer(JOnASEJBService.java:1230)
+	at org.ow2.jonas.ejb2.internal.JOnASEJBService.createContainer(JOnASEJBService.java)
+	at org.ow2.jonas.ejb2.internal.EJB21Deployer.doDeploy(EJB21Deployer.java:79)
+	... 14 more
+Caused by: org.ow2.util.file.FileUtilsException: Cannot get File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar'.
+	at org.ow2.util.file.FileUtils.lastModifiedFileName(FileUtils.java:754)
+	at org.ow2.jonas.ejb2.internal.JOnASEJBService.__M_createContainer(JOnASEJBService.java:653)
+	at org.ow2.jonas.ejb2.internal.JOnASEJBService.createContainer(JOnASEJBService.java)
+	at org.ow2.jonas.ejb2.internal.JOnASEJBService.__M_createContainer(JOnASEJBService.java:1228)
+	... 16 more
+2017-12-08 15:05:09,755 : INFO : http-bio-8992-exec-2 : J2EEServer.__M_sendFile :    sendFile return directoryUploadedFile= /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar
+2017-12-08 15:05:17,690 : INFO : http-bio-8992-exec-6 : EJB21Deployer.doDeploy :    Deploying helloWorld.jar
+2017-12-08 15:05:17,699 : INFO : http-bio-8992-exec-6 : JOnASEJBService.__M_checkGenIC :    JOnAS version was not found in the '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/ejb2s/jonas/helloWorld_2017.12.08-15.05.09.jar/helloWorld.jar' manifest file. Auto-generating container classes...
+2017-12-08 15:05:17,759 : INFO : http-bio-8992-exec-6 : GenIC.<init> :    GenIC for JOnAS 5.3.0: 'HelloWorld' generation ...
+2017-12-08 15:05:17,778 : INFO : http-bio-8992-exec-6 : GenIC.<init> :    Sources classes successfully generated for 'HelloWorld'
+2017-12-08 15:05:17,779 : INFO : http-bio-8992-exec-6 : GenIC.compilClasses :    Compiling Interposition classes ...
+2017-12-08 15:05:17,829 : INFO : http-bio-8992-exec-6 : GenIC.compilClasses :    Sources classes successfully compiled with Eclipse compiler.
+2017-12-08 15:05:17,831 : INFO : http-bio-8992-exec-6 : GenIC.compilClasses :    Running fastrmic
+2017-12-08 15:05:18,061 : INFO : http-bio-8992-exec-6 : GenIC.compilClasses :    Stubs and Skels successfully generated with fastrmic for rmi/jrmp
+2017-12-08 15:05:18,271 : INFO : http-bio-8992-exec-6 : JContainer.addBean :    HelloWorld available
+2017-12-08 15:07:20,442 : INFO : http-bio-8992-exec-5 : EJB21Deployer.doUndeploy :    Undeploying helloWorld.jar
+2017-12-08 15:07:20,444 : INFO : http-bio-8992-exec-5 : JContainer.remove :    helloWorld: HelloWorld no longer available
+2017-12-08 15:07:22,838 : SEVERE : http-bio-8992-exec-7 : BaseModelMBean.invoke :    Exception invoking method sendFile
+java.lang.Exception: File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy' already exists on the server.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_sendFile(J2EEServer.java:1850)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.sendFile(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction.executeAction(ApplyUploadAction.java:121)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:07:26,590 : INFO : http-bio-8992-exec-2 : J2EEServer.__M_sendFile :    sendFile return directoryUploadedFile= /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar
+2017-12-08 15:07:31,189 : INFO : Thread-12 : EJB21Deployer.doDeploy :    Deploying helloWorld.jar
+2017-12-08 15:07:31,198 : INFO : Thread-12 : JOnASEJBService.__M_checkGenIC :    JOnAS version was not found in the '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/ejb2s/jonas/helloWorld_2017.12.08-15.07.26.jar/helloWorld.jar' manifest file. Auto-generating container classes...
+2017-12-08 15:07:31,293 : INFO : Thread-12 : GenIC.<init> :    GenIC for JOnAS 5.3.0: 'HelloWorld' generation ...
+2017-12-08 15:07:31,311 : INFO : Thread-12 : GenIC.<init> :    Sources classes successfully generated for 'HelloWorld'
+2017-12-08 15:07:31,312 : INFO : Thread-12 : GenIC.compilClasses :    Compiling Interposition classes ...
+2017-12-08 15:07:31,362 : INFO : Thread-12 : GenIC.compilClasses :    Sources classes successfully compiled with Eclipse compiler.
+2017-12-08 15:07:31,364 : INFO : Thread-12 : GenIC.compilClasses :    Running fastrmic
+2017-12-08 15:07:31,593 : INFO : Thread-12 : GenIC.compilClasses :    Stubs and Skels successfully generated with fastrmic for rmi/jrmp
+2017-12-08 15:07:31,850 : INFO : Thread-12 : JContainer.addBean :    HelloWorld available
+2017-12-08 15:07:32,039 : SEVERE : http-bio-8992-exec-4 : BaseModelMBean.invoke :    Exception invoking method deploy
+java.lang.RuntimeException: Archive 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]'  is already deployed.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_deploy(J2EEServer.java:1141)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.deploy(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.lib.management.extensions.server.ServerManagement.deploy(ServerManagement.java:162)
+	at org.ow2.jonas.lib.management.extensions.manager.ManagementEntryPoint.deploy(ManagementEntryPoint.java:935)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.BaseDeployAction.deployModule(BaseDeployAction.java:841)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.BaseDeployAction.deploy(BaseDeployAction.java:459)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyDeployConfirmAction.executeAction(ApplyDeployConfirmAction.java:96)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:16:43,347 : SEVERE : http-bio-8992-exec-5 : BaseModelMBean.invoke :    Exception invoking method sendFile
+java.lang.Exception: File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar' already exists on the server.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_sendFile(J2EEServer.java:1850)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.sendFile(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction.executeAction(ApplyUploadAction.java:121)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:17:13,577 : INFO : http-bio-8992-exec-2 : EJB21Deployer.doUndeploy :    Undeploying helloWorld.jar
+2017-12-08 15:17:13,580 : INFO : http-bio-8992-exec-2 : JContainer.remove :    helloWorld: HelloWorld no longer available
+2017-12-08 15:17:29,204 : INFO : http-bio-8992-exec-8 : J2EEServer.__M_sendFile :    sendFile return directoryUploadedFile= /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar
+2017-12-08 15:17:32,827 : INFO : Thread-12 : EJB21Deployer.doDeploy :    Deploying helloWorld.jar
+2017-12-08 15:17:32,835 : INFO : Thread-12 : JOnASEJBService.__M_checkGenIC :    JOnAS version was not found in the '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/ejb2s/jonas/helloWorld_2017.12.08-15.17.29.jar/helloWorld.jar' manifest file. Auto-generating container classes...
+2017-12-08 15:17:32,907 : INFO : Thread-12 : GenIC.<init> :    GenIC for JOnAS 5.3.0: 'HelloWorld' generation ...
+2017-12-08 15:17:32,924 : INFO : Thread-12 : GenIC.<init> :    Sources classes successfully generated for 'HelloWorld'
+2017-12-08 15:17:32,925 : INFO : Thread-12 : GenIC.compilClasses :    Compiling Interposition classes ...
+2017-12-08 15:17:32,977 : INFO : Thread-12 : GenIC.compilClasses :    Sources classes successfully compiled with Eclipse compiler.
+2017-12-08 15:17:32,978 : INFO : Thread-12 : GenIC.compilClasses :    Running fastrmic
+2017-12-08 15:17:33,150 : INFO : Thread-12 : GenIC.compilClasses :    Stubs and Skels successfully generated with fastrmic for rmi/jrmp
+2017-12-08 15:17:33,460 : INFO : Thread-12 : JContainer.addBean :    HelloWorld available
+2017-12-08 15:19:05,181 : SEVERE : http-bio-8992-exec-1 : BaseModelMBean.invoke :    Exception invoking method sendFile
+java.lang.Exception: File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy' already exists on the server.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_sendFile(J2EEServer.java:1850)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.sendFile(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction.executeAction(ApplyUploadAction.java:121)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:19:08,628 : SEVERE : http-bio-8992-exec-8 : BaseModelMBean.invoke :    Exception invoking method sendFile
+java.lang.Exception: File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar' already exists on the server.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_sendFile(J2EEServer.java:1850)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.sendFile(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction.executeAction(ApplyUploadAction.java:121)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:19:16,970 : SEVERE : http-bio-8992-exec-9 : BaseModelMBean.invoke :    Exception invoking method sendFile
+java.lang.Exception: File '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar' already exists on the server.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_sendFile(J2EEServer.java:1850)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.sendFile(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyUploadAction.executeAction(ApplyUploadAction.java:121)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)
+2017-12-08 15:19:26,112 : INFO : http-bio-8992-exec-1 : EJB21Deployer.doUndeploy :    Undeploying helloWorld.jar
+2017-12-08 15:19:26,114 : INFO : http-bio-8992-exec-1 : JContainer.remove :    helloWorld: HelloWorld no longer available
+2017-12-08 15:19:32,597 : INFO : http-bio-8992-exec-4 : J2EEServer.__M_sendFile :    sendFile return directoryUploadedFile= /home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar
+2017-12-08 15:19:33,841 : INFO : Thread-12 : EJB21Deployer.doDeploy :    Deploying helloWorld.jar
+2017-12-08 15:19:33,849 : INFO : Thread-12 : JOnASEJBService.__M_checkGenIC :    JOnAS version was not found in the '/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/work/ejb2s/jonas/helloWorld_2017.12.08-15.19.32.jar/helloWorld.jar' manifest file. Auto-generating container classes...
+2017-12-08 15:19:33,936 : INFO : Thread-12 : GenIC.<init> :    GenIC for JOnAS 5.3.0: 'HelloWorld' generation ...
+2017-12-08 15:19:33,959 : INFO : Thread-12 : GenIC.<init> :    Sources classes successfully generated for 'HelloWorld'
+2017-12-08 15:19:33,959 : INFO : Thread-12 : GenIC.compilClasses :    Compiling Interposition classes ...
+2017-12-08 15:19:34,023 : INFO : Thread-12 : GenIC.compilClasses :    Sources classes successfully compiled with Eclipse compiler.
+2017-12-08 15:19:34,025 : INFO : Thread-12 : GenIC.compilClasses :    Running fastrmic
+2017-12-08 15:19:34,218 : INFO : Thread-12 : GenIC.compilClasses :    Stubs and Skels successfully generated with fastrmic for rmi/jrmp
+2017-12-08 15:19:34,464 : INFO : Thread-12 : JContainer.addBean :    HelloWorld available
+2017-12-08 15:19:37,677 : SEVERE : http-bio-8992-exec-2 : BaseModelMBean.invoke :    Exception invoking method deploy
+java.lang.RuntimeException: Archive 'EJB21DeployableImpl[archive=/home4/yv965015/VERON/M2/S1/BDED/TP/JONAS/MyJonas/deploy/helloWorld.jar]'  is already deployed.
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.__M_deploy(J2EEServer.java:1141)
+	at org.ow2.jonas.lib.jmbeans.J2EEServer.deploy(J2EEServer.java)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.commons.modeler.BaseModelMBean.invoke(BaseModelMBean.java:458)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:791)
+	at sun.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.ow2.jonas.jmx.internal.interceptor.MBeanServerDelegateInterceptor.invoke(MBeanServerDelegateInterceptor.java:65)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:124)
+	at org.ow2.jonas.jmx.internal.interceptor.InvocationHandlerImpl.invoke(InvocationHandlerImpl.java:85)
+	at $Proxy36.invoke(Unknown Source)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:513)
+	at org.ow2.jonas.lib.management.extensions.base.JonasManagementRepr.invoke(JonasManagementRepr.java:468)
+	at org.ow2.jonas.lib.management.extensions.server.ServerManagement.deploy(ServerManagement.java:162)
+	at org.ow2.jonas.lib.management.extensions.manager.ManagementEntryPoint.deploy(ManagementEntryPoint.java:935)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.BaseDeployAction.deployModule(BaseDeployAction.java:841)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.BaseDeployAction.deploy(BaseDeployAction.java:459)
+	at org.ow2.jonas.webapp.jonasadmin.deploy.ApplyDeployConfirmAction.executeAction(ApplyDeployConfirmAction.java:96)
+	at org.ow2.jonas.webapp.jonasadmin.JonasBaseAction.execute(JonasBaseAction.java:127)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:431)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:236)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:641)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+	at org.ow2.jonas.web.tomcat7.CheckOpenResourcesValve.invoke(CheckOpenResourcesValve.java:69)
+	at org.ow2.jonas.web.tomcat7.tx.TransactionValve.invoke(TransactionValve.java:89)
+	at org.ow2.jonas.web.tomcat7.ResetAuthenticationValve.invoke(ResetAuthenticationValve.java:95)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.ow2.jonas.web.tomcat7.versioning.VersioningValve.invoke(VersioningValve.java:105)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:722)

@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+         "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_2.dtd">
+
+<!--
+ * JOnAS: Java(TM) Open Application Server
+ * Copyright (C) 1999 Bull S.A.
+ * Contact: jonas-team@objectweb.org
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ * USA
+ *
+ * **************************************************************************
+ * $Id: sj.tld 22425 2012-05-04 16:45:46Z cazauxj $
+ * **************************************************************************
+-->
+
+<taglib>
+
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>sj</short-name>
+  <description>
+    JSP tag library containing custom GUI controls used in the
+    Jonas Administrative Application.
+  </description>
+
+  <!-- ========== Tabs Tag ===================================== -->
+
+  <tag>
+
+    <name>tabs</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.TabsTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Render a "tabs" object.
+      NOTE:  The valid nested content for this tag is "tab" and "panel" tags and from this library.
+    </description>
+
+    <attribute>
+      <name>width</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The width of panel tabs.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>height</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The height of panel tabs.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>widthTab</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The width of each tabs.
+        If it's not specified, the width label text is used.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>heightTab</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The height of each tabs.
+        If it's not specified, the height label text is used.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>widthSeparator</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The space width between each tabs.
+        By default, 3.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>heightSeparator</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The space height between tabs and panel.
+        By default, 1.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>marginPanel</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The margin of panel.
+        By default, 5.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>usingWhere</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Using a WhereAreYou instance in session to retreive some parameters.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>imagesDir</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The directory where are the images.
+        Used to find the separator image.
+      </description>
+    </attribute>
+
+  </tag>
+
+  <!-- ========== Tab Tag ===================================== -->
+
+  <tag>
+    <name>tab</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.TabTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+
+    <attribute>
+      <name>href</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The href element for the tab.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The forward element for the tab.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>forwardControl</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The forwardControl element to display the tab.
+        Note : it's necessary that the treeControl attribute of the parent tabs element exists
+          and the forwardControl's value is known in the "struts-config.xml" file.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>selected</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The selected tab.
+        If none selected tab, the first tab is displayed.
+        If many selected tabs, the first selected tab is displayed.
+      </description>
+    </attribute>
+
+    <attribute><name>anchor</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>linkName</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>name</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>page</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>paramId</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>paramName</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>paramProperty</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>paramScope</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>property</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>scope</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>target</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>transaction</name><required>false</required><rtexprvalue>true</rtexprvalue></attribute>
+
+ </tag>
+
+  <!-- ========== Panel Tag ===================================== -->
+
+  <tag>
+    <name>panel</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.PanelTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+  </tag>
+
+  <!-- ========== PanelSeparator Tag ===================================== -->
+
+  <tag>
+    <name>panelSeparator</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.PanelSeparatorTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+  </tag>
+
+  <!-- ========== XMLEditor Tag ===================================== -->
+
+  <tag>
+    <name>xmlEditor</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.XMLEditorTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+       Display a form that will allow the user to edit the contents of an
+       XML file.
+    </description>
+
+    <attribute>
+      <name>fileName</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+               The name of the archive from which the XML file is retrieved.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>mapping</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+               The mapping of ID to document node.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>pathName</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+               The path within the archive to the XML file.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>document</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>org.w3c.dom.Document</type>
+      <description>
+               The contents of the XML file.
+      </description>
+    </attribute>
+  </tag>
+
+
+  <!-- ========== TitleContent Tag ===================================== -->
+
+  <tag>
+
+    <name>titleContent</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.TitleContentTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Render a title.
+    </description>
+
+    <attribute>
+      <name>usingWhere</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Using a WhereAreYou instance in session to retreive some parameters.
+      </description>
+    </attribute>
+    <attribute>
+      <name>usingParent</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Display the parent node label.
+        NOTA : "usingWhere" attribute it's mandatory to use this option.
+      </description>
+    </attribute>
+    <attribute>
+      <name>tomThumb</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Display the Tom Thumb for the current node.
+        NOTA : "usingWhere" attribute it's mandatory to use this option.
+      </description>
+    </attribute>
+    <attribute>
+      <name>tomThumbIcons</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Display the icons associates in the each item of the Tom Thumb.
+        NOTA : "tomThumb" attribute it's mandatory to use this option.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>image</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The image to display.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>title</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The title to display.
+      </description>
+    </attribute>
+
+  </tag>
+
+  <!-- ========== Grid Table Tag ===================================== -->
+
+  <tag>
+    <name>grid</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.GridTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Simple HTML Tag "table" with possibility alternate style line
+    </description>
+    <attribute><name>globalRowStyleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>oddStyleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>evenStyleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>periodRow</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>border</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>cellSpacing</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>cellPadding</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== Grid Row Tag ===================================== -->
+
+  <tag>
+    <name>gridrow</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.GridRowTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+    <attribute><name>changeStyle</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== Grid Col Tag ===================================== -->
+
+  <tag>
+    <name>gridcol</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.GridColTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Idem Html Tag "td"
+    </description>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>nowrap</name><rtexprvalue>false</rtexprvalue></attribute>
+    <attribute><name>colspan</name><rtexprvalue>false</rtexprvalue></attribute>
+    <attribute><name>rowspan</name><rtexprvalue>false</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== Jonas Grid Tag ===================================== -->
+
+  <tag>
+    <name>jonasgrid</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Extends GridTag with default values :
+      - cellSpacing = "0"
+      - cellPadding = "2"
+      - width = "100%"
+    </description>
+    <attribute><name>globalRowStyleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>oddStyleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>evenStyleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>periodRow</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>border</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>cellSpacing</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>cellPadding</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== JonasGridRowTitle Tag ===================================== -->
+
+  <tag>
+    <name>jgRowTitle</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridRowTitleTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+    <attribute><name>level</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>changeStyle</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== JonasGridColTitle Tag ===================================== -->
+
+  <tag>
+    <name>jgColTitle</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridColTitleTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>nowrap</name><rtexprvalue>false</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== Jonas Grid Name Tag ===================================== -->
+
+  <tag>
+    <name>jgName</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridNameTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Idem Html Tag "td" with :
+      - align = "right"
+      - width = "19%"
+      - valign = "top"
+      and a new column to space.
+    </description>
+
+    <attribute><name>bold</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <tag>
+    <name>jonasgridname</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridNameTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Idem Html Tag "td" with :
+      - align = "right"
+      - width = "19%"
+      - valign = "top"
+      and a new column to space.
+    </description>
+
+    <attribute><name>bold</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== JonasGridNameTitle Tag ===================================== -->
+
+  <tag>
+    <name>jgNameTitle</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridNameTitleTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+
+    <attribute><name>bold</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== Jonas Grid Value Tag ===================================== -->
+  <tag>
+    <name>jgValue</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridValueTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Idem Html Tag "td" with :
+      - align = "left"
+      - width = "80%"
+    </description>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <tag>
+    <name>jonasgridvalue</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridValueTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Idem Html Tag "td" with :
+      - align = "left"
+      - width = "80%"
+    </description>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== JonasGridValueTitle Tag ===================================== -->
+
+  <tag>
+    <name>jgValueTitle</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasGridValueTitleTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+    </description>
+
+    <attribute><name>align</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>valign</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+
+    <attribute><name>onblur</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onchange</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>ondblclick</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onfocus</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeydown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeypress</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onkeyup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousedown</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmousemove</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseout</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseover</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>onmouseup</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>style</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>styleClass</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <!-- ========== Jonas Button Tag ===================================== -->
+
+  <tag>
+    <name>jonasbutton</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasButtonTag</tag-class>
+
+    <attribute>
+      <name>disabled</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>disabledName</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>disabledProperty</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>disabledValueEqual</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>disabledValueNotEqual</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>accesskey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>anchor</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+<attribute>
+<name>href</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>linkName</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>name</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onblur</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onclick</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>ondblclick</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onfocus</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onkeydown</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onkeypress</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onkeyup</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmousedown</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmousemove</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmouseout</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmouseover</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmouseup</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>page</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramId</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramName</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramProperty</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramScope</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>property</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>scope</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>style</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleClass</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleId</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>tabindex</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>target</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>transaction</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+</tag>
+
+  <!-- ========== JonasSubmitTag ===================================== -->
+
+  <tag>
+    <name>jgSubmit</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.JonasSubmitTag</tag-class>
+
+    <attribute>
+      <name>form</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>disabled</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>accesskey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>anchor</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+<attribute>
+<name>href</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>linkName</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>name</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onblur</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onclick</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>ondblclick</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onfocus</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onkeydown</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onkeypress</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onkeyup</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmousedown</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmousemove</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmouseout</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmouseover</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>onmouseup</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>page</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramId</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramName</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramProperty</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>paramScope</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>property</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>scope</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>style</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleClass</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleId</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>tabindex</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>target</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>title</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>transaction</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+</tag>
+
+  <!-- ========== XmlFile Tag ===================================== -->
+
+  <tag>
+    <name>xmlFile</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.XmlFileTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Render a Xml file.
+    </description>
+
+
+  </tag>
+
+  <!-- ========== Tree Control Tag ======================================== -->
+
+  <tag>
+
+    <name>tree</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.TreeControlRenderTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+      Render a "tree" control, based on the current state of a data object
+      of type org.apache.webapp.admin.TreeControl, which is identified
+      by the name specified in the "tree" attribute, in the JSP scope
+      specified by the "scope" attribute.
+    </description>
+
+    <attribute>
+      <name>action</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Hyperlink to which expand/contract actions should be sent,
+        with a string "${node}" marking where the node name of the
+        affected node should be included (which will usually be as
+        the value of a request parameter).
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>images</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Name of a directory containing the images for our icons,
+        relative to the page including this tag.  If not specified,
+        defaults to "images".
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The JSP scope within which the "tree" attribute is to be found
+        (page, request, session, or application).  If not specified, the
+        "tree" attribute will be searched for in any scope.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>style</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The CSS style class to be applied to the entire rendered output
+        of the tree control.  If not specified, no overall style class
+        is applied.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>styleSelected</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The CSS style class to be applied to the text of any node that
+        is currently selected.  If not specified, no style class will be
+        applied to the text of the selected node.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>styleUnselected</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        The CSS style class to be applied to the text of any node that
+        is *not* currently selected.  If not specified, no style class will
+         be applied to the text of non-selected nodes.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>tree</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Name of the attribute (in the scope specified by the "scope"
+        attribute, if any) under which an object of type
+        org.apache.webapp.admin.TreeControl is stored.  This object
+        represents the entire current state of the tree, including
+        a representation of the hierarchical representation of the
+        nodes, plus the current expanded/ or contracted state of
+        non-leaf nodes.
+      </description>
+    </attribute>
+
+  </tag>
+
+  <!-- ========== Refresh Tree Tag ======================================== -->
+
+  <tag>
+
+    <name>refreshTree</name>
+    <tag-class>org.ow2.jonas.webapp.taglib.RefreshTreeTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+      Refresh a "tree" control. To use before the body to be sure that run with all browsers.
+    </description>
+  </tag>
+
+</taglib>

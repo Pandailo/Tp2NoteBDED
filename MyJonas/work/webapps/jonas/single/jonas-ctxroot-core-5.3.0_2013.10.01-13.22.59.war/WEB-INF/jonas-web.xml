@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<jonas-web-app xmlns="http://www.objectweb.org/jonas/ns"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="http://www.objectweb.org/jonas/ns
+	  http://jonas.ow2.org/ns/jonas-web-app_5_1.xsd">
+
+  <!-- This is a root contex -->
+  <context-root>/</context-root>
+  
+  <!-- Load this application on demand (if enabled in the webcontainer service) -->
+  <on-demand>true</on-demand>
+</jonas-web-app>

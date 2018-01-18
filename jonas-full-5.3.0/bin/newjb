@@ -1,0 +1,92 @@
+#!/bin/sh
+# ---------------------------------------------------------------------------
+# JOnAS: Java(TM) Open Application Server
+# Copyright (C) 1999-2008 Bull S.A.S.
+# Contact: jonas-team@ow2.org
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+# USA
+#
+# Initial developer(s): Florent Benoit
+# Contributor(s): Benoit Pelletier
+# ---------------------------------------------------------------------------
+# $Id:newjb 12758 2008-01-31 10:23:26Z durieuxp $
+# ---------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+# Compute JONAS_ROOT in case it has not been set.
+# -----------------------------------------------------------------------
+if [ ! -d $JONAS_ROOT/deploy ]; then
+
+  # We know that the 'jonas' command is located at <JONAS_ROOT>/bin/jonas
+  # So we can try to be smart enough and deduce the JONAS_ROOT value from that info :)
+
+  # Remove bin/jonas from the command path
+  relative_directory=`dirname $0`
+  relative_directory=`dirname $relative_directory`
+
+  # Keep old position
+  old_position=`pwd`
+
+  # As the relative path is relative from the current location, we can cd into it ...
+  cd $relative_directory
+  # ... and then get the absolute path
+  absolute_directory=`pwd`
+
+  # Come back into the old position
+  cd $old_position
+
+  # Before accepting that value as is, check if that's a real JONAS_ROOT
+  if [ ! -d $absolute_directory/deploy ]; then
+    echo "Cannot deduce JONAS_ROOT value from $0."
+    exit 1
+  fi
+
+  # Set the JONAS_ROOT variable
+  JONAS_ROOT=$absolute_directory
+  export JONAS_ROOT
+fi
+
+i=0
+while [  -z "$JONAS_BASE" ]
+do
+ if [ $i -eq 3 ]
+  then
+    exit 1
+ fi
+echo "JONAS_BASE not set. Please enter a JONAS_BASE: "
+read JONAS_BASE
+i=`expr $i + 1`
+done
+export JONAS_BASE
+
+# -----------------------------------------------------------------------
+# Debugging properties
+#ANT_OPTS="$ANT_OPTS -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,address=4143,suspend=y"
+# -----------------------------------------------------------------------
+
+# Force endorsed directory for the ant process
+# Ensure that the XML parser used is recent enough
+ANT_OPTS="$ANT_OPTS -Djava.endorsed.dirs=$JONAS_ROOT/lib/endorsed"
+export ANT_OPTS
+
+# creation d'un cluster daemon demandee
+#if [ "$1" = "-cd" ]; then
+#  ant -file $JONAS_ROOT/templates/newjb/build-jb.xml create_jonas_clusterDaemon
+#else
+  ant -file $JONAS_ROOT/templates/newjb/build-jb.xml
+#fi
+
+

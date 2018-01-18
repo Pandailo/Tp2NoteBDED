@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 1999-2009 Bull S.A.S.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - Initial developer(s): Philippe Durieux
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: build.xml 21566 2011-08-08 12:28:12Z cazauxj $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<project name="jonas" default="create_windows_service" basedir="">
+
+  <property environment="env" />
+  <property name="java.home" value="${env.JAVA_HOME}" />
+  <property name="jonas.root" value="${env.JONAS_ROOT}" />
+  <property name="jonas.base" value="${env.JONAS_BASE}" />
+  <property name="wrapper.home" value="${env.WRAPPER_HOME}" />
+
+  <target name="init">
+    <condition property="jonas.root.isset">
+      <and>
+        <isset property="env.JONAS_ROOT" />
+      </and>
+    </condition>
+    <fail unless="jonas.root.isset"
+          message="JONAS_ROOT environment variable not set." />
+
+    <condition property="jonas.base.isset">
+      <and>
+        <isset property="env.JONAS_BASE" />
+      </and>
+    </condition>
+    <fail unless="jonas.base.isset"
+          message="JONAS_BASE environment variable not set." />
+
+    <condition property="wrapper.home.isset">
+      <and>
+        <isset property="env.WRAPPER_HOME" />
+      </and>
+    </condition>
+    <fail unless="wrapper.home.isset"
+          message="WRAPPER_HOME environment variable not set." />
+
+    <condition property="jonas.name.isset">
+      <and>
+        <isset property="jonas.name" />
+      </and>
+    </condition>
+  </target>
+
+  <target name="read_jonas_name_if_not_set" depends="init" unless="jonas.name.isset">
+    <property file="${jonas.base}/conf/jonas.properties" />
+
+    <condition property="jonas.name.isset">
+      <and>
+        <isset property="jonas.name" />
+      </and>
+    </condition>
+  </target>
+
+  <target name="set_default_jonas_name_if_not_set" depends="read_jonas_name_if_not_set" unless="jonas.name.isset">
+    <property name="jonas.name" value="jonas" />
+  </target>
+
+  <target name="create_windows_service"
+          description="Create Windows Service for the JOnAS server configured by JONAS_BASE."
+          depends="set_default_jonas_name_if_not_set">
+
+    <copy file="${jonas.root}/templates/conf/conf/wrapper.conf" todir="${jonas.base}/conf" overwrite="true"/>
+
+    <exec executable="${jonas.root}/bin/jonas.bat">
+      <arg value="-cfgsvc" />
+      <arg file="${jonas.base}/conf/wrapper.conf" />
+      <arg value="-n" />
+      <arg value="${jonas.name}" />
+    </exec>
+
+    <replace file="${jonas.base}/conf/wrapper.conf" token="@java.home@" value="${java.home}"/>
+    <replace file="${jonas.base}/conf/wrapper.conf" token="@jonas.base@" value="${jonas.base}"/>
+    <replace file="${jonas.base}/conf/wrapper.conf" token="@wrapper.home@" value="${wrapper.home}"/>
+    <replace file="${jonas.base}/conf/wrapper.conf" token="\" value="/"/>
+  </target>
+
+</project>

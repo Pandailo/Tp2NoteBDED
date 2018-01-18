@@ -1,0 +1,13 @@
+body { 
+	background : white;
+	color : black;
+}
+h1, h2, h3  {font-family : sans-serif; }
+h1 {font-size : 175%; color : DarkCyan; text-align : center;}
+h2 {font-size : 150%;  color : DarkCyan; 
+    border-bottom : solid; 
+    border-bottom-width : 1;
+}
+h3 {font-size : 125%; }
+strong { font-weight : bold; }
+hr { size : 1; width : 100%; }

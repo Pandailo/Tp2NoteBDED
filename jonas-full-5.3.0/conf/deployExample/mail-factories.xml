@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configadmin xmlns="http://jonas.ow2.org/ns/configadmin/1.0">
+
+  <!--
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://jonas.ow2.org/ns/configadmin/1.0 file:///Users/guillaume/Java/jonas/modules/libraries/jonas-configadmin/src/main/schema/configadmin-1.0.xsd"
+  -->
+
+  <factory-configuration pid="MailSessionFactory">
+    <property name="name">MyMailSessionFactory</property>
+
+    <!--  Optional properties                      -->
+    <!--  Each line can be removed                 -->
+
+    <!--  Authentication                           -->
+    <property name="mail.authentication.username">me</property>
+    <property name="mail.authentication.password">pwd</property>
+
+    <!--  Session properties                       -->
+    <property name="mail.debug">true</property>
+    <property name="mail.from">me@my.provider.fr</property>
+    <property name="mail.mime.address.strict">true</property>
+    <property name="mail.host">true</property>
+    <property name="mail.store.protocol">pop3</property>
+    <property name="mail.transport.protocol">smtp</property>
+    <property name="mail.user">me</property>
+
+    <!-- For each protocol: imap, pop3, smtp,...   -->
+    <!-- Ovveride default values defined aboved    -->
+    <property name="mail.imap.class">myimapclass</property>
+    <property name="mail.imap.host">imaphost</property>
+    <property name="mail.imap.port">imapport</property>
+    <property name="mail.imap.user">imapuser</property>
+  </factory-configuration>
+
+  <factory-configuration pid="MailMimePartDSFactory">
+    <property name="name">MyMailMimePartDSFactory</property>
+
+    <!--  Optional properties                      -->
+    <!--  Each line can be removed                 -->
+
+    <!--  Authentication                           -->
+    <property name="mail.authentication.username">me</property>
+    <property name="mail.authentication.password">pwd</property>
+
+    <!--  Session properties                       -->
+    <property name="mail.debug">true</property>
+    <property name="mail.from">me@my.provider.fr</property>
+    <property name="mail.mime.address.strict">true</property>
+    <property name="mail.host">true</property>
+    <property name="mail.store.protocol">pop3</property>
+    <property name="mail.transport.protocol">smtp</property>
+    <property name="mail.user">me</property>
+
+    <!-- For each protocol: imap, pop3, smtp,...   -->
+    <!-- Ovveride default values defined aboved    -->
+    <property name="mail.imap.class">myimapclass</property>
+    <property name="mail.imap.host">imaphost</property>
+    <property name="mail.imap.port">imapport</property>
+    <property name="mail.imap.user">imapuser</property>
+
+    <!--  MimePartDataSource properties                       -->
+    <property name="mail.to">me@provider.com,me@company.com</property>
+    <property name="mail.cc">me@provider.com,me@company.com</property>
+    <property name="mail.bcc">me@provider.com,me@company.com</property>
+    <property name="mail.subject">mysubject</property>
+
+  </factory-configuration>
+
+
+</configadmin>

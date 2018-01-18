@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jonas-client xmlns="http://www.objectweb.org/jonas/ns"
+			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			  xsi:schemaLocation="http://www.objectweb.org/jonas/ns
+			  http://www.objectweb.org/jonas/ns/jonas-client_4_0.xsd" >
+
+  <jonas-resource>
+    <res-ref-name>url/jonas</res-ref-name>
+    <jndi-name>http://jonas.ow2.org</jndi-name>
+  </jonas-resource>
+
+  <jonas-security>
+    <jaasfile>jaas.config</jaasfile>
+    <jaasentry>earsample</jaasentry>
+    <username>jonas</username>
+    <password>jonas</password>
+  </jonas-security>
+
+</jonas-client>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configadmin xmlns="http://jonas.ow2.org/ns/configadmin/1.0">
+
+  <!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jonas.ow2.org/ns/configadmin/1.0
+    configadmin-1.0.xsd" -->
+
+  <factory-configuration pid="Tomcat7HttpConnector">
+    <property name="address"></property>
+    <property name="port">9000</property>
+    <property name="redirectPort">9043</property>
+  </factory-configuration>
+
+</configadmin>

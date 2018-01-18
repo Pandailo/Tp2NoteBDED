@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 1999-2007 Bull S.A.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: build.xml 21688 2011-08-28 21:09:02Z cazauxj $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<!--
+ -  build.xml file for JOnAS example (for Ant Version 1.6)
+ - environment variables used :
+ -  JONAS_ROOT
+ -->
+
+<project name="JOnAS J2EE 1.4 example" default="install" basedir=".">
+
+  <!-- build.properties hold the properties that can be customized -->
+  <property file="../build.properties" />
+
+  <!-- some properties are build from environment variables -->
+  <property environment="myenv" />
+  <property name="jonas.root" value="${myenv.JONAS_ROOT}" />
+
+  <!-- Set the uncustomizable properties -->
+  <property name="src.dir" value="src" />
+  <property name="etc.dir" value="etc" />
+  <property name="xml.dir" value="${etc.dir}/xml" />
+  <property name="resources.dir" value="${etc.dir}/resources" />
+  <property name="web.resources.dir" value="${resources.dir}/web" />
+  <property name="jaas.resources.dir" value="${resources.dir}/jaas" />
+  <property name="classes.dir" value="../classes" />
+  <property name="dist.dir" value="../output" />
+  <property name="dist.ejbjars.dir" value="${dist.dir}/ejbjars" />
+  <property name="dist.webapps.dir" value="${dist.dir}/webapps" />
+  <property name="dist.clients.dir" value="${dist.dir}/clients" />
+  <property name="dist.rars.dir" value="${dist.dir}/rars" />
+  <property name="dist.apps.dir" value="${dist.dir}/apps" />
+  <property name="lib.dir" value="${jonas.root}/lib" />
+  <property name="rar.name" value="ra-sample" />
+
+  <!-- ejbjar task  -->
+  <taskdef name="ejbjar"
+           classname="org.ow2.jonas.antmodular.ejb2.EjbJar"
+           classpath="${jonas.root}/lib/common/ow_jonas_ant.jar" />
+
+  <!-- The classpath to be used to compile examples -->
+  <path id="base.classpath">
+    <pathelement location="${classes.dir}" />
+    <fileset dir="${lib.dir}">
+      <include name="client.jar" />
+    </fileset>
+  </path>
+
+  <target name="mydtd" description="rebuild ./build.dtd for DOCTYPE">
+    <antstructure output="build.dtd" />
+  </target>
+
+  <target name="init">
+    <!-- directories building -->
+    <mkdir dir="${classes.dir}" />
+    <mkdir dir="${dist.dir}" />
+    <mkdir dir="${dist.apps.dir}" />
+    <mkdir dir="${dist.clients.dir}" />
+    <mkdir dir="${dist.ejbjars.dir}" />
+    <mkdir dir="${dist.webapps.dir}" />
+    <mkdir dir="${dist.rars.dir}" />
+    <mkdir dir="${dist.rars.dir}/tmp" />
+    <condition property="jonas.base" value="${myenv.JONAS_BASE}">
+      <available file="${myenv.JONAS_BASE}" />
+    </condition>
+    <condition property="jonas.base" value="${jonas.root}">
+      <available file="${jonas.root}" />
+    </condition>
+
+  </target>
+
+  <target name="clean" description="Removes all the generated files or directories">
+    <delete dir="${classes.dir}" />
+    <delete dir="${dist.dir}" />
+  </target>
+
+  <target name="compile" description="Compile the earsample example" depends="init">
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${opt.javac.debug}" optimize="${opt.javac.optimize}">
+      <classpath refid="base.classpath" />
+    </javac>
+  </target>
+
+  <!-- Deploying ejbjars via ejbjar task  -->
+  <target name="jonasejbjar" description="Build and deploy the ejb-jar file" depends="compile">
+    <ejbjar basejarname="secusb" srcdir="${classes.dir}" descriptordir="${xml.dir}">
+      <include name="**/secusb.xml" />
+      <jonas destdir="${dist.ejbjars.dir}" jonasroot="${jonas.root}" jonasbase="${jonas.base}" protocols="${protocols.names}" />
+    </ejbjar>
+  </target>
+
+  <target name="war" description="Build the war file" depends="jonasejbjar">
+    <war warfile="${dist.webapps.dir}/earsample.war" webxml="${xml.dir}/web.xml">
+      <webinf dir="${xml.dir}" includes="jonas-web.xml" />
+      <zipfileset dir="${web.resources.dir}" prefix="" />
+      <classes dir="${classes.dir}">
+        <include name="**/**/**/servlets/*.class" />
+      </classes>
+    </war>
+  </target>
+
+  <target name="client1jar" description="Build the first application-client jar file" depends="jonasejbjar">
+    <jar destfile="${dist.clients.dir}/client1.jar">
+      <fileset dir="${classes.dir}">
+        <include name="**/**/**/clients/Client.class" />
+      </fileset>
+      <fileset dir="${jaas.resources.dir}">
+        <include name="jaas.config" />
+      </fileset>
+      <fileset dir="${jonas.base}/conf">
+        <include name="carol.properties" />
+      </fileset>
+      <zipfileset dir="${xml.dir}" includes="application-client.xml" fullpath="META-INF/application-client.xml" />
+      <zipfileset dir="${xml.dir}" includes="jonas-client1.xml" fullpath="META-INF/jonas-client.xml" />
+      <manifest>
+        <attribute name="Main-Class" value="org.ow2.jonas.earsample.clients.Client" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="client2jar" description="Build the second application-client jar file" depends="jonasejbjar">
+    <jar destfile="${dist.clients.dir}/client2.jar">
+      <fileset dir="${classes.dir}">
+        <include name="**/**/**/clients/Client.class" />
+      </fileset>
+      <fileset dir="${jaas.resources.dir}">
+        <include name="jaas.config" />
+      </fileset>
+      <fileset dir="${jonas.base}/conf">
+        <include name="carol.properties" />
+      </fileset>
+      <zipfileset dir="${xml.dir}" includes="application-client.xml" fullpath="META-INF/application-client.xml" />
+      <zipfileset dir="${xml.dir}" includes="jonas-client2.xml" fullpath="META-INF/jonas-client.xml" />
+      <manifest>
+        <attribute name="Main-Class" value="org.ow2.jonas.earsample.clients.Client" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="buildrar" depends="jonasejbjar">
+    <jar destfile="${dist.rars.dir}/tmp/${rar.name}.jar">
+      <manifest>
+        <attribute name="Built-By" value="${user.name}" />
+      </manifest>
+      <fileset dir="${classes.dir}">
+        <include name="**/**/**/resourceadapters/**/*.class" />
+      </fileset>
+    </jar>
+
+    <jar destfile="${dist.rars.dir}/${rar.name}.rar">
+      <fileset dir="${dist.rars.dir}/tmp/">
+        <include name="${rar.name}.jar" />
+      </fileset>
+      <zipfileset prefix="META-INF/" dir="${xml.dir}">
+        <include name="ra.xml" />
+      </zipfileset>
+    </jar>
+
+    <delete file="${dist.rars.dir}/tmp/${rar.name}.jar" />
+  </target>
+
+  <target name="ear" description="Build the ear file" depends="war, client1jar, client2jar, buildrar">
+    <ear earfile="${dist.apps.dir}/j2ee-1.4.ear" appxml="${xml.dir}/application.xml">
+      <fileset dir="${dist.ejbjars.dir}" includes="secusb.jar" />
+      <fileset dir="${dist.webapps.dir}" includes="earsample.war" />
+      <fileset dir="${dist.clients.dir}" includes="client1.jar" />
+      <fileset dir="${dist.clients.dir}" includes="client2.jar" />
+      <fileset dir="${dist.rars.dir}" includes="${rar.name}.rar" />
+    </ear>
+  </target>
+
+  <target name="install" description="Build and install the JOnAS J2EE 1.4 example" depends="ear">
+    <!-- Copy ear files in JONAS_BASE -->
+    <copy todir="${jonas.base}/deploy">
+      <fileset dir="${dist.apps.dir}" includes="j2ee-1.4.ear" />
+    </copy>
+  </target>
+
+</project>
+
+

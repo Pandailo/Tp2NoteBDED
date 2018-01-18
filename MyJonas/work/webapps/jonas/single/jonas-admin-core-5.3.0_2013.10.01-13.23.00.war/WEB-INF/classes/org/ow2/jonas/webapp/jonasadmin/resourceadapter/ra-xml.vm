@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+ http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd"
+ version="1.5">
+<display-name>$oForm.getDisplayName()</display-name>
+<description>$oForm.getDescription()</description>
+<vendor-name>$oForm.getVendorName()</vendor-name>
+<spec-version>$oForm.getSpecVersion()</spec-version>
+<eis-type>$oForm.getEisType()</eis-type>
+<resourceadapter/>
+</connector>

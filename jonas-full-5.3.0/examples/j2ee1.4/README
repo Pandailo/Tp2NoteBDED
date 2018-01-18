@@ -1,0 +1,84 @@
+J2EE 1.4 Example Overview:
+-----------------
+
+This example shows how to access an EJB deployed in a JOnAS EJB container, from
+ - a servlet deployed in a Tomcat/Jetty container (thin client)
+ - a client running inside the client container (heavy client)
+
+It also shows how to use security in Tomcat or Jetty to authentificate the user and in JOnAS
+to authorize the user to access the EJB methods. This aspect is described in details
+in the "Use Security in JOnAS with TOMCAT" howto of the JOnAS documentation.
+
+Besides, this example shows the uniform naming resource access supported in JOnAS.
+The servlet gets a javax.transaction.UserTransaction object reference from the JNDI
+using the "java:comp/UserTransaction" name. Moreover, it gets a reference on the
+bean's home using an environment entry: "java:comp/env/ejb/".
+
+This sample contains an example of using ejb-link which allows to link the EJB to the
+servlet. It is used in the web.xml file for both the ejb-ref and
+ejb-local-ref tags. It implies that when the servlet performs a lookup on the bean,
+the web classloader has got the visibility of the ejb class.
+This is due to the classloader hierarchy between the ear classloader, ejb
+classloader and the web classloader.
+
+Finally, this example shows how to add a resource adapter in an ear.
+
+The "src" directory contains
+ - An EJB that is a stateful session Bean.
+ - The servlet source of ServletOp.
+ - The source of a client which run inside the client container with uniform naming available
+ - The resource adapter source.
+
+The "etc" directory contains
+ - the "xml" directory which contains all the deployment descriptors used for this example :
+     * application.xml (ear file)
+     * ejb-jar.xml and jonas-ejb-jar.xml (jar file)
+     * web.xml, jonas-web.xml (war file)
+     * ra.xml (rar file)
+     * application-client.xml, jonas-client1.xml and jonas-client2.xml (two clients jar file)
+ - the "resources" directory which contains all the resources for this application
+     * "web" directory contains all resources used by the servlet
+
+
+Compiling this example creates an .ear file that represents an application including :
+ - a session bean used by the web application
+ - a web application that will be used by Tomcat or Jetty to run the servlet.
+ - a resource adapter.
+
+Prerequisites
+-------------
+First, you must have installed a web container (ie : Catalina or Jetty)
+as the web container service or you will use the heavy client
+
+Compiling and installing this example:
+--------------------------------------
+ ant install
+
+Running this example:
+--------------------
+Commands are given for an Unix system.
+(Similar commands can be done on Windows)
+
+1) Run a JOnAS server:
+    jonas start
+    
+2a) Run your web browser (e.g., netscape):
+    netscape http://<hostname>:<port>/j2ee-1.4
+    where <hostname> is the name of your machine (localhost by default)
+    and <port> the port number (9000 by default)
+
+2b) You can also lookup the Bean by using one of the client of the ear
+
+ Use the default client (first found)
+ java -jar $JONAS_ROOT/lib/client.jar ($JONAS_ROOT |$JONAS_BASE)/deploy/j2ee-1.4.ear -carolFile ($JONAS_ROOT |$JONAS_BASE)/conf/carol.properties
+
+ Use a specific client
+ java -jar $JONAS_ROOT/lib/client.jar ($JONAS_ROOT |$JONAS_BASE)/deploy/j2ee-1.4.ear -jarClient client2.jar -carolFile ($JONAS_ROOT |$JONAS_BASE)/conf/carol.properties
+
+
+Notes :
+   the argument -carolFile is useless if you have rebuilt this example because in this
+   case the carol.properties of your environment is inserted in earsample.ear
+
+3) Stop the JOnAS server
+    jonas stop

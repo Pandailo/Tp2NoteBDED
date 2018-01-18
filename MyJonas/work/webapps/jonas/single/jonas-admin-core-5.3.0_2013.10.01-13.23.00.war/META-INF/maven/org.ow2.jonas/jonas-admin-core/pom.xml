@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - JOnAS: Java(TM) Open Application Server
+  - Copyright (C) 2007-2012 Bull S.A.S.
+  - Contact: jonas-team@objectweb.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  - USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: pom.xml 22873 2013-10-01 10:26:02Z albertil $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>jonas-admin</artifactId>
+    <groupId>org.ow2.jonas</groupId>
+    <version>5.3.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.ow2.jonas</groupId>
+  <artifactId>jonas-admin-core</artifactId>
+  <packaging>war</packaging>
+  <name>JOnAS :: EE Components :: JOnAS Admin Console :: WAR</name>
+
+  <properties>
+    <target.swf.dir>target/jonasAdmin</target.swf.dir>
+    <webxml.file>${basedir}/src/main/webapp/WEB-INF/web.xml</webxml.file>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.ow2.spec.ee</groupId>
+      <artifactId>ow2-servlet-3.0-spec</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.spec.ee</groupId>
+      <artifactId>ow2-jsp-2.2-spec</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.jonas</groupId>
+      <artifactId>jonas-commons</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.jonas</groupId>
+      <artifactId>jonas-jmx-core</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.jonas</groupId>
+      <artifactId>jonas-domain</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.jonas</groupId>
+      <artifactId>jonas-management-extensions</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.jonas</groupId>
+      <artifactId>jonas-mbeans</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.jonas</groupId>
+      <artifactId>jonas-service-manager</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts</artifactId>
+      <version>1.2.9</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-beanutils</groupId>
+          <artifactId>commons-beanutils</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-validator</groupId>
+          <artifactId>commons-validator</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-fileupload</groupId>
+          <artifactId>commons-fileupload</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>oro</groupId>
+          <artifactId>oro</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>antlr</groupId>
+          <artifactId>antlr</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xalan</groupId>
+          <artifactId>xalan</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-beanutils</groupId>
+          <artifactId>commons-beanutils</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>velocity</groupId>
+      <artifactId>velocity-dep</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jar</artifactId>
+      <version>${jonasAdmin-swf.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.granite</groupId>
+          <artifactId>granite-flex</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- SWFs -->
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>swf-server-stackdump</artifactId>
+      <version>${jonasAdmin-swf.version}</version>
+      <type>swf</type>
+    </dependency>
+    <!-- Add JOnAS Admin Kerneos dependency -->
+    <dependency>
+      <groupId>org.ow2.jonas.admin</groupId>
+      <artifactId>jonasadmin-kerneos-assemblies-war</artifactId>
+      <version>${jonasAdmin-Kerneos.version}</version>
+      <type>war</type>
+    </dependency>
+
+  </dependencies>
+  <profiles>
+    <profile>
+      <id>jspcompile</id>
+      <properties>
+        <webxml.file>${pom.basedir}/target/jspweb.xml</webxml.file>
+      </properties>
+      <build>
+        <plugins>
+          <!-- JSP Compilation -->
+          <plugin>
+            <groupId>org.codehaus.mojo.jspc</groupId>
+            <artifactId>jspc-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jsp-compiler</id>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <packageName>org.ow2.jonas.webapp.jonasadmin.jsp</packageName>
+                  <injectString><![CDATA[<!-- [INSERT FRAGMENT HERE] -->]]></injectString>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.codehaus.mojo.jspc</groupId>
+                <artifactId>jspc-compiler-tomcat6</artifactId>
+                <version>${jspc.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <build>
+    <finalName>jonasAdmin</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy jonasAdmin-flex swf files</id>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <phase>compile</phase>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.ow2.jonas.admin</groupId>
+                  <artifactId>swf-server-stackdump</artifactId>
+                  <type>swf</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${target.swf.dir}</outputDirectory>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webXml>${webxml.file}</webXml>
+          <overlays>
+            <overlay>
+              <groupId>org.ow2.jonas.admin</groupId>
+              <artifactId>jonasadmin-kerneos-assemblies-war</artifactId>
+              <excludes>
+                <exclude>WEB-INF/web.xml</exclude>
+                <exclude>WEB-INF/jonas-web.xml</exclude>
+                <exclude>WEB-INF/index.html</exclude>
+                <exclude>WEB-INF/flex/services-config.xml</exclude>
+                <exclude>WEB-INF/lib/*log4j*.jar</exclude>
+              </excludes>
+            </overlay>
+            <overlay>
+              <!-- empty groupId/artifactId is detected as the current build -->
+            </overlay>
+          </overlays>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+</project>

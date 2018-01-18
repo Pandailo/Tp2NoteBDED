@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated the Tue Oct 01 13:05:43 CEST 2013. -->
+<deployment-plan xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
+                 xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
+                 xmlns:url="http://jonas.ow2.org/ns/deployment-plan/url/1.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0
+                                     http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.1.xsd
+                                     http://jonas.ow2.org/ns/deployment-plan/maven2/1.0
+                                     http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
+                 atomic="false" id="org.ow2.jonas:mejb-plan:5.3.0">
+  <deployment id="org.ow2.jonas:mejb-core:jar"
+              xsi:type="m2:maven2-deploymentType"
+              reference="true"
+              startlevel="1"
+              starttransient="true">
+    <m2:groupId>org.ow2.jonas</m2:groupId>
+    <m2:artifactId>mejb-core</m2:artifactId>
+    <m2:version>5.3.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.util.log:log-bridge-jul:jar"
+              xsi:type="m2:maven2-deploymentType">
+    <m2:groupId>org.ow2.util.log</m2:groupId>
+    <m2:artifactId>log-bridge-jul</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+</deployment-plan>

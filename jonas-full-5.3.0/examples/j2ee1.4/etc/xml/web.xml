@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - JOnAS: Java(TM) Open Application Server
+  - Copyright (C) 2007 Bull S.A.S.
+  - Contact: jonas-team@ow2.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  - USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: web.xml 17350 2009-05-13 14:15:43Z fornacif $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-app_2_4.xsd"
+    version="2.4">
+
+  <servlet>
+    <servlet-name>Op</servlet-name>
+    <servlet-class>
+      org.ow2.jonas.earsample.servlets.ServletOp
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Op</servlet-name>
+    <url-pattern>/secured/Op</url-pattern>
+  </servlet-mapping>
+
+  <resource-ref>
+    <res-ref-name>url/URL</res-ref-name>
+    <res-type>java.net.URL</res-type>
+    <res-auth>Application</res-auth>
+  </resource-ref>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <!-- Define the context-relative URL(s) to be protected -->
+      <url-pattern>/secured/*</url-pattern>
+      <!-- If you list http methods, only those methods are protected -->
+      <http-method>DELETE</http-method>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>PUT</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <!-- Anyone with one of the listed roles may access this area -->
+      <role-name>tomcat</role-name>
+      <role-name>jetty</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- Default login configuration uses BASIC authentication -->
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>JOnAS Realm</realm-name>
+  </login-config>
+
+  <!-- Security roles referenced by this web application -->
+  <security-role>
+    <role-name>tomcat</role-name>
+  </security-role>
+
+  <security-role>
+    <role-name>jetty</role-name>
+  </security-role>
+
+
+  <env-entry>
+    <env-entry-name>envEntryString</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>
+      This is a string from the env-entry
+    </env-entry-value>
+  </env-entry>
+
+  <ejb-ref>
+    <ejb-ref-name>ejb/Op</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>org.ow2.jonas.earsample.beans.secusb.OpHome</home>
+    <remote>org.ow2.jonas.earsample.beans.secusb.Op</remote>
+    <ejb-link>EarOp</ejb-link>
+  </ejb-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/OpLocal</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <local-home>
+      org.ow2.jonas.earsample.beans.secusb.OpLocalHome
+    </local-home>
+    <local>org.ow2.jonas.earsample.beans.secusb.OpLocal</local>
+    <ejb-link>secusb.jar#EarOp</ejb-link>
+  </ejb-local-ref>
+
+</web-app>

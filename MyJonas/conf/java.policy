@@ -1,0 +1,10 @@
+//##################### Security Policy
+//
+//  The default security policy for the JOnAS server.
+//  Currently, this is set to allow all permissions.
+//
+
+grant {
+  // Allow everything for now
+  permission java.security.AllPermission;
+};

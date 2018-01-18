@@ -1,0 +1,138 @@
+#! /bin/sh
+# ---------------------------------------------------------------------------
+# JOnAS: Java(TM) Open Application Server
+# Copyright (C) 1999-2009 Bull S.A.S.
+# Contact: jonas-team@ow2.org
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+# USA
+#
+# Initial developer(s): Philippe Durieux
+# ---------------------------------------------------------------------------
+# $Id: setenv 21995 2012-01-09 15:40:33Z benoitf $
+# ---------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+# Check JONAS_ROOT is set.
+# -----------------------------------------------------------------------
+if [ ! -d "$JONAS_ROOT"/repositories ]
+then
+    echo "JONAS_ROOT must be set"
+    exit 1
+fi
+
+# -----------------------------------------------------------------------
+# Check JONAS_BASE is set. Set it to JONAS_ROOT if not set.
+# -----------------------------------------------------------------------
+if [ -z "$JONAS_BASE" ]
+then
+   JONAS_BASE=$JONAS_ROOT
+   export JONAS_BASE
+fi
+
+# ---------------------------
+# Resolve links
+# ---------------------------
+
+# Do the same stuff than readlink -f but using standard sh commands
+# On some Unix systems, readlink -f is not supported
+readlink_f() {
+  # if $1 is a file remove the possible last /
+  dname=`dirname "$1"`
+  bname=`basename "$1"`
+  noslash="$dname"/"$bname"
+
+  linktofile=`read_last_link "$noslash"` # `basename linktofile` is not a link
+  dna=`dirname "$linktofile"`
+  # res=the sure path (1 by 1 add no symb link)
+  res=`basename "$linktofile"`
+
+  while ([ "$dna" != "/" ] && [ "$dna" != "." ]) # Finished if . or / (loop)
+  do
+    if [ -L "$dna" ]
+    then
+      dna=`read_last_link "$dna"` # last directory is not a link
+    fi
+    # basename $dna is not a symbolic link, we can add it to res
+    res=`basename "$dna"`/"$res"
+    dna=`dirname "$dna"`
+  done
+  if ([ "$dna" = "/" ] && [  "$res" != '/' ])
+  then
+    res=/"$res";
+  fi
+  D=`dirname "$res"`
+  B=`basename "$res"`
+  res="`cd \"$D\" 2>/dev/null && pwd || echo \"$D\"`/$B"
+  echo $res
+}
+
+# ensure that the basename of result will not be a link
+read_last_link() {
+  res="$1"
+  while [ -L "$res" ]
+  do
+    ls=`ls -ld "$res"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null
+    then # if absolute link (begin with /)
+       res="$link"
+    else # if relative link (not begin with /)
+       rel=`dirname "$res"`
+       res="$rel"/"$link"
+    fi
+  done
+  echo $res
+}
+JONAS_ROOT=`readlink_f "$JONAS_ROOT"`
+JONAS_BASE=`readlink_f "$JONAS_BASE"`
+
+
+# must be : for Unix, \; for CygWin on NT
+SPS=:
+
+# -----------------------------------------------------------------------
+# JAVA setup
+# We try to use first the java JVM in JAVA_HOME and if not found,
+# we use the one found in the path.
+# -----------------------------------------------------------------------
+if [ -z "$JAVA" ]; then
+    if [ -z "$JAVA_HOME" ]
+    then
+        JAVA=java
+        JAVAC=javac
+    else
+        JAVA=$JAVA_HOME/bin/java
+        JAVAC=$JAVA_HOME/bin/javac
+    fi
+    export JAVA JAVAC
+fi 
+
+
+# You can specify additional options to give to the Java JVM in the
+# JAVA_OPTS environment variable.
+export JAVA_OPTS
+
+# -----------------------------------------------------------------------
+# Take always the JOnAS configuration files in $JONAS_BASE/conf
+# So it must be before the $JONAS_CLASSPATH (if carol.properties is redefined elsewhere)
+# -----------------------------------------------------------------------
+if [ "$JONAS_CLASSPATH" = "" ]; then
+    JONAS_CLASSPATH="$JONAS_BASE"/conf
+else
+    JONAS_CLASSPATH="$JONAS_BASE"/conf$SPS$JONAS_CLASSPATH
+fi
+
+export JONAS_CLASSPATH

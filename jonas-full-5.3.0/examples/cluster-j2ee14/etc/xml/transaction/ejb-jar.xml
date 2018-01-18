@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+     http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
+    version="2.1">
+
+    <description>Describe here the content of this file</description>
+    <display-name>HaTransaction</display-name>
+
+    <enterprise-beans>
+        <entity>
+            <description>Describe here the entity bean</description>
+            <!--   <display-name>ejbs/MyEntitySLR</display-name> -->
+            <ejb-name>HaTransactionSLR</ejb-name>
+            <home>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.hatransactions.HaTransactionHome
+            </home>
+            <remote>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.hatransactions.HaTransactionRemote
+            </remote>
+            <local-home>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.hatransactions.HaTransactionLocalHome
+            </local-home>
+            <local>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.hatransactions.HaTransactionLocal
+            </local>
+            <ejb-class>
+                org.ow2.jonas.examples.cluster.j2ee14.beans.hatransactions.HaTransactionSLR
+            </ejb-class>
+            <persistence-type>Container</persistence-type>
+            <prim-key-class>java.lang.String</prim-key-class>
+            <reentrant>false</reentrant>
+            <cmp-version>2.x</cmp-version>
+            <abstract-schema-name>HaTransaction</abstract-schema-name>
+            <cmp-field>
+                <field-name>txid</field-name>
+            </cmp-field>
+            <primkey-field>txid</primkey-field>
+            <security-identity>
+                <use-caller-identity />
+            </security-identity>
+        </entity>
+
+
+    </enterprise-beans>
+
+    <assembly-descriptor>
+        <container-transaction>
+            <method>
+                <ejb-name>HaTransactionSLR</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+
+    </assembly-descriptor>
+
+</ejb-jar>

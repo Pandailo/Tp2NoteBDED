@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated Tue Oct 01 13:22:00 CEST 2013 by JOnAS. -->
+<deployment-plan xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
+  xmlns:url="http://jonas.ow2.org/ns/deployment-plan/url/1.0"
+  xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0 http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.xsd
+                      http://jonas.ow2.org/ns/deployment-plan/maven2/1.0 http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
+  atomic="false" id="jaxws-base">
+  <deployment id="saaj-ri" xsi:type="url:url-deploymentType">
+    <url:resource>saaj-ri.xml</url:resource>
+  </deployment>
+  <deployment id="audit" xsi:type="url:url-deploymentType">
+    <url:resource>audit.xml</url:resource>
+  </deployment>
+  <deployment id="spec-ee-javamail" xsi:type="url:url-deploymentType">
+    <url:resource>spec-ee-javamail.xml</url:resource>
+  </deployment>
+  <deployment id="spec-ee-jws" xsi:type="url:url-deploymentType">
+    <url:resource>spec-ee-jws.xml</url:resource>
+  </deployment>
+  <deployment id="org.ow2.util.annotation-processor:annotation-processor:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.util.annotation-processor</m2:groupId>
+    <m2:artifactId>annotation-processor</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.util.ee.builders:reference-builder-webserviceref:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.util.ee.builders</m2:groupId>
+    <m2:artifactId>reference-builder-webserviceref</m2:artifactId>
+    <m2:version>2.0.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.jonas:jonas-webservices-jaxws-core:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.jonas</m2:groupId>
+    <m2:artifactId>jonas-webservices-jaxws-core</m2:artifactId>
+    <m2:version>5.3.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.ow2.jonas.osgi:neethi:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.ow2.jonas.osgi</m2:groupId>
+    <m2:artifactId>neethi</m2:artifactId>
+    <m2:version>5.3.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.codehaus.woodstox:stax2-api:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.codehaus.woodstox</m2:groupId>
+    <m2:artifactId>stax2-api</m2:artifactId>
+    <m2:version>3.1.1</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+  <deployment id="org.codehaus.woodstox:woodstox-core-asl:jar" xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" startlevel="1" starttransient="true">
+    <m2:groupId>org.codehaus.woodstox</m2:groupId>
+    <m2:artifactId>woodstox-core-asl</m2:artifactId>
+    <m2:version>4.2.0</m2:version>
+    <m2:type>jar</m2:type>
+  </deployment>
+</deployment-plan>

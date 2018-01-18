@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 1999-2009 Bull S.A.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: build.xml 17803 2009-06-25 12:58:11Z fornacif $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<!--
+ - JOnAS tutorial examples building directives for Ant
+ -->
+
+<project name="JAX-WS Tutorial Example" default="appclient" basedir="."
+         xmlns:cxf="antlib:org.apache.cxf.ant.extensions"
+         xmlns:jonas="http://jonas.ow2.org">
+    
+    <!-- Import common rules -->
+    <import file="../../jonas-common.xml"/>
+    <property name="src.dir" value="src/java"/>
+    
+     <!-- setting for quoteReporterService -->
+    <property name="webServicename" value="QuoteReporterService"/>
+    <property name="wsdlURL" value="http://localhost:9000/quote/${webServicename}?WSDL"/>
+    <property name="wsdlLocation" value="META-INF/wsdl/${webServicename}.wsdl"/>
+    
+    <target name="getWSDL" depends="init" description="copy wsdl under META-INF/wsdl">
+        <get src="${wsdlURL}" dest="${build.generated.dir}/${webServicename}.wsdl"/>
+    </target>
+    
+    <!--    build quote-client application client -->
+    <target name="appclient" depends="getWSDL,wsdl2java,compile" description="Create appclient">
+        <jar destfile="${build.generated.dir}/quote-client.jar">
+            <!--The bean's classes -->
+            <fileset dir="${build.classes.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="org.ow2.jonas.tutorial.jaxws.client.QuoteMain"/>
+            </manifest>
+            
+            <!-- The generated WSDL + XSD -->
+            <metainf prefix="META-INF/wsdl" dir="${build.generated.dir}">
+                <include name="*.wsdl"/>
+            </metainf>
+
+        </jar>
+    </target>
+    
+    <target name="run" description="Execute the JAX-WS Client">
+        <java fork="true"
+              classpathref="client.classpath"
+              classname="org.ow2.jonas.client.ClientContainer">
+
+            <!-- Uncomment for debugging -->
+            <!--jvmarg line="-Xint -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,address=4142,suspend=y"/-->
+
+            <!-- JVM Options -->
+            <sysproperty key="java.security.auth.login.config"
+                         value="${jonas.base}/conf/jaas.config"/>
+            <sysproperty key="java.endorsed.dirs"
+                         value="${jonas.root}/lib/endorsed"/>
+            <sysproperty key="jonas.root"
+                         value="${jonas.root}"/>
+            <!-- The Application to execute -->
+            <arg path="${build.generated.dir}/quote-client.jar"/>
+
+        </java>
+    </target>
+    
+
+</project>

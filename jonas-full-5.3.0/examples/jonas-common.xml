@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 2007-2009 Bull S.A.S.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: jonas-common.xml 22804 2013-02-26 13:23:34Z albertil $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<project xmlns:jonas="http://jonas.ow2.org"
+         name="Common rules for packaging Java EE modules"
+         basedir=".">
+
+  <!-- build.properties hold the properties that can be customized -->
+  <property file="build.properties" />
+
+  <!-- some properties are build from environment variables -->
+  <property environment="myenv" />
+  <property name="jonas.root" value="${myenv.JONAS_ROOT}" />
+
+  <property name="javac.debug" value="on" />
+  <property name="javac.optimize" value="off" />
+  <property name="javac.deprecation" value="off" />
+  <property name="javac.verbose" value="off" />
+  <property name="javac.compiler" value="modern" />
+  <property name="javac.nowarn" value="off" />
+
+  <!-- Set the uncustomizable properties -->
+  <property name="src.dir" value="src/java" />
+  <property name="resources.dir" value="etc" />
+  <condition property="examples.classes.dir" value="${classes.dir}">
+      <available file="${classes.dir}"/>
+  </condition>
+  <condition property="examples.classes.dir" value="../classes">
+    <not>
+      <available file="${classes.dir}"/>
+     </not>
+  </condition>
+  <condition property="examples.apis.dir" value="${apis.dir}">
+      <available file="${apis.dir}"/>
+  </condition>
+  <condition property="examples.apis.dir" value="../apis">
+    <not>
+      <available file="${apis.dir}"/>
+     </not>
+  </condition>
+  <condition property="jonas.base" value="${myenv.JONAS_BASE}">
+    <available file="${myenv.JONAS_BASE}" />
+  </condition>
+  <condition property="jonas.base" value="${jonas.root}">
+    <available file="${jonas.root}" />
+  </condition>
+
+
+  <!-- The classpath to be used to compile examples -->
+  <path id="base.classpath">
+    <pathelement location="${jonas.base}/conf" />
+    <fileset dir="${jonas.root}">
+      <!-- In that bundle we have the @OSGiResource -->
+      <include name="repositories/maven2-internal/**/easybeans-*.jar" />
+      <include name="repositories/maven2-internal/**/ow2-*-spec-*.jar" />
+      <include name="lib/common/ant-tasks.jar"/>
+      <include name="lib/bootstrap/jonas-launcher.jar"/>
+    </fileset>
+  </path>
+
+  <!-- Set the properties -->
+  <property name="dist.clients.dir" value="${jonas.base}/clients" />
+  <property name="dist.deploy.dir" value="${jonas.base}/deploy" />
+  <property name="dist.webapps.dir" value="${jonas.base}/deploy" />
+  <!-- EJB go in deploy directory -->
+  <property name="ejb.dir" value="${dist.deploy.dir}" />
+  <!-- WAR go in webapps directory in standalone mode-->
+  <property name="war.dir" value="${dist.webapps.dir}" />
+  <!-- Client go in clients directory in standalone mode-->
+  <property name="client.dir" value="${dist.clients.dir}" />
+  <!-- EAR go in deploy directory in standalone mode-->
+  <property name="ear.dir" value="${dist.deploy.dir}" />
+
+
+  <target name="clean">
+    <!-- directories removal -->
+    <delete dir="${examples.classes.dir}" />
+    <delete dir="${examples.apis.dir}" />
+    <delete dir="${rar.classes.dir}" />
+  </target>
+
+  <!-- Below is the XML shared between EasyBeans standalone/JOnAS/Jetty/Tomcat -->
+
+  <target name="init">
+    <!-- directories building -->
+    <mkdir dir="${examples.classes.dir}" />
+    <mkdir dir="${examples.apis.dir}" />
+    <mkdir dir="${dist.clients.dir}" />
+    <mkdir dir="${dist.deploy.dir}" />
+    <mkdir dir="${dist.webapps.dir}" />
+
+    <!-- Set the war.dd.file property to 'empty-value' if not set -->
+    <condition property="war.dd.file" value="${war.dd}">
+      <available file="${war.dd}" />
+    </condition>
+    <condition property="war.dd.file" value="empty-value">
+      <not>
+        <available file="${war.dd}" />
+      </not>
+    </condition>
+
+    <!-- Set the ejb.persistence.dd.file property to 'empty-value' if not set -->
+    <condition property="ejb.persistence.dd.file" value="${ejb.persistence.dd}">
+      <available file="${ejb.persistence.dd}" />
+    </condition>
+    <condition property="ejb.persistence.dd.file" value="empty-value">
+      <not>
+        <available file="${ejb.persistence.dd}" />
+      </not>
+    </condition>
+
+    <!-- Ant tasks provided by OW2 Util -->
+    <typedef resource="org/ow2/util/ant/antlib.xml"
+             uri="http://jonas.ow2.org">
+      <classpath refid="base.classpath" />
+    </typedef>
+  </target>
+
+  <target name="compile" description="Compile classes" depends="init">
+    <javac srcdir="${src.dir}"
+           destdir="${examples.classes.dir}"
+           debug="${javac.debug}"
+           deprecation="${javac.deprecation}"
+           optimize="${javac.optimize}"
+           verbose="${javac.verbose}"
+           compiler="${javac.compiler}"
+           nowarn="${javac.nowarn}">
+      <classpath refid="base.classpath" />
+    </javac>
+  </target>
+
+  <!-- Generate an EJB jar file if it is not included in an EAR -->
+  <target name="ejb-standalone" unless="ear.name">
+    <jonas:ejb exploded="${archives.exploded}"
+                   dest="${ejb.dir}/${ejb.name}.jar"
+                   persistencedd="${ejb.persistence.dd.file}">
+      <fileset dir="${examples.classes.dir}">
+        <patternset refid="ejb.patternset" />
+      </fileset>
+    </jonas:ejb>
+  </target>
+
+  <target name="ejb" if="ejb.name">
+    <antcall target="ejb-standalone" />
+  </target>
+
+  <!-- Generate a war file if it is not included in an EAR -->
+  <target name="war-standalone" unless="ear.name">
+    <jonas:war exploded="${archives.exploded}"
+                   dest="${war.dir}/${war.name}.war"
+                   dd="${war.dd.file}">
+      <classes dir="${examples.classes.dir}">
+        <patternset refid="war.patternset" />
+      </classes>
+    </jonas:war>
+  </target>
+
+  <target name="war" if="war.name">
+    <antcall target="war-standalone" />
+  </target>
+
+  <!-- Generate an application client jar file -->
+  <target name="client-standalone">
+    <jonas:client dest="${client.dir}/${client.name}.jar"
+                  mainclass="${client.main.class}"
+                  dd="${client.dd}"
+                  specificdd="${client.specificdd}">
+      <fileset dir="${examples.classes.dir}">
+        <patternset refid="client.patternset" />
+      </fileset>
+      <fileset dir="${examples.resources.dir}">
+        <patternset refid="client.resources.patternset" />
+      </fileset>
+    </jonas:client>
+  </target>
+
+  <target name="client" if="client.name">
+    <antcall target="client-standalone" />
+  </target>
+
+  <!-- Generate an EAR if it is selected -->
+  <target name="ear" if="ear.name">
+    <jonas:ear exploded="${archives.exploded}"
+               dest="${ear.dir}/${ear.name}.ear"
+               dd="${ear.dd}">
+      <ejb dest="${ejb.name}.jar" persistencedd="${ejb.persistence.dd.file}">
+        <fileset dir="${examples.classes.dir}">
+          <patternset refid="ejb.patternset" />
+        </fileset>
+      </ejb>
+      <war dest="${war.name}.war" dd="${war.dd.file}">
+        <classes dir="${examples.classes.dir}">
+          <patternset refid="war.patternset" />
+        </classes>
+      </war>
+      <client dest="${client.dir}/${client.name}.jar"
+              mainclass="${client.main.class}"
+              dd="${client.dd}"
+              specificdd="${client.specificdd}">
+        <fileset dir="${examples.classes.dir}">
+          <patternset refid="client.patternset" />
+        </fileset>
+        <fileset dir="${examples.resources.dir}">
+          <patternset refid="client.resources.patternset" />
+        </fileset>
+      </client>
+    </jonas:ear>
+  </target>
+
+
+  <target name="run.client" description="Launch client">
+    <java fork="true" classname="${client.main.class}">
+      <!--  <jvmarg line="-Xint -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,address=4142,suspend=y"/>  -->
+      <classpath path="${examples.classes.dir}" />
+      <classpath refid="base.classpath" />
+      <classpath path="${client.dir}/${client.name}.jar" />
+    </java>
+  </target>
+
+
+  <!-- Install example -->
+  <target name="install"
+          depends="init, compile, ejb, war, client, ear"
+          description="Install this example in a deployable directory">
+  </target>
+
+</project>

@@ -1,0 +1,414 @@
+#!/bin/sh
+# ---------------------------------------------------------------------------
+# JOnAS: Java(TM) Open Application Server
+# Copyright (C) 1999-2012 Bull S.A.S.
+# Contact: jonas-team@ow2.org
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+# USA
+#
+# Initial developer(s): Philippe Durieux
+# Contributor(s): Adriana Danes :
+# - Change /config en /conf
+# - Use JONAS_BASE
+# Florent Benoit & Ludovic Bert
+# eyindanga
+# ---------------------------------------------------------------------------
+# $Id: jonas 22440 2012-05-20 11:04:39Z alitokmen $
+# ---------------------------------------------------------------------------
+
+cygwin=false;
+case "`uname`" in
+  CYGWIN*) cygwin=true ;;
+esac
+
+# For Cygwin, ensure paths are in UNIX format before anything is touched
+if $cygwin ; then
+  [ -n "JONAS_ROOT" ] &&
+    JONAS_ROOT=`cygpath --unix "$JONAS_ROOT"`
+  [ -n "JONAS_BASE" ] &&
+    JONAS_BASE=`cygpath --unix "$JONAS_BASE"`
+  [ -n "$JAVA_HOME" ] &&
+    JAVA_HOME=`cygpath -m -s "$JAVA_HOME"`
+fi
+
+# -----------------------------------------------------------------------
+# Compute JONAS_ROOT in case it has not been set.
+# -----------------------------------------------------------------------
+if [ -z "$JONAS_ROOT" ]; then 
+  savewd=`pwd`
+  cd `dirname "$0"`
+  zdir=`pwd`
+  cd "$savewd"
+  zfqn=$zdir/`basename "$0"`
+  JONAS_ROOT=`dirname "$zdir"`
+##  echo JONAS_ROOT is set to "$JONAS_ROOT"
+  export JONAS_ROOT
+fi
+
+
+# Check if $JONAS_ROOT is set.
+if [ ! -f "$JONAS_ROOT"/bin/setenv ]; then
+    echo "Please set the JONAS_ROOT variable."
+    exit
+fi
+
+# Set CLASSPATH and JONAS_BASE
+. "$JONAS_ROOT"/bin/setenv
+
+# Display banner (if any)
+if [ -f "$JONAS_BASE"/conf/banner.txt ]; then
+    cat "$JONAS_BASE"/conf/banner.txt
+fi
+
+# Set path for JOnAS bootstrap libraries
+LIB_BOOTSTRAP_PATH="$JONAS_ROOT"/lib/bootstrap
+
+# Update JONAS_CLASSPATH
+JONAS_CLASSPATH="$JONAS_CLASSPATH"$SPS"$LIB_BOOTSTRAP_PATH/jonas-launcher.jar"
+JONAS_CLASSPATH="$JONAS_CLASSPATH"$SPS"$LIB_BOOTSTRAP_PATH/jonas-commands.jar"
+JONAS_CLASSPATH="$JONAS_CLASSPATH"$SPS"$LIB_BOOTSTRAP_PATH/jonas-version.jar"
+
+# For Cygwin, switch paths to Windows format before running java
+if $cygwin; then
+  [ -n "$JONAS_ROOT" ] &&
+    JONAS_ROOT=`cygpath --path --windows "$JONAS_ROOT"`
+  [ -n "$JONAS_BASE" ] &&
+    JONAS_BASE=`cygpath --path --windows "$JONAS_BASE"`
+fi
+
+JONAS_ROOT_OPTS=-Djonas.root="$JONAS_ROOT"
+JONAS_BASE_OPTS=-Djonas.base="$JONAS_BASE"
+JONAS_SECURITYPOLICY_OPTS=-Djava.security.policy="$JONAS_BASE"/conf/java.policy
+JONAS_SECURITYAUTH_OPTS=-Djava.security.auth.login.config="$JONAS_BASE"/conf/jaas.config
+JONAS_ENDORSEDDIRS_OPTS=-Djava.endorsed.dirs="$JONAS_ROOT"/lib/endorsed
+
+JONAS_OPTS="\
+ -Dipojo.log.level=ERROR \
+ -Dorg.omg.CORBA.ORBClass=org.jacorb.orb.ORB \
+ -Dorg.omg.CORBA.ORBSingletonClass=org.jacorb.orb.ORBSingleton \
+ -Dorg.omg.PortableInterceptor.ORBInitializerClass.standard_init=org.jacorb.orb.standardInterceptors.IORInterceptorInitializer \
+ -Dcom.sun.CORBA.ORBDynamicStubFactoryFactoryClass=com.sun.corba.se.impl.presentation.rmi.StubFactoryFactoryStaticImpl \
+ -Djavax.xml.soap.SOAPConnectionFactory=com.sun.xml.messaging.saaj.client.p2p.HttpSOAPConnectionFactory \
+ -Djavax.xml.soap.SOAPFactory=com.sun.xml.messaging.saaj.soap.ver1_1.SOAPFactory1_1Impl \
+ -Djavax.xml.soap.MetaFactory=com.sun.xml.messaging.saaj.soap.SAAJMetaFactoryImpl \
+ -Djavax.xml.soap.MessageFactory=com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl \
+ "
+
+
+# Most of the ORB and naming properties are not usually changed by the user !! Should be in a class.
+
+# ---------------------------------------------
+# Get arguments
+# ---------------------------------------------
+ARGS=
+MODE=
+JONAS_NAME=
+PINGTIMEOUT=
+PINGSTATE=
+HEADLESS="-Djava.awt.headless=true"
+START_OPTS=
+PINGTIMEOUT_OPT=
+PINGSTATE_OPT=
+WHERE=background
+FORCE_FOREGROUND=false
+ADMIN_CLASS=org.ow2.jonas.commands.admin.ClientAdmin
+USERNAME=
+PASSWORD=
+while [ "$#" -gt 0 ]
+  do case "$1" in
+    start)
+      MODE=start
+      ;;
+    halt)
+      echo "[DEPRECATED] Please use stop argument instead of halt"
+      MODE=stop
+      PINGSTATE=j2ee.state.stopped
+      ;;
+    stop)
+      MODE=stop
+      PINGSTATE=j2ee.state.stopped
+      ;;
+    admin)
+      MODE=admin
+      FORCE_FOREGROUND=true
+      ;;
+    version)
+      MODE=version
+      FORCE_FOREGROUND=true
+      ;;
+    check)
+      MODE=check
+      FORCE_FOREGROUND=true
+      ;;
+    -standby)
+      ARGS="$ARGS -standby"
+      if [ "$MODE" = "stop" ]; then
+        FORCE_FOREGROUND=false
+      fi
+      ;;
+    -running)
+     # Implicit argument for the 'start' argument
+      ;;
+    -halt)
+     # Implicit argument for the 'stop' argument
+      ;;
+    -cp)
+      PARAMS="$PARAMS $1"
+      shift
+      JONAS_CLASSPATH="$JONAS_CLASSPATH"$SPS$1
+      ;;
+    -debug)
+      PARAMS="$PARAMS $1"
+      shift
+      # $1=-p
+      if [ "$1" != "-p" ]; then
+        echo "-debug mode need a following \"-p \""
+        exit 1
+      fi
+      shift
+      JONAS_DEBUG_PORT=$1
+      JONAS_DEBUG_SUSPEND=n
+      if [ "$2" = "-s" ]; then
+        shift
+        shift
+        JONAS_DEBUG_SUSPEND=$1
+      fi
+      echo "JOnAS Debug Info :"
+      echo " listening on port : $JONAS_DEBUG_PORT"
+      echo " suspend mode : $JONAS_DEBUG_SUSPEND"
+      JONAS_DEBUG_OPTS=" -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,address=$JONAS_DEBUG_PORT,suspend=$JONAS_DEBUG_SUSPEND"
+      ;;
+    -fg)
+      WHERE=foreground
+      ;;
+    -bg)
+      WHERE=background
+      ;;
+    -gui)
+      echo "Start Felix GUI with JOnAS."
+      START_OPTS="$START_OPTS -Djonas.felix.gui.enabled=true"
+      HEADLESS=""
+      ;;
+    -tui)
+      echo "Start Felix TUI with JOnAS."
+      START_OPTS="$START_OPTS -Djonas.felix.tui.enabled=true"
+      FORCE_FOREGROUND=true
+      ;;
+    -win)
+      WHERE=window
+      ;;
+    -nojit)
+      JONAS_OPTS="$JONAS_OPTS -Djava.compiler=NONE"
+      START_OPTS="$START_OPTS -Djava.compiler=NONE"
+      ;;
+    -dev)
+      START_OPTS="$START_OPTS -Djonas.developer=true"
+      ;;
+    -failStartOnError)
+      JONAS_OPTS="$START_OPTS -Djonas.start.nofail=true"
+      ;;
+    -clean)
+      echo "Clean Felix cache before starting JOnAS."
+      START_OPTS="$START_OPTS -Djonas.cache.clean=true"
+      ;;
+    -n)
+      PARAMS="$PARAMS $1"
+      shift
+      JONAS_NAME=$1
+      ;;
+    -timeout)
+      PARAMS="$PARAMS $1"
+      shift
+      PINGTIMEOUT=$1
+      ;;
+    -state)
+      PARAMS="$PARAMS $1"
+      shift
+      PINGSTATE=$1
+      ;;
+    -D*)
+      JONAS_OPTS="$JONAS_OPTS $1"
+      START_OPTS="$START_OPTS $1"
+      ;;
+    -X*)
+      JAVA_OPTS="$JAVA_OPTS $1"
+      ;;
+    -target)
+      if [ "$MODE" = "start" ]; then
+        ARGS="$ARGS -start"
+      fi
+      if [ "$MODE" = "stop" ]; then
+        ARGS="$ARGS -stop"
+      fi
+      MODE=admin
+      ARGS="$ARGS -target"
+      ;;
+    -username)
+      PARAMS="$PARAMS $1"
+      shift
+      USERNAME="-username $1"
+      ;;
+    -password)
+      PARAMS="$PARAMS $1"
+      shift
+      PASSWORD="-password $1"
+      ;;
+    *)
+      # All other args are passed "as is" to the java program
+      ARGS="$ARGS $1"
+      ;;
+  esac
+  if [ "$1" != "-win" ]; then
+    PARAMS="$PARAMS $1"
+  fi
+  shift
+done
+
+# ---------------------------------------------
+# Check args
+# ---------------------------------------------
+case "$MODE" in
+  start)
+    CLASS_TO_RUN="$ADMIN_CLASS -start"
+    ;;
+  stop)
+    CLASS_TO_RUN="$ADMIN_CLASS -stop"
+    ;;
+  admin)
+    CLASS_TO_RUN=$ADMIN_CLASS
+    ;;
+  version)
+    CLASS_TO_RUN=org.ow2.jonas.Version
+    ;;
+  check)
+    CLASS_TO_RUN=org.ow2.jonas.commands.check.CheckEnv
+    ;;
+  *)
+    # Usage
+    # Will be displayed if the user type an unrecognized command
+    echo "Unrecognized command : '$*'"
+    echo "Usage: $0 start | stop | admin | version | check"
+    echo "Options:"
+    echo "  for 'start': [-fg] [-bg] [-win] [-n] [-standby] [-debug] [-gui] [-tui] [-dev] [-clean] [-nojit]"
+    echo "  -fg                         Launch JOnAS in foreground (Only applicable for 'start')."
+    echo "  -bg                         Launch JOnAS in background (Only applicable for 'start')."
+    echo "  -win                        Launch JOnAS in a separate window (Only applicable for 'start')."
+    echo "  -n <jonas-name>             Specify the JOnAS instance name."
+    echo "  -standby                    Allow to reach the STANDBY state (Only applicable for 'start' and 'stop')."
+    echo "  -debug -p <port> [-s <y/n>] Debug the JOnAS instance."
+    echo "  -gui                        Launch JOnAS with the Apache Felix GUI (Only applicable for 'start')."
+    echo "  -tui                        Launch JOnAS with the Apache Felix Shell"
+    echo "                              (allow to perform OSGi operations on the framework)."
+    echo "                              (Only applicable for 'start')"
+    echo "  -dev                        Use M2 registry for bundles (for JOnAS developers)."
+    echo "  -failStartOnError           Make the server startup fail (i.e., stop automatically) if deployment of any deployable fails."
+    echo "  -clean                      Clean Felix cache before starting JOnAS."
+    echo "  -nojit                      Disable JIT."
+    echo " for '*': [-cp] [-n] [-timeout] [-target] [-D*]"
+    echo "  -cp <classpath>             Additional CLASSPATH entries (to be used with care)."
+    echo "  -timeout <timeout>          Specify a new connection timeout."
+    echo "  -target [options]           Perform remote administration tasks."
+    echo "  -Dname=value                Add JVM properties."
+    exit 1
+    ;;
+esac
+
+# ---------------------------------------------
+# Print out JONAS_BASE
+# ---------------------------------------------
+case "$MODE" in
+ start|check)
+ echo "JONAS_BASE is set to" $JONAS_BASE
+ ;;
+esac
+
+# ---------------------------------------------
+# Add RMI Annotation
+# ---------------------------------------------
+#if [ -z "$ANNOTATE" ]; then
+#  JONAS_OPTS="$JONAS_OPTS \
+#              -Djava.rmi.server.RMIClassLoaderSpi=org.ow2.jonas.lib.bootstrap.RemoteClassLoaderSpi"
+#fi
+
+# ---------------------------------------------
+# Set jonas server name
+# ---------------------------------------------
+if [ ! -z "$JONAS_NAME" ]; then
+  JONAS_OPTS="$JONAS_OPTS -Djonas.name=$JONAS_NAME "
+  START_OPTS="$START_OPTS -Djonas.name=$JONAS_NAME "
+fi
+
+# ---------------------------------------------
+# Set jonas timeout for ping
+# ---------------------------------------------
+if [ ! -z "$PINGTIMEOUT" ]; then
+  PINGTIMEOUT_OPT="-timeout $PINGTIMEOUT"
+fi
+
+# ---------------------------------------------
+# Set jonas state for ping
+# ---------------------------------------------
+if [ ! -z "$PINGSTATE" ]; then
+  PINGSTATE_OPT="-state $PINGSTATE"
+fi
+
+# Add Headless if needed
+START_OPTS="$START_OPTS $HEADLESS"
+
+# Force foreground mode
+if [ "$FORCE_FOREGROUND" = true ]; then
+ WHERE=foreground
+fi
+
+# For Cygwin, switch paths to Windows format before running java
+if $cygwin; then
+  [ -n "$JONAS_CLASSPATH" ] &&
+    JONAS_CLASSPATH=`cygpath --path --windows "$JONAS_CLASSPATH"`
+fi
+
+
+# ---------------------------------------------
+# Run java command
+# ---------------------------------------------
+if [ "$MODE" = "start" ]
+then
+  case "$WHERE" in
+   window)
+    xterm -title $HOSTNAME:$JONAS_NAME -geometry 110x16 -sb -e $0 $PARAMS -fg &
+     ;;
+   foreground)
+     # Start JOnAS in the foreground
+     exec $JAVA $JAVA_OPTS $START_OPTS $JONAS_OPTS "$JONAS_ROOT_OPTS" "$JONAS_BASE_OPTS" "$JONAS_SECURITYPOLICY_OPTS"  "$JONAS_SECURITYAUTH_OPTS"  "$JONAS_ENDORSEDDIRS_OPTS" $JONAS_OPTS -cp "$JONAS_CLASSPATH" $JONAS_DEBUG_OPTS $CLASS_TO_RUN $ARGS $USERNAME $PASSWORD
+     ;;
+   *)
+     # Start JOnAS in the background
+     $JAVA $JAVA_OPTS $START_OPTS $JONAS_OPTS "$JONAS_ROOT_OPTS" "$JONAS_BASE_OPTS" "$JONAS_SECURITYPOLICY_OPTS"  "$JONAS_SECURITYAUTH_OPTS"  "$JONAS_ENDORSEDDIRS_OPTS" -cp "$JONAS_CLASSPATH" $JONAS_DEBUG_OPTS $CLASS_TO_RUN $ARGS $USERNAME $PASSWORD &
+
+     # Wait for JOnAS to actually start
+     $JAVA            $START_OPTS $JONAS_OPTS "$JONAS_ROOT_OPTS" "$JONAS_BASE_OPTS" "$JONAS_SECURITYPOLICY_OPTS"  "$JONAS_SECURITYAUTH_OPTS"  "$JONAS_ENDORSEDDIRS_OPTS" -cp "$JONAS_CLASSPATH" $ADMIN_CLASS -ping $PINGTIMEOUT_OPT $PINGSTATE_OPT $ARGS $USERNAME $PASSWORD
+     ;;
+  esac
+elif [ "$MODE" = "stop" ]
+then
+  # Send the JMX command for stopping JOnAS, in the background
+  $JAVA $START_OPTS $JONAS_OPTS "$JONAS_ROOT_OPTS" "$JONAS_BASE_OPTS" "$JONAS_SECURITYPOLICY_OPTS"  "$JONAS_SECURITYAUTH_OPTS"  "$JONAS_ENDORSEDDIRS_OPTS"  -cp "$JONAS_CLASSPATH" $JONAS_DEBUG_OPTS $CLASS_TO_RUN $ARGS $USERNAME $PASSWORD &
+
+  # Wait for JOnAS to actually stop
+  $JAVA $START_OPTS $JONAS_OPTS "$JONAS_ROOT_OPTS" "$JONAS_BASE_OPTS" "$JONAS_SECURITYPOLICY_OPTS"  "$JONAS_SECURITYAUTH_OPTS"  "$JONAS_ENDORSEDDIRS_OPTS" -cp "$JONAS_CLASSPATH" $ADMIN_CLASS -ping $PINGTIMEOUT_OPT $PINGSTATE_OPT $ARGS $USERNAME $PASSWORD
+else
+  # JOnAS admin or other similar command
+  $JAVA $START_OPTS $JONAS_OPTS "$JONAS_ROOT_OPTS" "$JONAS_BASE_OPTS" "$JONAS_SECURITYPOLICY_OPTS"  "$JONAS_SECURITYAUTH_OPTS"  "$JONAS_ENDORSEDDIRS_OPTS" -cp "$JONAS_CLASSPATH" $JONAS_DEBUG_OPTS $CLASS_TO_RUN $ARGS $PINGTIMEOUT_OPT $PINGSTATE_OPT $USERNAME $PASSWORD
+fi

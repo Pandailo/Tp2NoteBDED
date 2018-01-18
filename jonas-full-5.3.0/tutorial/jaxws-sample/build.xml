@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - JOnAS: Java(TM) Open Application Server
+ - Copyright (C) 1999-2009 Bull S.A.
+ - Contact: jonas-team@ow2.org
+ -
+ - This library is free software; you can redistribute it and/or
+ - modify it under the terms of the GNU Lesser General Public
+ - License as published by the Free Software Foundation; either
+ - version 2.1 of the License, or any later version.
+ -
+ - This library is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ - Lesser General Public License for more details.
+ -
+ - You should have received a copy of the GNU Lesser General Public
+ - License along with this library; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ - USA
+ -
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - $Id: build.xml 17803 2009-06-25 12:58:11Z fornacif $
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<!--
+ - JOnAS tutorial examples building directives for Ant
+ -->
+
+<project name="JAX-WS Tutorial Example" default="build-deploy-service" basedir=".">
+
+    <target name="clean" description="Remove all the generated files or directories">
+        <ant dir="service" target="clean"/>
+        <ant dir="client" target="clean"/>
+    </target>
+
+    <target name="build-deploy-service" description="Build and deploy quote.ear (JOnAS must be running)">
+        <ant dir="service" target="ear"/>
+    </target>
+    
+    <target name="build-client" description="Build quote-client.jar">
+        <ant dir="client" target="appclient"/>
+    </target>
+    
+    <target name="run-client" depends="build-client" description="Execute the JAX-WS Client">
+        <ant dir="client" target="run"/>
+    </target>
+
+</project>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: albertil
+Build-Jdk: 1.6.0_25
+Specification-Title: JOnAS :: EE Components :: MEJB :: Core
+Specification-Version: 5.3.0
+Specification-Vendor: OW2 Consortium
+Implementation-Title: JOnAS :: EE Components :: MEJB :: Core
+Implementation-Version: 5.3.0
+Implementation-Vendor-Id: org.ow2.jonas
+Implementation-Vendor: OW2 Consortium
+Build-Number: 0
+

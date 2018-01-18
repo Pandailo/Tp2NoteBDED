@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - JOnAS: Java(TM) Open Application Server
+  - Copyright (C) 2007-2011 Bull S.A.S.
+  - Contact: jonas-team@objectweb.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  - USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: services-config.xml 22425 2012-05-04 16:45:46Z cazauxj $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+
+
+<services-config>
+  <services>
+    <service id="granite-service" class="flex.messaging.services.RemotingService"
+      messageTypes="flex.messaging.messages.RemotingMessage">
+      <!-- destination for treeInfo class -->
+      <destination id="TreeClass">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.domain.TreeDomain</source>
+        </properties>
+      </destination>
+      <!-- destination for server class -->
+      <destination id="ServerClass">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.server.ServerInformation</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+      <!-- destination for servers class -->
+      <destination id="ServersClass">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.servers.Servers</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+      <!-- destination for clusters class -->
+      <destination id="ClustersClass">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.clusters.Clusters</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+      <destination id="ClusterClass">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.clusters.Cluster</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+
+      <destination id="domainMapDes">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.domain.DomainMap</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+      <destination id="ServerMonitoringDes">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.server.ServerMonitoring</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+      <destination id="ServersInClusterDes">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.clusters.ServersInCluster</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+      <destination id="DomainSyntheticViewDes">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.domain.DomainSyntheticView</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+      <destination id="ClusterSyntheticViewDes">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.clusters.ClusterSyntheticView</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+      <destination id="StackDump">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.stackdump.StackDump</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+      <!-- destination for Clusterdaemons info class -->
+      <destination id="ClustersDaemonInfoRemoteObjectDes">
+        <channels>
+          <channel ref="amf-channel" />
+        </channels>
+        <properties>
+          <source>org.ow2.jonas.clusterdaemons.ClusterDaemonAdministration</source>
+          <scope>session</scope>
+        </properties>
+      </destination>
+
+      <destination id="logIn">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jasmine.kerneos.login.LoginService</source>
+        </properties>
+      </destination>
+
+      <destination id="kerneosConfig">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jasmine.kerneos.service.KerneosConfigService</source>
+        </properties>
+      </destination>
+      
+      
+      <destination id="jdbcConnections">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.jdbcconnections.service.JDBCConnectionsService</source>
+        </properties>
+      </destination>      
+
+      <destination id="auditService">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.auditconsole.service.AuditService</source>
+        </properties>
+      </destination>
+
+
+      <destination id="classLoaderService">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.classloader.service.ClassLoaderService</source>
+        </properties>
+      </destination>
+
+      <destination id="bundleService">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.osgi.bundle.osgiBundleService</source>
+        </properties>
+      </destination>
+
+      <destination id="obrService">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.osgi.obr.osgiOBRService</source>
+        </properties>
+      </destination>
+
+      <destination id="serviceService">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.osgi.service.osgiServiceService</source>
+        </properties>
+      </destination>
+
+     <destination id="shellService">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.osgi.shell.osgiShellService</source>
+        </properties>
+      </destination>
+
+
+     <destination id="builderService">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.autostart.service.BuilderService</source>
+        </properties>
+      </destination>
+
+      <destination id="jmxBrowser">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.easybeans.console.jmxbrowser.service.JMXBrowserService</source>
+        </properties>
+      </destination>
+
+      <destination id="registryBrowser">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.easybeans.console.registry.service.RegistryService</source>
+        </properties>
+      </destination>
+
+      <destination id="webServicesConsole">
+        <channels>
+          <channel ref="my-graniteamf-kerneos" />
+        </channels>
+        <properties>
+          <scope>session</scope>
+          <source>org.ow2.jonas.admin.webservicesconsole.service.WebServicesConsoleService</source>
+        </properties>
+      </destination>
+
+    </service>
+  </services>
+
+  <channels>
+    <channel-definition id="my-graniteamf"
+      class="mx.messaging.channels.AMFChannel">
+      <endpoint
+        uri="http://{server.name}:{server.port}/{context.root}/graniteamf/amf"
+        class="flex.messaging.endpoints.AMFEndpoint" />
+    </channel-definition>
+        <channel-definition id="my-graniteamf-kerneos"
+      class="mx.messaging.channels.AMFChannel">
+      <endpoint
+        uri="http://{server.name}:{server.port}/{context.root}/graniteamf/amf"
+        class="flex.messaging.endpoints.AMFEndpoint" />
+    </channel-definition>
+
+    <channel-definition id="amf-channel"
+      class="mx.messaging.channels.AMFChannel">
+      <endpoint
+        uri="http://{server.name}:{server.port}/{context.root}/graniteamf/amf"
+        class="flex.messaging.endpoints.AMFEndpoint" />
+    </channel-definition>
+  </channels>
+</services-config>
+
